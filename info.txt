@@ -1,0 +1,3 @@
+database: u605544755_modulmobhomes
+user: u605544755_modulmobhomes
+pass: 7]wLjLHA
