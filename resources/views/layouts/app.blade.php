@@ -11,7 +11,7 @@
 
         <!-- Scripts -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-{{--        <script src="{{ asset('js/app.js') }}" defer></script>--}}
+        {{--<script src="{{ asset('js/app.js') }}" defer></script>--}}
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 
@@ -22,10 +22,22 @@
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+        <!-- CSS files from template START -->
+        <!-- bootstrap.min css -->
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+        <!-- Icon Font Css -->
+        <link rel="stylesheet" href="{{ asset('css/icofont.min.css') }}">
+        <!-- Slick Slider  CSS -->
+        <link rel="stylesheet" href="{{ asset('css/slick.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/slick-theme.css') }}">
+        <!-- Main Stylesheet -->
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <!-- CSS files from template END -->
+
         @yield('componentcss')
 
     </head>
-    <body>
+    <body id="top">
         <div id="app">
             <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
                 @yield('sidebar')
@@ -35,6 +47,24 @@
                 @yield('content')
             </main>
         </div>
+        <!-- JS files from template START -->
+        <!-- Bootstrap 4.3.2 -->
+        <script src="{{ asset('js/popper.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('js/jquery.easing.js') }}"></script>
+        <!-- Slick Slider -->
+        <script src="{{ asset('js/slick.min.js') }}"></script>
+        <!-- Counterup -->
+        <script src="{{ asset('js/jquery.waypoints.min.js') }}"></script>
+        <script src="{{ asset('js/shuffle.min.js') }}"></script>
+        <script src="{{ asset('js/jquery.counterup.min.js') }}"></script>
+        <!-- Google Map -->
+        <script src="{{ asset('js/map.js') }}"></script>
+        <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>     -->
+        <!-- Other scripts -->
+        <script src="{{ asset('js/script.js') }}"></script>
+        <script src="{{ asset('js/contact.js') }}"></script>
+        <!-- JS files from template END -->
         @yield('js')
     </body>
 </html>
