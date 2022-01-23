@@ -53,38 +53,42 @@
         
             <div class="collapse navbar-collapse" id="navbarmain">
                 <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="index.html">Home</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="service.html">Services</a></li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.html">Početna</a>
+                    </li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="department.html" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Department <i class="icofont-thin-down"></i></a>
+                    <a class="nav-link dropdown-toggle" href="department.html" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Katalog + <i class="icofont-thin-down"></i></a>
                         <ul class="dropdown-menu" aria-labelledby="dropdown02">
-                            <li><a class="dropdown-item" href="department.html">Departments</a></li>
-                            <li><a class="dropdown-item" href="department-single.html">Department Single</a></li>
+                            <li><a class="dropdown-item" href="#">MMH21.S01 – kuća za 2 osobe</a></li>
+                            <li><a class="dropdown-item" href="#"></a>MMH21.M01 – kuća za 4 osobe</li>
+                            <li><a class="dropdown-item" href="#"></a>MMH21.M02- kuća za 4 osobe</li>
+                            <li><a class="dropdown-item" href="#"></a>MMH21.L01- kuća za 6 osoba</li>
+                            <li><a class="dropdown-item" href="#"></a>MMH21.L.02- kuća za 6 osoba</li>
+                            <li><a class="dropdown-item" href="#"></a>MMH21.XL01- kuća za 8 osoba</li>
+                            <li><a class="dropdown-item" href="#"></a>NAPRAVI SVOJU KOMBINACIJU</li>
                         </ul>
                     </li>
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="doctor.html" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Doctors <i class="icofont-thin-down"></i></a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdown03">
-                            <li><a class="dropdown-item" href="doctor.html">Doctors</a></li>
-                            <li><a class="dropdown-item" href="doctor-single.html">Doctor Single</a></li>
-                            <li><a class="dropdown-item" href="appoinment.html">Appoinment</a></li>
-                        </ul>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Za investitore</a>
                     </li>
 
-                <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="blog-sidebar.html" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Blog <i class="icofont-thin-down"></i></a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdown05">
-                            <li><a class="dropdown-item" href="blog-sidebar.html">Blog with Sidebar</a></li>
-
-                            <li><a class="dropdown-item" href="blog-single.html">Blog Single</a></li>
-                        </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Tehničke karakteristike</a>
                     </li>
-                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">O nama</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Aktuelnosti</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Kontakt</a>
+                    </li>
                 </ul>
             </div>
             </div>
