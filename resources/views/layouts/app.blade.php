@@ -39,9 +39,9 @@
     </head>
     <body id="top">
         <div id="app">
-            <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+            <!-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
                 @yield('sidebar')
-            </nav>
+            </nav> -->
 
             <main>
                 @yield('content')
