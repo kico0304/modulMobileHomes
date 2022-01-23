@@ -102,9 +102,9 @@
                 <div class="col-lg-6 col-md-12 col-xl-7">
                     <div class="block">
                         <div class="divider mb-3"></div>
-                        <span class="text-uppercase text-sm letter-spacing ">Mobilne kućice</span>
-                        <h1 class="mb-3 mt-3">Modul Mobile Homes</h1>
-                        <p class="mb-4 pr-5">Ovdje neki dodatni tekst.</p>
+                        <span class="text-uppercase text-sm letter-spacing ">Zašto MMH?</span>
+                        <h1 class="mb-3 mt-3">ModulMobileHomes</h1>
+                        <p class="mb-4 pr-5">Zato što su naši objekti dimenziosani prema vašim stvarnim potrebama.</p>
                         <div class="btn-container ">
                             <a href="appoinment.html" target="_blank" class="btn btn-main-2 btn-icon btn-round-full">Kontaktirajte nas <i class="icofont-simple-right ml-2  "></i></a>
                         </div>
