@@ -2,7 +2,8 @@
 
 :root {
     --main-purple: #663399;
-    --main-orange: #f58733;
+    /* --main-orange: #f58733; */
+    --main-orange: #223a66;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
