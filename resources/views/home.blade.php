@@ -122,7 +122,7 @@
                     <div class="feature-block d-lg-flex">
                         <div class="feature-item mb-5 mb-lg-0">
                             <div class="feature-icon mb-4">
-                                <i class="icofont-architecture"></i>
+                                <i class="icofont-headphone-alt-2"></i>
                             </div>
                             <span>Tu smo za Vas</span>
                             <h4 class="mb-3">Online konsultacije</h4>
