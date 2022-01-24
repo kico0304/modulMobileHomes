@@ -122,24 +122,24 @@
                     <div class="feature-block d-lg-flex">
                         <div class="feature-item mb-5 mb-lg-0">
                             <div class="feature-icon mb-4">
-                                <i class="icofont-surgeon-alt"></i>
+                                <i class="icofont-architecture"></i>
                             </div>
-                            <span>24 Hours Service</span>
-                            <h4 class="mb-3">Online Appoinment</h4>
-                            <p class="mb-4">Get ALl time support for emergency.We have introduced the principle of family medicine.</p>
-                            <a href="appoinment.html" class="btn btn-main btn-round-full">Make a appoinment</a>
+                            <span>Tu smo za Vas</span>
+                            <h4 class="mb-3">Online konsultacije</h4>
+                            <p class="mb-4">Informišite se o našim proizvodima svakim radnim danom.</p>
+                            <a href="appoinment.html" class="btn btn-main btn-round-full">Zakažite termin</a>
                         </div>
                     
                         <div class="feature-item mb-5 mb-lg-0">
                             <div class="feature-icon mb-4">
                                 <i class="icofont-ui-clock"></i>
                             </div>
-                            <span>Timing schedule</span>
-                            <h4 class="mb-3">Working Hours</h4>
+                            <span>Naš raspored</span>
+                            <h4 class="mb-3">Radno vrijeme</h4>
                             <ul class="w-hours list-unstyled">
-                                <li class="d-flex justify-content-between">Sun - Wed : <span>8:00 - 17:00</span></li>
-                                <li class="d-flex justify-content-between">Thu - Fri : <span>9:00 - 17:00</span></li>
-                                <li class="d-flex justify-content-between">Sat - sun : <span>10:00 - 17:00</span></li>
+                                <li class="d-flex justify-content-between">Pon - Pet: <span>8:00 - 16:00</span></li>
+                                <li class="d-flex justify-content-between">Subota: <span>9:00 - 14:00</span></li>
+                                <li class="d-flex justify-content-between">Nedjelja: <span>Ne radimo</span></li>
                             </ul>
                         </div>
                     
@@ -147,9 +147,9 @@
                             <div class="feature-icon mb-4">
                                 <i class="icofont-support"></i>
                             </div>
-                            <span>Emegency Cases</span>
-                            <h4 class="mb-3">1-800-700-6200</h4>
-                            <p>Get ALl time support for emergency.We have introduced the principle of family medicine.Get Conneted with us for any urgency .</p>
+                            <span>Podrška</span>
+                            <h4 class="mb-3">+387 65 959 595</h4>
+                            <p>Tu smo za Vas 24 sata snevno u slučaju hitih slučajeva.</p>
                         </div>
                     </div>
                 </div>
