@@ -149,7 +149,7 @@
                             </div>
                             <span>Podrška</span>
                             <h4 class="mb-3">+387 65 959 595</h4>
-                            <p>Tu smo za Vas 24 sata snevno u slučaju hitih slučajeva.</p>
+                            <p>Tu smo za Vas 24 sata snevno u slučaju hitih slučajeva. Tu smo za Vas 24 sata snevno u slučaju hitih slučajeva.</p>
                         </div>
                     </div>
                 </div>
