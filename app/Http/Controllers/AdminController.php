@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\PartsForProduct;
 use Illuminate\Http\Request;
 use App\Product;
 use App\ProductImages;
@@ -18,7 +19,7 @@ class AdminController extends Controller
 
         $products = Product::all();
 
-        return view('admin', [
+        return view('admin.admin', [
             'products' => $products
         ]);
     }
@@ -31,7 +32,7 @@ class AdminController extends Controller
         $id_product = $request['id'];
         Product::where('id', $id_product)->delete();
         ProductImages::where('product_id', $id_product)->delete();
-        $image_path = public_path('images\product_'.$id_product); // upload path
+        $image_path = public_path('images\products\product_'.$id_product); // upload path
         if(File::exists($image_path)) {
             File::deleteDirectory($image_path);
         }
@@ -48,7 +49,7 @@ class AdminController extends Controller
         if ($photos = $request->file('photos')) {
 
             // Define upload path
-            $destinationPath = public_path('/images/product_'.$request['product_id'].'/'); // upload path
+            $destinationPath = public_path('/images/products/product_'.$request['product_id'].'/'); // upload path
             foreach($photos as $img) {
                 // Upload Orginal Image
                 $profileImage =$img->getClientOriginalName();
@@ -84,7 +85,7 @@ class AdminController extends Controller
         if ($photos = $request->file('photos')) {
 
             // Define upload path
-            $destinationPath = public_path('/images/product_'.$new_product->id.'/'); // upload path
+            $destinationPath = public_path('/images/products/product_'.$new_product->id.'/'); // upload path
             foreach($photos as $img) {
                 // Upload Orginal Image
                 $profileImage =$img->getClientOriginalName();
@@ -112,13 +113,27 @@ class AdminController extends Controller
         $image_name = $request['image_name'];
         $id = $request['id'];
         $image_id = $request['photo_id'];
-        $image_path = public_path('/images/product_'.$id.'/'.$image_name); // upload path
+        $image_path = public_path('/images/products/product_'.$id.'/'.$image_name); // upload path
         if(File::exists($image_path)) {
             File::delete($image_path);
         }
 
         ProductImages::where('id', $image_id)->delete();
         return response()->json(['image_id' => $image_id]);
+
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function parts (Request $request) {
+
+        $parts = PartsForProduct::all();
+
+        return view('admin.parts', [
+            'parts' => $parts
+        ]);
 
     }
 }

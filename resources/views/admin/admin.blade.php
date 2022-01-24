@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('title', 'Admin page')
+@extends('layouts.appadmin')
 
 @section('componentcss')
     <style>
@@ -28,10 +26,6 @@
             margin-top: 3px;
         }
     </style>
-@endsection
-
-@section('sidebar')
-    <h1>Admin Panel</h1>
 @endsection
 
 @section('content')
@@ -146,7 +140,7 @@
                                 @foreach($product->images as $image)
                                     <div class="col-md-4 edit_photo_{{$image->id}}">
                                         <div class="edit_photos">
-                                            <img class="edit_img" alt="edit_image" src="{{asset('images/product_'.$product->id.'/'.$image->name)}}">
+                                            <img class="edit_img" alt="edit_image" src="{{asset('images/products/product_'.$product->id.'/'.$image->name)}}">
                                             <br>
                                             <button class="btn btn-danger btn-sm delete_photo" data-name="{{$image->name}}" data-id="{{$product->id}}" data-photoid="{{$image->id}}">Delete</button>
                                         </div>
@@ -167,7 +161,7 @@
                 </div>
                 <tr>
                     <td>{{$product->id}}</td>
-                    <td>@if(!$product->images->isEmpty())<img class="img_table" alt="image" src="{{asset('images/product_'.$product->id.'/'.$product->images[0]->name)}}">@else - @endif</td>
+                    <td>@if(!$product->images->isEmpty())<img class="img_table" alt="image" src="{{asset('images/products/product_'.$product->id.'/'.$product->images[0]->name)}}">@else - @endif</td>
                     <td>{{$product->name}}</td>
                     <td>{{$product->price}}</td>
                     <td>{{$product->en}}</td>

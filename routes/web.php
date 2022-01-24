@@ -22,6 +22,7 @@ Route::get('/contact',  'HomeController@contact')->name('contact');
 Route::middleware(['auth', 'auth.admin'])->prefix('admin')->group(function () {
 
     Route::get('/',                'AdminController@admin');
+    Route::get('/parts',           'AdminController@parts');
     Route::post('/delete_product', 'AdminController@delete_product');
     Route::post('/add_product',    'AdminController@add_product');
     Route::post('/edit_product',   'AdminController@edit_product');
