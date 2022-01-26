@@ -14,9 +14,12 @@
 Auth::routes();
 
 
-Route::get('/',         'HomeController@index')->name('home');
-Route::get('/about-us', 'HomeController@about')->name('about-us');
-Route::get('/contact',  'HomeController@contact')->name('contact');
+Route::get('/',          'HomeController@index')->name('home');
+Route::get('/about-us',  'HomeController@about')->name('about-us');
+Route::get('/contact',   'HomeController@contact')->name('contact');
+Route::get('/investors', 'HomeController@investors')->name('investors');
+Route::get('/technology','HomeController@technology')->name('technology');
+Route::get('/actualities','HomeController@actualities')->name('actualities');
 
 //ADMIN ROUTES
 Route::middleware(['auth', 'auth.admin'])->prefix('admin')->group(function () {
