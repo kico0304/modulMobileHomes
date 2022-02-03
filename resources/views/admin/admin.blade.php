@@ -205,7 +205,7 @@
                 let photo_id = $(this).data('photoid');
 
                 $.ajax({
-                    url: '{{ url('/admin/delete_photo') }}',
+                    url: '{{ url('/admin/delete_product_photo') }}',
                     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                     data: {'image_name': image_name, 'id': id, 'photo_id': photo_id},
                     type: 'post',

@@ -38,7 +38,7 @@
     <!-- Admin Stylesheet -->
     <link rel="stylesheet" href="{{ asset('css/admin/admin-style.css') }}">
     <!-- CSS files from template END -->
-    
+
     @yield('componentcss')
 
 </head>

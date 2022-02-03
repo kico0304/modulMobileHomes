@@ -108,7 +108,7 @@ class AdminController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function delete_photo (Request $request) {
+    public function delete_product_photo (Request $request) {
 
         $image_name = $request['image_name'];
         $id = $request['id'];
