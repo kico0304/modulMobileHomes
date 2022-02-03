@@ -29,3 +29,10 @@
 .delete_photo {
     margin-top: 3px;
 }
+
+.add_modal {
+    margin: 10px;
+}
+.close_edit_modal, .close_new_modal{
+    margin-left: 40px;
+}
