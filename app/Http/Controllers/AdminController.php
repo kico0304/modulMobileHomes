@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\PartImages;
 use App\PartsForProduct;
 use Illuminate\Http\Request;
 use App\Product;
@@ -12,6 +13,13 @@ use Illuminate\Support\Facades\File;
 
 class AdminController extends Controller
 {
+
+    /*
+     *
+     * PRODUCT ********************************************************************
+     *
+     */
+
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -36,6 +44,8 @@ class AdminController extends Controller
         if(File::exists($image_path)) {
             File::deleteDirectory($image_path);
         }
+
+        return back()->with('success', 'Product Deleted Successfully');
     }
 
     /**
@@ -123,6 +133,13 @@ class AdminController extends Controller
 
     }
 
+
+    /*
+     *
+     * PART *************************************************************************
+     *
+     */
+
     /**
      * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -136,4 +153,112 @@ class AdminController extends Controller
         ]);
 
     }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function delete_part (Request $request) {
+
+        $id_part = $request['id'];
+        PartsForProduct::where('id', $id_part)->delete();
+        PartImages::where('part_id', $id_part)->delete();
+        $image_path = public_path('images\parts\part_'.$id_part); // upload path
+        if(File::exists($image_path)) {
+            File::deleteDirectory($image_path);
+        }
+
+        return back()->with('success', 'Part Deleted Successfully');
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function edit_part (Request $request) {
+
+        PartsForProduct::where('id', $request['part_id'])->update(['name' => $request['name'], 'price' => $request['price'], 'en' => $request['en'], 'de' => $request['de']]);
+
+        if ($photos = $request->file('photos')) {
+
+            // Define upload path
+            $destinationPath = public_path('/images/parts/part_'.$request['part_id'].'/'); // upload path
+            foreach($photos as $img) {
+                // Upload Orginal Image
+                $profileImage =$img->getClientOriginalName();
+                $img->move($destinationPath, $profileImage);
+
+                //save photo in database
+                $new_photo = new PartImages();
+                $new_photo->part_id = $request['part_id'];
+                $new_photo->name = $profileImage;
+                $new_photo->save();
+            }
+
+        }
+
+        return back()->with('success', 'Part Saved Successfully');
+
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function add_part (Request $request) {
+
+        //save part
+        $new_part = new PartsForProduct();
+        $new_part->name = $request['name'];
+        $new_part->price = $request['price'];
+        $new_part->en = $request['en'];
+        $new_part->de = $request['de'];
+        $new_part->save();
+
+        if ($photos = $request->file('photos')) {
+
+            // Define upload path
+            $destinationPath = public_path('/images/parts/part_'.$new_part->id.'/'); // upload path
+            foreach($photos as $img) {
+                // Upload Orginal Image
+                $profileImage =$img->getClientOriginalName();
+                $img->move($destinationPath, $profileImage);
+
+                //save photo in database
+                $new_photo = new PartImages();
+                $new_photo->part_id = $new_part->id;
+                $new_photo->name = $profileImage;
+                $new_photo->save();
+            }
+
+        }
+
+        return back()->with('success', 'Part Saved Successfully');
+
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function delete_part_photo (Request $request) {
+
+        $image_name = $request['image_name'];
+        $id = $request['id'];
+        $image_id = $request['photo_id'];
+        $image_path = public_path('/images/parts/part_'.$id.'/'.$image_name); // upload path
+        if(File::exists($image_path)) {
+            File::delete($image_path);
+        }
+
+        PartImages::where('id', $image_id)->delete();
+        return response()->json(['image_id' => $image_id]);
+
+    }
+
+    /*
+     *
+     * OPTION *************************************************************************
+     *
+     */
 }

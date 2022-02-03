@@ -8,11 +8,11 @@ class PartsForProduct extends Model
 {
     public $timestamps = false;
 
-    public function parts_product(){
-        return $this->belongsToMany('App\Product', 'product_parts', 'part_id', 'product_id');
+    public function part_images(){
+        return $this->hasMany('App\PartImages', 'part_id', 'id');
     }
 
-    public function module_parts(){
-        return $this->hasMany('App\ModuleParts', 'part_id', 'id');
+    public function parts_product(){
+        return $this->belongsToMany('App\Product', 'product_parts', 'part_id', 'product_id');
     }
 }

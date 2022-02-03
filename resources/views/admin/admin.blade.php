@@ -32,7 +32,7 @@
             <div class="row">
                 <div class="form-group">
                     <label for="product_price">Price :</label>
-                    <input id="product_price" name="price" type="number" class="form-control">
+                    <input id="product_price" name="price" type="number" step="0.01" class="form-control">
                 </div>
             </div>
             <div class="row">

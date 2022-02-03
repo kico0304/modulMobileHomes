@@ -31,20 +31,20 @@
             </div>
             <div class="row">
                 <div class="form-group">
-                    <label for="product_price">Price :</label>
-                    <input id="product_price" name="price" type="number" class="form-control">
+                    <label for="part_price">Price :</label>
+                    <input id="part_price" name="price" type="number" class="form-control">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group">
-                    <label for="product_en">EN :</label>
-                    <input id="product_en" name="en" type="text" class="form-control">
+                    <label for="part_en">EN :</label>
+                    <input id="part_en" name="en" type="text" class="form-control">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group">
-                    <label for="product_de">DE :</label>
-                    <input id="product_de" name="de" type="text" class="form-control">
+                    <label for="part_de">DE :</label>
+                    <input id="part_de" name="de" type="text" class="form-control">
                 </div>
             </div>
             <div class="row">
@@ -52,7 +52,7 @@
                 <input type="file" name="photos[]" class="form-control uploaded_photo" id="photo_upload" multiple="">
             </div>
             <div class="row">
-                <button type="submit" class="btn btn-success">Save Product</button>
+                <button type="submit" class="btn btn-success">Save Part</button>
                 <button class="close_new_modal btn btn-danger">Close</button>
             </div>
 
@@ -60,15 +60,15 @@
 
     </div>
 
-    <table id="product_part_table" class="display" style="width:100%">
+    <table id="part_table" class="display" style="width:100%">
         <thead>
         <tr>
             <th class="text-center">ID</th>
             <th class="text-center">Image</th>
             <th class="text-center">Name</th>
             <th class="text-center">Price</th>
-            <th class="text-center">Surface</th>
             <th class="text-center">EN</th>
+            <th class="text-center">DE</th>
             <th class="text-center">Edit</th>
             <th class="text-center">Delete</th>
         </tr>
@@ -81,9 +81,9 @@
                     <form method="post" action="{{url('/admin/edit_part')}}" enctype="multipart/form-data">
 
                         @csrf
-                        <h3>Edit Product</h3>
+                        <h3>Edit Part</h3>
                         <p>All values must be inserted</p>
-                        <input name="product_id" type="hidden" value="{{$part->id}}">
+                        <input name="part_id" type="hidden" value="{{$part->id}}">
                         <div class="row">
                             <div class="form-group">
                                 <label>Name :</label>
@@ -93,19 +93,19 @@
                         <div class="row">
                             <div class="form-group">
                                 <label>Price :</label>
-                                <input name="price" type="number" class="form-control" value="{{$part->price}}">
+                                <input name="price" type="number" step="any" class="form-control" value="{{$part->price}}">
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group">
                                 <label>EN :</label>
-                                <input name="en" type="text" class="form-control" value="{{$part->surface}}">
+                                <input name="en" type="text" class="form-control" value="{{$part->en}}">
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group">
                                 <label>DE :</label>
-                                <input name="de" type="text" class="form-control" value="{{$part->en}}">
+                                <input name="de" type="text" class="form-control" value="{{$part->de}}">
                             </div>
                         </div>
                         <div class="row">
@@ -113,19 +113,19 @@
                             <input type="file" name="photos[]" class="form-control uploaded_photo" multiple="">
                         </div>
 
-{{--                        @if(!$product->images->isEmpty())--}}
-{{--                            <div class="row">--}}
-{{--                                @foreach($product->images as $image)--}}
-{{--                                    <div class="col-md-4 edit_photo_{{$image->id}}">--}}
-{{--                                        <div class="edit_photos">--}}
-{{--                                            <img class="edit_img" alt="edit_image" src="{{asset('images/products/product_'.$product->id.'/'.$image->name)}}">--}}
-{{--                                            <br>--}}
-{{--                                            <button class="btn btn-danger btn-sm delete_photo" data-name="{{$image->name}}" data-id="{{$product->id}}" data-photoid="{{$image->id}}">Delete</button>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                @endforeach--}}
-{{--                            </div>--}}
-{{--                        @endif--}}
+                        @if(!$part->part_images->isEmpty())
+                            <div class="row">
+                                @foreach($part->part_images as $image)
+                                    <div class="col-md-4 edit_photo_{{$image->id}}">
+                                        <div class="edit_photos">
+                                            <img class="edit_img" alt="edit_image" src="{{asset('images/parts/part_'.$part->id.'/'.$image->name)}}">
+                                            <br>
+                                            <button class="btn btn-danger btn-sm delete_photo" data-name="{{$image->name}}" data-id="{{$part->id}}" data-photoid="{{$image->id}}">Delete</button>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        @endif
 
                         <div class="row">
                             <button type="submit" class="btn btn-success">Save Part Changes</button>
@@ -139,16 +139,16 @@
                 </div>
                 <tr>
                     <td>{{$part->id}}</td>
-                    <td> - </td>
+                    <td>@if(!$part->part_images->isEmpty())<img class="img_table" alt="image" src="{{asset('images/parts/part_'.$part->id.'/'.$part->part_images[0]->name)}}">@else - @endif</td>
                     <td>{{$part->name}}</td>
                     <td>{{$part->price}}</td>
-                    <td>{{$part->surface}}</td>
                     <td>{{$part->en}}</td>
+                    <td>{{$part->de}}</td>
                     <td>
                         <button class="edit_modal btn btn-primary" data-id="{{$part->id}}">Edit</button>
                     </td>
                     <td>
-                        <button class="delete_product btn btn-danger" data-id="{{$part->id}}">Delete</button>
+                        <button class="delete_part btn btn-danger" data-id="{{$part->id}}">Delete</button>
                     </td>
                 </tr>
             @endforeach
@@ -164,7 +164,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             //datatables
-            $('#product_part_table').DataTable({
+            $('#part_table').DataTable({
                 "pageLength": 10,
                 "columnDefs": [ {
                     "className": "dt-center",
@@ -172,10 +172,10 @@
                 } ]
             });
 
-            //delete product
-            $('.delete_product').click(function () {
+            //delete part
+            $('.delete_part').click(function () {
 
-                if(!confirm('Are you sure you want to delete product?')){
+                if(!confirm('Are you sure you want to delete part?')){
                     return false;
                 }
 
@@ -194,12 +194,12 @@
                 })
             });
 
-            //edit product delete photo
+            //edit part delete photo
             $('.delete_photo').click(function (e) {
 
                 e.preventDefault();
 
-                if(!confirm('Are you sure you want to delete product?')){
+                if(!confirm('Are you sure you want to delete part photo?')){
                     return false;
                 }
 
