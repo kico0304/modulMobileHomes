@@ -8,7 +8,7 @@
 
 @section('content')
 
-    <button class="add_product_modal btn btn-success">Add new Part</button>
+    <button class="add_modal btn btn-success">Add new Part</button>
 
     @if(session('success'))
         <div class="alert alert-success">
@@ -16,7 +16,7 @@
         </div>
     @endif
 
-    <div class="product_add">
+    <div class="modal_add">
 
         <form method="post" action="{{url('/admin/add_part')}}" enctype="multipart/form-data">
 
@@ -53,14 +53,14 @@
             </div>
             <div class="row">
                 <button type="submit" class="btn btn-success">Save Product</button>
-                <button class="close_new_product btn btn-danger">Close</button>
+                <button class="close_new_modal btn btn-danger">Close</button>
             </div>
 
         </form>
 
     </div>
 
-    <table id="product_table" class="display" style="width:100%">
+    <table id="product_part_table" class="display" style="width:100%">
         <thead>
         <tr>
             <th class="text-center">ID</th>
@@ -76,7 +76,7 @@
         <tbody>
         @if(!$parts->isEmpty())
             @foreach ($parts as $part)
-                <div class="product_edit edit_modal_{{$part->id}}">
+                <div class="modal_edit edit_modal_{{$part->id}}">
 
                     <form method="post" action="{{url('/admin/edit_part')}}" enctype="multipart/form-data">
 
@@ -145,7 +145,7 @@
                     <td>{{$part->surface}}</td>
                     <td>{{$part->en}}</td>
                     <td>
-                        <button class="edit_product btn btn-primary" data-id="{{$part->id}}">Edit</button>
+                        <button class="edit_modal btn btn-primary" data-id="{{$part->id}}">Edit</button>
                     </td>
                     <td>
                         <button class="delete_product btn btn-danger" data-id="{{$part->id}}">Delete</button>
@@ -164,6 +164,59 @@
     <script type="text/javascript">
         $(document).ready(function() {
 
+            //datatables
+            $('#product_part_table').DataTable({
+                "pageLength": 10,
+                "columnDefs": [ {
+                    "className": "dt-center",
+                    "targets": "_all"
+                } ]
+            });
+
+            //delete product
+            $('.delete_product').click(function () {
+
+                if(!confirm('Are you sure you want to delete product?')){
+                    return false;
+                }
+
+                let id = $(this).data('id');
+                $.ajax({
+                    url: '{{ url('/admin/delete_product') }}',
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    data: {'id': id},
+                    type: 'post',
+                    success: function (ret) {
+                        location.reload();
+                    },
+                    error: function (err) {
+                        alert("Error");
+                    }
+                })
+            });
+
+            //edit product delete photo
+            $('.delete_photo').click(function (e) {
+
+                e.preventDefault();
+
+                let image_name = $(this).data('name');
+                let id = $(this).data('id');
+                let photo_id = $(this).data('photoid');
+
+                $.ajax({
+                    url: '{{ url('/admin/delete_photo') }}',
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    data: {'image_name': image_name, 'id': id, 'photo_id': photo_id},
+                    type: 'post',
+                    success: function (ret) {
+                        $('.edit_photo_'+ret.image_id).hide();
+                    },
+                    error: function (err) {
+                        alert("Error");
+                    }
+                })
+            });
         });
     </script>
 @endsection

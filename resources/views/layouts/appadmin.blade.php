@@ -35,8 +35,10 @@
     <link rel="stylesheet" href="{{ asset('css/slick-theme.css') }}">
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <!-- Admin Stylesheet -->
+    <link rel="stylesheet" href="{{ asset('css/admin/admin-style.css') }}">
     <!-- CSS files from template END -->
-
+    
     @yield('componentcss')
 
 </head>
@@ -67,6 +69,8 @@
 <!-- Other scripts -->
 <script src="{{ asset('js/script.js') }}"></script>
 <script src="{{ asset('js/contact.js') }}"></script>
+<!-- Admin scripts -->
+<script src="{{ asset('js/admin/admin.js') }}"></script>
 <!-- JS files from template END -->
 @yield('js')
 </body>

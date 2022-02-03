@@ -2,35 +2,13 @@
 
 @section('componentcss')
     <style>
-        .product_edit, .product_add{
-            background-color: #ede9e8;
-            padding: 40px;
-            position: absolute;
-            z-index: 99;
-            margin-left: 30%;
-            display: none;
-        }
-        .img_table{
-            max-height: 150px;
-            max-width: 150px;
-        }
-        .edit_photos{
-            margin-top: 10px;
-            padding: 10px;
-        }
-        .edit_photos > img{
-            max-width: 100px;
-            max-height: 100px;
-        }
-        .delete_photo{
-            margin-top: 3px;
-        }
+
     </style>
 @endsection
 
 @section('content')
 
-    <button class="add_product_modal btn btn-success">Add new Product</button>
+    <button class="add_modal btn btn-success">Add new Product</button>
 
     @if(session('success'))
         <div class="alert alert-success">
@@ -38,7 +16,7 @@
         </div>
     @endif
 
-    <div class="product_add">
+    <div class="modal_add">
 
         <form method="post" action="{{url('/admin/add_product')}}" enctype="multipart/form-data">
 
@@ -75,7 +53,7 @@
             </div>
             <div class="row">
                 <button type="submit" class="btn btn-success">Save Product</button>
-                <button class="close_new_product btn btn-danger">Close</button>
+                <button class="close_new_modal btn btn-danger">Close</button>
             </div>
 
         </form>
@@ -98,7 +76,7 @@
         <tbody>
         @if(!$products->isEmpty())
             @foreach ($products as $product)
-                <div class="product_edit edit_modal_{{$product->id}}">
+                <div class="modal_edit edit_modal_{{$product->id}}">
 
                     <form method="post" action="{{url('/admin/edit_product')}}" enctype="multipart/form-data">
 
@@ -167,7 +145,7 @@
                     <td>{{$product->en}}</td>
                     <td>{{$product->de}}</td>
                     <td>
-                        <button class="edit_product btn btn-primary" data-id="{{$product->id}}">Edit</button>
+                        <button class="edit_modal btn btn-primary" data-id="{{$product->id}}">Edit</button>
                     </td>
                     <td>
                         <button class="delete_product btn btn-danger" data-id="{{$product->id}}">Delete</button>
@@ -215,29 +193,6 @@
                         alert("Error");
                     }
                 })
-            });
-
-            //add new product show modal
-            $('.add_product_modal').click(function () {
-                $('.product_add').show();
-            });
-
-            //add new product close modal
-            $('.close_new_product').click(function (e) {
-                e.preventDefault();
-                $('.product_add').hide();
-            });
-
-            //edit product show modal
-            $('.edit_product').click(function () {
-                let id = $(this).data('id');
-                $('.edit_modal_' + id).show();
-            });
-
-            //edit product close modal
-            $('.close_edit_modal').click(function (e) {
-                e.preventDefault();
-                $('.product_edit').hide();
             });
 
             //edit product delete photo
