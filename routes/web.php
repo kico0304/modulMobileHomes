@@ -24,11 +24,20 @@ Route::get('/actualities','HomeController@actualities')->name('actualities');
 //ADMIN ROUTES
 Route::middleware(['auth', 'auth.admin'])->prefix('admin')->group(function () {
 
+    //routes views
     Route::get('/',                      'AdminController@admin');
     Route::get('/parts',                 'AdminController@parts');
-    Route::post('/delete_product',       'AdminController@delete_product');
+
+    //product routes
     Route::post('/add_product',          'AdminController@add_product');
     Route::post('/edit_product',         'AdminController@edit_product');
+    Route::post('/delete_product',       'AdminController@delete_product');
     Route::post('/delete_product_photo', 'AdminController@delete_product_photo');
+
+    //part routes
+    Route::post('/add_part',             'AdminController@add_part');
+    Route::post('/edit_part',            'AdminController@edit_part');
+    Route::post('/delete_part',          'AdminController@delete_part');
+    Route::post('/delete_part_photo',    'AdminController@delete_part_photo');
 
 });

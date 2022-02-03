@@ -25,8 +25,8 @@
             <p>All values must be inserted</p>
             <div class="row">
                 <div class="form-group">
-                    <label for="product_name">Name :</label>
-                    <input id="product_name" name="name" type="text" class="form-control">
+                    <label for="part_name">Name :</label>
+                    <input id="part_name" name="name" type="text" class="form-control">
                 </div>
             </div>
             <div class="row">
@@ -163,7 +163,6 @@
 @section('js')
     <script type="text/javascript">
         $(document).ready(function() {
-
             //datatables
             $('#product_part_table').DataTable({
                 "pageLength": 10,
@@ -182,7 +181,7 @@
 
                 let id = $(this).data('id');
                 $.ajax({
-                    url: '{{ url('/admin/delete_product') }}',
+                    url: '{{ url('/admin/delete_part') }}',
                     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                     data: {'id': id},
                     type: 'post',
@@ -200,12 +199,16 @@
 
                 e.preventDefault();
 
+                if(!confirm('Are you sure you want to delete product?')){
+                    return false;
+                }
+
                 let image_name = $(this).data('name');
                 let id = $(this).data('id');
                 let photo_id = $(this).data('photoid');
 
                 $.ajax({
-                    url: '{{ url('/admin/delete_photo') }}',
+                    url: '{{ url('/admin/delete_part_photo') }}',
                     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                     data: {'image_name': image_name, 'id': id, 'photo_id': photo_id},
                     type: 'post',

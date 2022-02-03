@@ -134,8 +134,6 @@
 
                     </form>
 
-
-
                 </div>
                 <tr>
                     <td>{{$product->id}}</td>
@@ -163,7 +161,6 @@
 @section('js')
     <script type="text/javascript">
         $(document).ready(function() {
-
             //datatables
             $('#product_table').DataTable({
                 "pageLength": 10,
@@ -199,6 +196,10 @@
             $('.delete_photo').click(function (e) {
 
                 e.preventDefault();
+
+                if(!confirm('Are you sure you want to delete product?')){
+                    return false;
+                }
 
                 let image_name = $(this).data('name');
                 let id = $(this).data('id');
