@@ -36,3 +36,10 @@
 .close_edit_modal, .close_new_modal{
     margin-left: 40px;
 }
+
+#photo_upload{
+    margin-bottom: 30px;
+}
+.textarea_cls{
+    display: none;
+}

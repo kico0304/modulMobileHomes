@@ -20,3 +20,9 @@ $('.close_edit_modal').click(function (e) {
     e.preventDefault();
     $('.modal_edit').hide();
 });
+
+//language textarea
+$('.label_lang').click(function () {
+    $(this).next().show();
+    console.log('11');
+});

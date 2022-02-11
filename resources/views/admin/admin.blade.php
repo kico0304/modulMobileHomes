@@ -2,7 +2,12 @@
 
 @section('componentcss')
     <style>
-
+        .product_part_row{
+            display:none;
+        }
+        .product_part_row ~ .product_part_row{
+            display:block;
+        }
     </style>
 @endsection
 
@@ -24,29 +29,32 @@
             <h3>Add new Product</h3>
             <p>All values must be inserted</p>
             <div class="row">
-                <div class="form-group">
-                    <label for="product_name">Name :</label>
-                    <input id="product_name" name="name" type="text" class="form-control">
-                </div>
+                <label for="product_name">Name :</label>
+                <input id="product_name" name="name" type="text" class="form-control">
             </div>
             <div class="row">
-                <div class="form-group">
-                    <label for="product_price">Price :</label>
-                    <input id="product_price" name="price" type="number" step="0.01" class="form-control">
-                </div>
+                <label for="product_price">Price :</label>
+                <input id="product_price" name="price" type="number" step="0.01" class="form-control">
             </div>
             <div class="row">
-                <div class="form-group">
-                    <label for="product_en">EN :</label>
-                    <input id="product_en" name="en" type="text" class="form-control">
-                </div>
+                <label class="label_lang" for="product_en">EN :</label>
+                <textarea name="en" type="text" class="form-control textarea_cls"></textarea>
             </div>
             <div class="row">
-                <div class="form-group">
-                    <label for="product_de">DE :</label>
-                    <input id="product_de" name="de" type="text" class="form-control">
-                </div>
+                <label class="label_lang" for="product_de">DE :</label>
+                <textarea name="de" type="text" class="form-control textarea_cls"></textarea>
             </div>
+            @foreach($parts as $part)
+                <div class="row product_part_row">
+                    <label for="part_{{$part->id}}">Product Part</label><br>
+                    <select class="form-control part_pro" id="part_{{$part->id}}" name="part_{{$part->id}}">
+                        <option value="">Select Category</option>
+                        @foreach($parts as $part)
+                            <option name="{{$part->id}}" value="{{$part->name}}" data-id="{{$part->id}}">{{$part->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            @endforeach
             <div class="row">
                 <label for="photo_upload">Upload Images</label>
                 <input type="file" name="photos[]" class="form-control uploaded_photo" id="photo_upload" multiple="">
@@ -85,28 +93,20 @@
                         <p>All values must be inserted</p>
                         <input name="product_id" type="hidden" value="{{$product->id}}">
                         <div class="row">
-                            <div class="form-group">
-                                <label>Name :</label>
-                                <input name="name" type="text" class="form-control" value="{{$product->name}}">
-                            </div>
+                            <label>Name :</label>
+                            <input name="name" type="text" class="form-control" value="{{$product->name}}">
                         </div>
                         <div class="row">
-                            <div class="form-group">
-                                <label>Price :</label>
-                                <input name="price" type="number" class="form-control" value="{{$product->price}}">
-                            </div>
+                            <label>Price :</label>
+                            <input name="price" type="text" class="form-control" value="{{$product->price}}">
                         </div>
                         <div class="row">
-                            <div class="form-group">
-                                <label>EN :</label>
-                                <input name="en" type="text" class="form-control" value="{{$product->en}}">
-                            </div>
+                            <label class="label_lang">EN :</label>
+                            <textarea name="en" type="text" class="form-control textarea_cls">{{$product->en}}</textarea>
                         </div>
                         <div class="row">
-                            <div class="form-group">
-                                <label>DE :</label>
-                                <input name="de" type="text" class="form-control" value="{{$product->de}}">
-                            </div>
+                            <label class="label_lang">DE :</label>
+                            <textarea name="de" type="text" class="form-control textarea_cls">{{$product->de}}</textarea>
                         </div>
                         <div class="row">
                             <label>Upload Images</label>
@@ -115,15 +115,33 @@
 
                         @if(!$product->images->isEmpty())
                             <div class="row">
-                                @foreach($product->images as $image)
-                                    <div class="col-md-4 edit_photo_{{$image->id}}">
-                                        <div class="edit_photos">
-                                            <img class="edit_img" alt="edit_image" src="{{asset('images/products/product_'.$product->id.'/'.$image->name)}}">
-                                            <br>
-                                            <button class="btn btn-danger btn-sm delete_photo" data-name="{{$image->name}}" data-id="{{$product->id}}" data-photoid="{{$image->id}}">Delete</button>
-                                        </div>
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        @foreach($product->images as $image)
+                                                <div class="col-md-4 edit_photo_{{$image->id}}">
+                                                    <div class="edit_photos">
+                                                        <img class="edit_img" alt="edit_image" src="{{asset('images/products/product_'.$product->id.'/'.$image->name)}}">
+                                                        <br>
+                                                        <button class="btn btn-danger btn-sm delete_photo" data-name="{{$image->name}}" data-id="{{$product->id}}" data-photoid="{{$image->id}}">Delete</button>
+                                                    </div>
+                                                </div>
+                                        @endforeach
                                     </div>
-                                @endforeach
+                                </div>
+                                <br>
+                                <br>
+                                <h4>Parts of product images</h4>
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        @foreach($product->product_parts as $parts)
+                                            @foreach($parts->part_images as $prt_images)
+                                                    <div class="col-md-4">
+                                                        <img style="max-height: 100px; max-width: 100px;" alt="edit_image" src="{{asset('images/parts/part_'.$parts->id.'/'.$prt_images->name)}}">
+                                                    </div>
+                                            @endforeach
+                                        @endforeach
+                                    </div>
+                                </div>
                             </div>
                         @endif
 
@@ -217,6 +235,12 @@
                         alert("Error");
                     }
                 })
+            });
+
+            //part product show next div
+            $('.part_pro').change(function(){
+                console.log('11');
+                $(this).parents().prev().show();
             });
         });
     </script>

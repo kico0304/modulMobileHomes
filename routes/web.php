@@ -27,6 +27,7 @@ Route::middleware(['auth', 'auth.admin'])->prefix('admin')->group(function () {
     //routes views
     Route::get('/',                      'AdminController@admin');
     Route::get('/parts',                 'AdminController@parts');
+    Route::get('/options',               'AdminController@options');
 
     //product routes
     Route::post('/add_product',          'AdminController@add_product');
@@ -39,5 +40,11 @@ Route::middleware(['auth', 'auth.admin'])->prefix('admin')->group(function () {
     Route::post('/edit_part',            'AdminController@edit_part');
     Route::post('/delete_part',          'AdminController@delete_part');
     Route::post('/delete_part_photo',    'AdminController@delete_part_photo');
+
+    //option routes
+    Route::post('/add_option',           'AdminController@add_option');
+    Route::post('/edit_option',          'AdminController@edit_option');
+    Route::post('/delete_option',        'AdminController@delete_option');
+    Route::post('/delete_option_photo',  'AdminController@delete_option_photo');
 
 });
