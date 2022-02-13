@@ -897,9 +897,11 @@ a:focus {
 }
 
 .cta-page {
-    background: url("../images/bg/banner.jpg") no-repeat;
-    background-size: cover;
+    background: url(../images/banner.jpg) no-repeat;
+    background-size: contain;
     position: relative;
+    background-color: #f4f9fd;
+    margin-top: 75px;
 }
 
 .testimonial {
@@ -1539,3 +1541,18 @@ a:focus {
 }
 
 /*# sourceMappingURL=maps/style.css.map */
+
+/* added css */
+
+.img-fluid-exception {
+    max-width: 80%;
+}
+
+.mb-5-exception {
+    margin-bottom: 2rem !important;
+}
+
+.mb-4-exception {
+    margin-bottom: 0.75rem !important;
+    margin-top: 0.75rem;
+}
