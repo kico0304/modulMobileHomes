@@ -29,19 +29,17 @@
             <h3>Add new Product</h3>
             <p>All values must be inserted</p>
             <div class="row">
-                <label for="product_name">Name :</label>
-                <input id="product_name" name="name" type="text" class="form-control">
-            </div>
-            <div class="row">
                 <label for="product_price">Price :</label>
                 <input id="product_price" name="price" type="number" step="0.01" class="form-control">
             </div>
             <div class="row">
                 <label class="label_lang" for="product_en">EN :</label>
+                <input name="name_en" type="text" class="form-control textarea_cls">
                 <textarea name="en" type="text" class="form-control textarea_cls"></textarea>
             </div>
             <div class="row">
                 <label class="label_lang" for="product_de">DE :</label>
+                <input name="name_de" type="text" class="form-control textarea_cls">
                 <textarea name="de" type="text" class="form-control textarea_cls"></textarea>
             </div>
             @foreach($parts as $part)
@@ -50,7 +48,7 @@
                     <select class="form-control part_pro" id="part_{{$part->id}}" name="part_{{$part->id}}">
                         <option value="">Select Category</option>
                         @foreach($parts as $part)
-                            <option name="{{$part->id}}" value="{{$part->name}}" data-id="{{$part->id}}">{{$part->name}}</option>
+                            <option name="{{$part->id}}" value="{{$part->part_names()->where('part_id', $part->id)->where('language', 'en')->first()->name}}" data-id="{{$part->id}}">{{$part->part_names()->where('part_id', $part->id)->where('language', 'en')->first()->name}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -93,19 +91,17 @@
                         <p>All values must be inserted</p>
                         <input name="product_id" type="hidden" value="{{$product->id}}">
                         <div class="row">
-                            <label>Name :</label>
-                            <input name="name" type="text" class="form-control" value="{{$product->name}}">
-                        </div>
-                        <div class="row">
                             <label>Price :</label>
                             <input name="price" type="text" class="form-control" value="{{$product->price}}">
                         </div>
                         <div class="row">
                             <label class="label_lang">EN :</label>
+                            <input name="name_en" type="text" class="form-control textarea_cls" value="{{$product->names()->where('product_id', $product->id)->where('language', 'en')->first()->name}}">
                             <textarea name="en" type="text" class="form-control textarea_cls">{{$product->en}}</textarea>
                         </div>
                         <div class="row">
                             <label class="label_lang">DE :</label>
+                            <input name="name_de" type="text" class="form-control textarea_cls" value="{{$product->names()->where('product_id', $product->id)->where('language', 'de')->first()->name}}">
                             <textarea name="de" type="text" class="form-control textarea_cls">{{$product->de}}</textarea>
                         </div>
                         <div class="row">
@@ -115,6 +111,7 @@
 
                         @if(!$product->images->isEmpty())
                             <div class="row">
+                                <h4>Product images</h4>
                                 <div class="col-md-12">
                                     <div class="row">
                                         @foreach($product->images as $image)
@@ -136,7 +133,7 @@
                                         @foreach($product->product_parts as $parts)
                                             @foreach($parts->part_images as $prt_images)
                                                     <div class="col-md-4">
-                                                        <img style="max-height: 100px; max-width: 100px;" alt="edit_image" src="{{asset('images/parts/part_'.$parts->id.'/'.$prt_images->name)}}">
+                                                        <img style="max-height: 300px; max-width: 300px;" alt="edit_image" src="{{asset('images/parts/part_'.$parts->id.'/'.$prt_images->name)}}">
                                                     </div>
                                             @endforeach
                                         @endforeach
@@ -145,7 +142,7 @@
                             </div>
                         @endif
 
-                        <div class="row">
+                        <div class="row" style="margin-top: 20px;">
                             <button type="submit" class="btn btn-success">Save Product Changes</button>
                             <button class="close_edit_modal btn btn-danger">Close</button>
                         </div>
@@ -156,7 +153,7 @@
                 <tr>
                     <td>{{$product->id}}</td>
                     <td>@if(!$product->images->isEmpty())<img class="img_table" alt="image" src="{{asset('images/products/product_'.$product->id.'/'.$product->images[0]->name)}}">@else - @endif</td>
-                    <td>{{$product->name}}</td>
+                    <td>{{$product->names()->where('product_id', $product->id)->where('language', 'en')->first()->name}}</td>
                     <td>{{$product->price}}</td>
                     <td>{{$product->en}}</td>
                     <td>{{$product->de}}</td>

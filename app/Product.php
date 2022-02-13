@@ -18,4 +18,9 @@ class Product extends Model
     {
         return $this->belongsToMany('App\PartsForProduct', 'product_parts', 'product_id', 'part_id');
     }
+
+    public function names()
+    {
+        return $this->hasMany('App\ProductNames', 'product_id', 'id');
+    }
 }

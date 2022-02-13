@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\OptionImages;
 use App\OptionsForProduct;
 use App\PartImages;
+use App\PartNames;
 use App\PartsForProduct;
+use App\ProductNames;
 use App\ProductParts;
 use Illuminate\Http\Request;
 use App\Product;
@@ -39,12 +41,14 @@ class AdminController extends Controller
 
     /**
      * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function delete_product (Request $request) {
 
         $id_product = $request['id'];
         Product::where('id', $id_product)->delete();
         ProductImages::where('product_id', $id_product)->delete();
+        ProductNames::where('product_id', $id_product)->delete();
         $image_path = public_path('images\products\product_'.$id_product); // upload path
         if(File::exists($image_path)) {
             File::deleteDirectory($image_path);
@@ -59,7 +63,16 @@ class AdminController extends Controller
      */
     public function edit_product (Request $request) {
 
-        Product::where('id', $request['product_id'])->update(['name' => $request['name'], 'price' => $request['price'], 'en' => $request['en'], 'de' => $request['de']]);
+        Product::where('id', $request['product_id'])->update(['price' => $request['price'], 'en' => $request['en'], 'de' => $request['de']]);
+
+        $check = $request->all();
+
+        foreach ($check as $key => $req){
+            if(strpos($key, 'name') !== false){
+                $part_lang = explode('_',$key )[1];
+                ProductNames::where('product_id', $request['product_id'])->where('language', $part_lang)->update(['name' => $req]);
+            }
+        }
 
         if ($photos = $request->file('photos')) {
 
@@ -91,7 +104,6 @@ class AdminController extends Controller
 
         //save product
         $new_product = new Product();
-        $new_product->name = $request['name'];
         $new_product->price = $request['price'];
         $new_product->en = $request['en'];
         $new_product->de = $request['de'];
@@ -106,6 +118,14 @@ class AdminController extends Controller
                 $product_part->product_id = $new_product->id;
                 $product_part->part_id = $part_id;
                 $product_part->save();
+            }
+            if(strpos($key, 'name') !== false){
+                $part_lang = explode('_',$key )[1];
+                $product_name = new ProductNames();
+                $product_name->name = $req;
+                $product_name->language = $part_lang;
+                $product_name->product_id = $new_product->id;
+                $product_name->save();
             }
         }
 
@@ -180,6 +200,7 @@ class AdminController extends Controller
         $id_part = $request['id'];
         PartsForProduct::where('id', $id_part)->delete();
         PartImages::where('part_id', $id_part)->delete();
+        PartNames::where('part_id', $id_part)->delete();
         $image_path = public_path('images\parts\part_'.$id_part); // upload path
         if(File::exists($image_path)) {
             File::deleteDirectory($image_path);
@@ -194,7 +215,16 @@ class AdminController extends Controller
      */
     public function edit_part (Request $request) {
 
-        PartsForProduct::where('id', $request['part_id'])->update(['name' => $request['name'], 'price' => $request['price'], 'surface' => $request['surface'], 'en' => $request['en'], 'de' => $request['de']]);
+        PartsForProduct::where('id', $request['part_id'])->update(['price' => $request['price'], 'surface' => $request['surface'], 'en' => $request['en'], 'de' => $request['de']]);
+
+        $check = $request->all();
+
+        foreach ($check as $key => $req){
+            if(strpos($key, 'name') !== false){
+                $part_lang = explode('_',$key )[1];
+                PartNames::where('part_id', $request['part_id'])->where('language', $part_lang)->update(['name' => $req]);
+            }
+        }
 
         if ($photos = $request->file('photos')) {
 
@@ -226,12 +256,24 @@ class AdminController extends Controller
 
         //save part
         $new_part = new PartsForProduct();
-        $new_part->name = $request['name'];
         $new_part->price = $request['price'];
         $new_part->surface = $request['surface'];
         $new_part->en = $request['en'];
         $new_part->de = $request['de'];
         $new_part->save();
+
+        $check = $request->all();
+
+        foreach ($check as $key => $req){
+            if(strpos($key, 'name') !== false){
+                $part_lang = explode('_',$key )[1];
+                $part_name = new PartNames();
+                $part_name->name = $req;
+                $part_name->language = $part_lang;
+                $part_name->part_id = $new_part->id;
+                $part_name->save();
+            }
+        }
 
         if ($photos = $request->file('photos')) {
 

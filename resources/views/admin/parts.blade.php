@@ -24,10 +24,6 @@
             <h3>Add new Part</h3>
             <p>All values must be inserted</p>
             <div class="row">
-                <label for="part_name">Name :</label>
-                <input id="part_name" name="name" type="text" class="form-control">
-            </div>
-            <div class="row">
                 <label for="part_price">Price :</label>
                 <input id="part_price" name="price" type="text" class="form-control">
             </div>
@@ -37,10 +33,12 @@
             </div>
             <div class="row">
                 <label class="label_lang" for="part_en">EN :</label>
+                <input name="name_en" type="text" class="form-control textarea_cls">
                 <textarea name="en" type="text" class="form-control textarea_cls"></textarea>
             </div>
             <div class="row">
                 <label class="label_lang" for="part_de">DE :</label>
+                <input name="name_de" type="text" class="form-control textarea_cls">
                 <textarea name="de" type="text" class="form-control textarea_cls"></textarea>
             </div>
             <div class="row">
@@ -82,23 +80,21 @@
                         <p>All values must be inserted</p>
                         <input name="part_id" type="hidden" value="{{$part->id}}">
                         <div class="row">
-                            <label>Name :</label>
-                            <input name="name" type="text" class="form-control" value="{{$part->name}}">
-                        </div>
-                        <div class="row">
                             <label>Price :</label>
                             <input name="price" type="number" step="any" class="form-control" value="{{$part->price}}">
                         </div>
                         <div class="row">
                             <label for="part_surface">Surface :</label>
-                            <input id="part_surface" name="surface" type="text" class="form-control">
+                            <input id="part_surface" name="surface" type="text" class="form-control" value="{{$part->surface}}">
                         </div>
                         <div class="row">
                             <label class="label_lang">EN :</label>
+                            <input name="name_en" type="text" class="form-control textarea_cls" value="{{$part->part_names()->where('part_id', $part->id)->where('language', 'en')->first()->name}}">
                             <textarea name="en" type="text" class="form-control textarea_cls">{{$part->en}}</textarea>
                         </div>
                         <div class="row">
                             <label class="label_lang">DE :</label>
+                            <input name="name_de" type="text" class="form-control textarea_cls" value="{{$part->part_names()->where('part_id', $part->id)->where('language', 'de')->first()->name}}">
                             <textarea name="de" type="text" class="form-control textarea_cls">{{$part->de}}</textarea>
                         </div>
                         <div class="row">
@@ -133,7 +129,7 @@
                 <tr>
                     <td>{{$part->id}}</td>
                     <td>@if(!$part->part_images->isEmpty())<img class="img_table" alt="image" src="{{asset('images/parts/part_'.$part->id.'/'.$part->part_images[0]->name)}}">@else - @endif</td>
-                    <td>{{$part->name}}</td>
+                    <td>{{$part->part_names()->where('part_id', $part->id)->where('language', 'en')->first()->name}}</td>
                     <td>{{$part->price}}</td>
                     <td>{{$part->surface}}</td>
                     <td>{{$part->en}}</td>

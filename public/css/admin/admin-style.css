@@ -12,8 +12,8 @@
 }
 
 .img_table {
-    max-height: 150px;
-    max-width: 150px;
+    max-height: 200px;
+    max-width: 200px;
 }
 
 .edit_photos {
@@ -22,8 +22,8 @@
 }
 
 .edit_photos > img {
-    max-width: 100px;
-    max-height: 100px;
+    max-width: 300px;
+    max-height: 300px;
 }
 
 .delete_photo {

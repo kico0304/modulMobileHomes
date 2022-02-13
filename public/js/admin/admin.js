@@ -24,5 +24,5 @@ $('.close_edit_modal').click(function (e) {
 //language textarea
 $('.label_lang').click(function () {
     $(this).next().show();
-    console.log('11');
+    $(this).next().next().show();
 });
