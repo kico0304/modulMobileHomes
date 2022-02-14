@@ -7,8 +7,9 @@
     padding: 40px;
     position: absolute;
     z-index: 99;
-    margin-left: 30%;
+    margin-left: 25%;
     display: none;
+    max-width: 1025px;
 }
 
 .img_table {

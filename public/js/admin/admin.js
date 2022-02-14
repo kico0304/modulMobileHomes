@@ -23,6 +23,5 @@ $('.close_edit_modal').click(function (e) {
 
 //language textarea
 $('.label_lang').click(function () {
-    $(this).next().show();
-    $(this).next().next().show();
+    $(this).next().toggle("slide");
 });

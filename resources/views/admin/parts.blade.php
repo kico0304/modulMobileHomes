@@ -33,13 +33,21 @@
             </div>
             <div class="row">
                 <label class="label_lang" for="part_en">EN :</label>
-                <input name="name_en" type="text" class="form-control textarea_cls">
-                <textarea name="en" type="text" class="form-control textarea_cls"></textarea>
+                <div class="col-md-12 textarea_cls">
+                    <p>Name</p>
+                    <input name="name_en" type="text" class="form-control">
+                    <p>Text</p>
+                    <textarea name="en" type="text" class="form-control"></textarea>
+                </div>
             </div>
             <div class="row">
                 <label class="label_lang" for="part_de">DE :</label>
-                <input name="name_de" type="text" class="form-control textarea_cls">
-                <textarea name="de" type="text" class="form-control textarea_cls"></textarea>
+                <div class="col-md-12 textarea_cls">
+                    <p>Name</p>
+                    <input name="name_de" type="text" class="form-control">
+                    <p>Text</p>
+                    <textarea name="de" type="text" class="form-control"></textarea>
+                </div>
             </div>
             <div class="row">
                 <label for="photo_upload">Upload Images</label>
@@ -88,14 +96,22 @@
                             <input id="part_surface" name="surface" type="text" class="form-control" value="{{$part->surface}}">
                         </div>
                         <div class="row">
-                            <label class="label_lang">EN :</label>
-                            <input name="name_en" type="text" class="form-control textarea_cls" value="{{$part->part_names()->where('part_id', $part->id)->where('language', 'en')->first()->name}}">
-                            <textarea name="en" type="text" class="form-control textarea_cls">{{$part->en}}</textarea>
+                            <label class="label_lang" @if($part->en== null || $part->en == '') style="color: red;" @endif>EN :</label>
+                            <div class="col-md-12 textarea_cls">
+                                <p>Name</p>
+                                <input name="name_en" type="text" class="form-control" value="{{$part->part_names()->where('part_id', $part->id)->where('language', 'en')->first()->name}}">
+                                <p>Text</p>
+                                <textarea name="en" type="text" class="form-control">{{$part->en}}</textarea>
+                            </div>
                         </div>
                         <div class="row">
-                            <label class="label_lang">DE :</label>
-                            <input name="name_de" type="text" class="form-control textarea_cls" value="{{$part->part_names()->where('part_id', $part->id)->where('language', 'de')->first()->name}}">
-                            <textarea name="de" type="text" class="form-control textarea_cls">{{$part->de}}</textarea>
+                            <label class="label_lang" @if($part->de== null || $part->de == '') style="color: red;" @endif>DE :</label>
+                            <div class="col-md-12 textarea_cls">
+                                <p>Name</p>
+                                <input name="name_de" type="text" class="form-control" value="{{$part->part_names()->where('part_id', $part->id)->where('language', 'de')->first()->name}}">
+                                <p>Text</p>
+                                <textarea name="de" type="text" class="form-control">{{$part->de}}</textarea>
+                            </div>
                         </div>
                         <div class="row">
                             <label>Upload Images</label>

@@ -34,13 +34,21 @@
             </div>
             <div class="row">
                 <label class="label_lang" for="product_en">EN :</label>
-                <input name="name_en" type="text" class="form-control textarea_cls">
-                <textarea name="en" type="text" class="form-control textarea_cls"></textarea>
+                <div class="col-md-12 textarea_cls">
+                    <p>Name</p>
+                    <input name="name_en" type="text" class="form-control">
+                    <p>Name</p>
+                    <textarea name="en" type="text" class="form-control"></textarea>
+                </div>
             </div>
             <div class="row">
                 <label class="label_lang" for="product_de">DE :</label>
-                <input name="name_de" type="text" class="form-control textarea_cls">
-                <textarea name="de" type="text" class="form-control textarea_cls"></textarea>
+                <div class="col-md-12 textarea_cls">
+                    <p>Name</p>
+                    <input name="name_de" type="text" class="form-control">
+                    <p>Text</p>
+                    <textarea name="de" type="text" class="form-control"></textarea>
+                </div>
             </div>
             @foreach($parts as $part)
                 <div class="row product_part_row">
@@ -96,13 +104,21 @@
                         </div>
                         <div class="row">
                             <label class="label_lang">EN :</label>
-                            <input name="name_en" type="text" class="form-control textarea_cls" value="{{$product->names()->where('product_id', $product->id)->where('language', 'en')->first()->name}}">
-                            <textarea name="en" type="text" class="form-control textarea_cls">{{$product->en}}</textarea>
+                            <div class="col-md-12 textarea_cls">
+                                <p>Name</p>
+                                <input name="name_en" type="text" class="form-control" value="{{$product->names()->where('product_id', $product->id)->where('language', 'en')->first()->name}}">
+                                <p>Text</p>
+                                <textarea name="en" type="text" class="form-control">{{$product->en}}</textarea>
+                            </div>
                         </div>
                         <div class="row">
                             <label class="label_lang">DE :</label>
-                            <input name="name_de" type="text" class="form-control textarea_cls" value="{{$product->names()->where('product_id', $product->id)->where('language', 'de')->first()->name}}">
-                            <textarea name="de" type="text" class="form-control textarea_cls">{{$product->de}}</textarea>
+                            <div class="col-md-12 textarea_cls">
+                                <p>Name</p>
+                                <input name="name_de" type="text" class="form-control" value="{{$product->names()->where('product_id', $product->id)->where('language', 'de')->first()->name}}">
+                                <p>Text</p>
+                                <textarea name="de" type="text" class="form-control">{{$product->de}}</textarea>
+                            </div>
                         </div>
                         <div class="row">
                             <label>Upload Images</label>
