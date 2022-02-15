@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Language;
 use App\OptionImages;
 use App\OptionsForProduct;
 use App\PartImages;
 use App\PartNames;
 use App\PartsForProduct;
+use App\PartTexts;
 use App\ProductNames;
 use App\ProductParts;
+use App\ProductTexts;
 use Illuminate\Http\Request;
 use App\Product;
 use App\ProductImages;
@@ -32,10 +35,12 @@ class AdminController extends Controller
 
         $products = Product::all();
         $parts = PartsForProduct::all();
+        $language = Language::all();
 
         return view('admin.admin', [
             'products' => $products,
-            'parts' => $parts
+            'parts' => $parts,
+            'language' => $language
         ]);
     }
 
@@ -49,6 +54,8 @@ class AdminController extends Controller
         Product::where('id', $id_product)->delete();
         ProductImages::where('product_id', $id_product)->delete();
         ProductNames::where('product_id', $id_product)->delete();
+        ProductTexts::where('product_id', $id_product)->delete();
+        ProductParts::where('product_id', $id_product)->delete();
         $image_path = public_path('images\products\product_'.$id_product); // upload path
         if(File::exists($image_path)) {
             File::deleteDirectory($image_path);
@@ -63,14 +70,24 @@ class AdminController extends Controller
      */
     public function edit_product (Request $request) {
 
-        Product::where('id', $request['product_id'])->update(['price' => $request['price'], 'en' => $request['en'], 'de' => $request['de']]);
+        Product::where('id', $request['product_id'])->update(['price' => $request['price'], 'surface' => $request['surface']]);
 
         $check = $request->all();
 
         foreach ($check as $key => $req){
             if(strpos($key, 'name') !== false){
                 $part_lang = explode('_',$key )[1];
-                ProductNames::where('product_id', $request['product_id'])->where('language', $part_lang)->update(['name' => $req]);
+                PartNames::updateOrCreate(
+                    ['product_id' => $request['product_id'], 'language' => $part_lang],
+                    ['name' => $req]
+                );
+            }
+            if(strpos($key, 'text') !== false){
+                $part_lang = explode('_',$key )[1];
+                PartTexts::updateOrCreate(
+                    ['product_id' => $request['product_id'], 'language' => $part_lang],
+                    ['text' => $req]
+                );
             }
         }
 
@@ -105,8 +122,7 @@ class AdminController extends Controller
         //save product
         $new_product = new Product();
         $new_product->price = $request['price'];
-        $new_product->en = $request['en'];
-        $new_product->de = $request['de'];
+        $new_product->surface = $request['surface'];
         $new_product->save();
 
         $check = $request->all();
@@ -120,12 +136,24 @@ class AdminController extends Controller
                 $product_part->save();
             }
             if(strpos($key, 'name') !== false){
+                if($req != null && $req != '') {
+                    $part_lang = explode('_', $key)[1];
+                    $product_name = new ProductNames();
+                    $product_name->name = $req;
+                    $product_name->language = $part_lang;
+                    $product_name->product_id = $new_product->id;
+                    $product_name->save();
+                }
+            }
+            if(strpos($key, 'text') !== false){
                 $part_lang = explode('_',$key )[1];
-                $product_name = new ProductNames();
-                $product_name->name = $req;
-                $product_name->language = $part_lang;
-                $product_name->product_id = $new_product->id;
-                $product_name->save();
+                if($req != null && $req != ''){
+                    $product_text = new ProductTexts();
+                    $product_text->text = $req;
+                    $product_text->language = $part_lang;
+                    $product_text->product_id = $new_product->id;
+                    $product_text->save();
+                }
             }
         }
 
@@ -170,7 +198,6 @@ class AdminController extends Controller
 
     }
 
-
     /*
      *
      * PART *************************************************************************
@@ -184,9 +211,11 @@ class AdminController extends Controller
     public function parts (Request $request) {
 
         $parts = PartsForProduct::all();
+        $language = Language::all();
 
         return view('admin.parts', [
-            'parts' => $parts
+            'parts' => $parts,
+            'language' => $language
         ]);
 
     }
@@ -201,6 +230,7 @@ class AdminController extends Controller
         PartsForProduct::where('id', $id_part)->delete();
         PartImages::where('part_id', $id_part)->delete();
         PartNames::where('part_id', $id_part)->delete();
+        PartTexts::where('part_id', $id_part)->delete();
         $image_path = public_path('images\parts\part_'.$id_part); // upload path
         if(File::exists($image_path)) {
             File::deleteDirectory($image_path);
@@ -215,14 +245,24 @@ class AdminController extends Controller
      */
     public function edit_part (Request $request) {
 
-        PartsForProduct::where('id', $request['part_id'])->update(['price' => $request['price'], 'surface' => $request['surface'], 'en' => $request['en'], 'de' => $request['de']]);
+        PartsForProduct::where('id', $request['part_id'])->update(['price' => $request['price'], 'surface' => $request['surface']]);
 
         $check = $request->all();
 
         foreach ($check as $key => $req){
             if(strpos($key, 'name') !== false){
                 $part_lang = explode('_',$key )[1];
-                PartNames::where('part_id', $request['part_id'])->where('language', $part_lang)->update(['name' => $req]);
+                PartNames::updateOrCreate(
+                    ['part_id' => $request['part_id'], 'language' => $part_lang],
+                    ['name' => $req]
+                );
+            }
+            if(strpos($key, 'text') !== false){
+                $part_lang = explode('_',$key )[1];
+                PartTexts::updateOrCreate(
+                    ['part_id' => $request['part_id'], 'language' => $part_lang],
+                    ['text' => $req]
+                );
             }
         }
 
@@ -258,20 +298,31 @@ class AdminController extends Controller
         $new_part = new PartsForProduct();
         $new_part->price = $request['price'];
         $new_part->surface = $request['surface'];
-        $new_part->en = $request['en'];
-        $new_part->de = $request['de'];
         $new_part->save();
 
         $check = $request->all();
 
         foreach ($check as $key => $req){
             if(strpos($key, 'name') !== false){
+                if($req != null && $req != '') {
+                    $part_lang = explode('_', $key)[1];
+                    $part_name = new PartNames();
+                    $part_name->name = $req;
+                    $part_name->language = $part_lang;
+                    $part_name->part_id = $new_part->id;
+                    $part_name->save();
+                }
+            }
+
+            if(strpos($key, 'text') !== false){
                 $part_lang = explode('_',$key )[1];
-                $part_name = new PartNames();
-                $part_name->name = $req;
-                $part_name->language = $part_lang;
-                $part_name->part_id = $new_part->id;
-                $part_name->save();
+                if($req != null && $req != ''){
+                    $part_text = new PartTexts();
+                    $part_text->text = $req;
+                    $part_text->language = $part_lang;
+                    $part_text->part_id = $new_part->id;
+                    $part_text->save();
+                }
             }
         }
 
@@ -321,7 +372,6 @@ class AdminController extends Controller
      * OPTION *************************************************************************
      *
      */
-
 
     /**
      * @param Request $request

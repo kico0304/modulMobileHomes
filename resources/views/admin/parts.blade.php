@@ -31,24 +31,19 @@
                 <label for="part_surface">Surface :</label>
                 <input id="part_surface" name="surface" type="text" class="form-control">
             </div>
-            <div class="row">
-                <label class="label_lang" for="part_en">EN :</label>
-                <div class="col-md-12 textarea_cls">
-                    <p>Name</p>
-                    <input name="name_en" type="text" class="form-control">
-                    <p>Text</p>
-                    <textarea name="en" type="text" class="form-control"></textarea>
+
+            @foreach($language as $lang)
+                <div class="row row_lang_style">
+                    <label class="label_lang" for="part_{{$lang->lang}}">{{strtoupper($lang->lang)}} :</label>
+                    <div class="col-md-12 textarea_cls">
+                        <p>Name</p>
+                        <input name="name_{{$lang->lang}}" type="text" class="form-control">
+                        <p>Text</p>
+                        <textarea name="text_{{$lang->lang}}" type="text" class="form-control"></textarea>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <label class="label_lang" for="part_de">DE :</label>
-                <div class="col-md-12 textarea_cls">
-                    <p>Name</p>
-                    <input name="name_de" type="text" class="form-control">
-                    <p>Text</p>
-                    <textarea name="de" type="text" class="form-control"></textarea>
-                </div>
-            </div>
+            @endforeach
+
             <div class="row">
                 <label for="photo_upload">Upload Images</label>
                 <input type="file" name="photos[]" class="form-control uploaded_photo" id="photo_upload" multiple="">
@@ -70,8 +65,9 @@
             <th class="text-center">Name</th>
             <th class="text-center">Price</th>
             <th class="text-center">Surface</th>
-            <th class="text-center">EN</th>
-            <th class="text-center">DE</th>
+            @foreach($language as $lang)
+                <th class="text-center">{{strtoupper($lang->lang)}}</th>
+            @endforeach
             <th class="text-center">Edit</th>
             <th class="text-center">Delete</th>
         </tr>
@@ -95,24 +91,19 @@
                             <label for="part_surface">Surface :</label>
                             <input id="part_surface" name="surface" type="text" class="form-control" value="{{$part->surface}}">
                         </div>
-                        <div class="row">
-                            <label class="label_lang" @if($part->en== null || $part->en == '') style="color: red;" @endif>EN :</label>
+
+                        @foreach($language as $lang)
+                        <div class="row row_lang_style">
+                            <label class="label_lang">{{strtoupper($lang->lang)}} :</label>
                             <div class="col-md-12 textarea_cls">
                                 <p>Name</p>
-                                <input name="name_en" type="text" class="form-control" value="{{$part->part_names()->where('part_id', $part->id)->where('language', 'en')->first()->name}}">
+                                <input name="name_{{$lang->lang}}" type="text" class="form-control" value="@if ($part->part_names()->where('part_id', $part->id)->where('language', $lang->lang)->exists()) {{$part->part_names()->where('part_id', $part->id)->where('language', $lang->lang)->first()->name}} @endif">
                                 <p>Text</p>
-                                <textarea name="en" type="text" class="form-control">{{$part->en}}</textarea>
+                                <textarea name="text_{{$lang->lang}}" type="text" class="form-control">@if ($part->part_texts()->where('part_id', $part->id)->where('language', $lang->lang)->exists()) {{$part->part_texts()->where('part_id', $part->id)->where('language', $lang->lang)->first()->text}} @endif</textarea>
                             </div>
                         </div>
-                        <div class="row">
-                            <label class="label_lang" @if($part->de== null || $part->de == '') style="color: red;" @endif>DE :</label>
-                            <div class="col-md-12 textarea_cls">
-                                <p>Name</p>
-                                <input name="name_de" type="text" class="form-control" value="{{$part->part_names()->where('part_id', $part->id)->where('language', 'de')->first()->name}}">
-                                <p>Text</p>
-                                <textarea name="de" type="text" class="form-control">{{$part->de}}</textarea>
-                            </div>
-                        </div>
+                        @endforeach
+
                         <div class="row">
                             <label>Upload Images</label>
                             <input type="file" name="photos[]" class="form-control uploaded_photo" multiple="">
@@ -139,8 +130,6 @@
 
                     </form>
 
-
-
                 </div>
                 <tr>
                     <td>{{$part->id}}</td>
@@ -148,8 +137,9 @@
                     <td>{{$part->part_names()->where('part_id', $part->id)->where('language', 'en')->first()->name}}</td>
                     <td>{{$part->price}}</td>
                     <td>{{$part->surface}}</td>
-                    <td>{{$part->en}}</td>
-                    <td>{{$part->de}}</td>
+                    @foreach($language as $lang)
+                        <td>@if ($part->part_texts()->where('part_id', $part->id)->where('language', $lang->lang)->exists()) {{$part->part_texts()->where('part_id', $part->id)->where('language', $lang->lang)->first()->text}} @endif</td>
+                    @endforeach
                     <td>
                         <button class="edit_modal btn btn-primary" data-id="{{$part->id}}">Edit</button>
                     </td>

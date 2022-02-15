@@ -19,4 +19,8 @@ class PartsForProduct extends Model
     public function part_names(){
         return $this->hasMany('App\PartNames', 'part_id', 'id');
     }
+
+    public function part_texts(){
+        return $this->hasMany('App\PartTexts', 'part_id', 'id');
+    }
 }

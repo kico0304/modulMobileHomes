@@ -23,4 +23,9 @@ class Product extends Model
     {
         return $this->hasMany('App\ProductNames', 'product_id', 'id');
     }
+
+    public function texts()
+    {
+        return $this->hasMany('App\ProductTexts', 'product_id', 'id');
+    }
 }

@@ -44,3 +44,8 @@
 .textarea_cls{
     display: none;
 }
+.row_lang_style{
+    border: 1px solid seagreen;
+    margin-top: 5px;
+    padding: 10px;
+}

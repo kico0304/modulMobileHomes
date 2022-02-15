@@ -30,26 +30,25 @@
             <p>All values must be inserted</p>
             <div class="row">
                 <label for="product_price">Price :</label>
-                <input id="product_price" name="price" type="number" step="0.01" class="form-control">
+                <input id="product_price" name="price" type="text" class="form-control">
             </div>
             <div class="row">
-                <label class="label_lang" for="product_en">EN :</label>
-                <div class="col-md-12 textarea_cls">
-                    <p>Name</p>
-                    <input name="name_en" type="text" class="form-control">
-                    <p>Name</p>
-                    <textarea name="en" type="text" class="form-control"></textarea>
-                </div>
+                <label for="product_surface">Surface :</label>
+                <input id="product_surface" name="surface" type="text" class="form-control">
             </div>
-            <div class="row">
-                <label class="label_lang" for="product_de">DE :</label>
-                <div class="col-md-12 textarea_cls">
-                    <p>Name</p>
-                    <input name="name_de" type="text" class="form-control">
-                    <p>Text</p>
-                    <textarea name="de" type="text" class="form-control"></textarea>
+
+            @foreach($language as $lang)
+                <div class="row row_lang_style">
+                    <label class="label_lang" for="product_{{$lang->lang}}">{{strtoupper($lang->lang)}} :</label>
+                    <div class="col-md-12 textarea_cls">
+                        <p>Name</p>
+                        <input name="name_{{$lang->lang}}" type="text" class="form-control">
+                        <p>Text</p>
+                        <textarea name="text_{{$lang->lang}}" type="text" class="form-control"></textarea>
+                    </div>
                 </div>
-            </div>
+            @endforeach
+
             @foreach($parts as $part)
                 <div class="row product_part_row">
                     <label for="part_{{$part->id}}">Product Part</label><br>
@@ -81,8 +80,10 @@
                 <th class="text-center">Image</th>
                 <th class="text-center">Name</th>
                 <th class="text-center">Price</th>
-                <th class="text-center">EN</th>
-                <th class="text-center">DE</th>
+                <th class="text-center">Surface</th>
+                @foreach($language as $lang)
+                    <th class="text-center">{{strtoupper($lang->lang)}}</th>
+                @endforeach
                 <th class="text-center">Edit</th>
                 <th class="text-center">Delete</th>
             </tr>
@@ -103,23 +104,22 @@
                             <input name="price" type="text" class="form-control" value="{{$product->price}}">
                         </div>
                         <div class="row">
-                            <label class="label_lang">EN :</label>
-                            <div class="col-md-12 textarea_cls">
-                                <p>Name</p>
-                                <input name="name_en" type="text" class="form-control" value="{{$product->names()->where('product_id', $product->id)->where('language', 'en')->first()->name}}">
-                                <p>Text</p>
-                                <textarea name="en" type="text" class="form-control">{{$product->en}}</textarea>
-                            </div>
+                            <label>Surface :</label>
+                            <input name="surface" type="text" class="form-control" value="{{$product->surface}}">
                         </div>
-                        <div class="row">
-                            <label class="label_lang">DE :</label>
-                            <div class="col-md-12 textarea_cls">
-                                <p>Name</p>
-                                <input name="name_de" type="text" class="form-control" value="{{$product->names()->where('product_id', $product->id)->where('language', 'de')->first()->name}}">
-                                <p>Text</p>
-                                <textarea name="de" type="text" class="form-control">{{$product->de}}</textarea>
+
+                        @foreach($language as $lang)
+                            <div class="row row_lang_style">
+                                <label class="label_lang">{{strtoupper($lang->lang)}} :</label>
+                                <div class="col-md-12 textarea_cls">
+                                    <p>Name</p>
+                                    <input name="name_{{$lang->lang}}" type="text" class="form-control" value="@if ($product->names()->where('product_id', $product->id)->where('language', $lang->lang)->exists()) {{$product->names()->where('product_id', $product->id)->where('language', $lang->lang)->first()->name}} @endif">
+                                    <p>Text</p>
+                                    <textarea name="text_{{$lang->lang}}" type="text" class="form-control">@if ($product->texts()->where('product_id', $product->id)->where('language', $lang->lang)->exists()) {{$product->texts()->where('product_id', $product->id)->where('language', $lang->lang)->first()->text}} @endif</textarea>
+                                </div>
                             </div>
-                        </div>
+                        @endforeach
+
                         <div class="row">
                             <label>Upload Images</label>
                             <input type="file" name="photos[]" class="form-control uploaded_photo" multiple="">
@@ -171,8 +171,10 @@
                     <td>@if(!$product->images->isEmpty())<img class="img_table" alt="image" src="{{asset('images/products/product_'.$product->id.'/'.$product->images[0]->name)}}">@else - @endif</td>
                     <td>{{$product->names()->where('product_id', $product->id)->where('language', 'en')->first()->name}}</td>
                     <td>{{$product->price}}</td>
-                    <td>{{$product->en}}</td>
-                    <td>{{$product->de}}</td>
+                    <td>{{$product->surface}}</td>
+                    @foreach($language as $lang)
+                        <td>@if ($product->texts()->where('product_id', $product->id)->where('language', $lang->lang)->exists()) {{$product->texts()->where('product_id', $product->id)->where('language', $lang->lang)->first()->text}} @endif</td>
+                    @endforeach
                     <td>
                         <button class="edit_modal btn btn-primary" data-id="{{$product->id}}">Edit</button>
                     </td>

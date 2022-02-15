@@ -45,9 +45,10 @@
 <body id="top">
 <div id="app">
      <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-         <p><a href="{{ url('/admin')}}">Create New Product</a></p>
-         <p style="margin-left: 30px;"><a href="{{ url('/admin/parts')}}">Create New Part of product</a></p>
+         <p><a href="{{ url('/admin/parts')}}">Create New Modul</a></p>
+         <p style="margin-left: 30px;"><a href="{{ url('/admin')}}">Create New Product</a></p>
          <p style="margin-left: 30px;"><a href="{{ url('/admin/options')}}">Create New Option</a></p>
+         <p style="margin-left: 30px;"><a href="{{ url('/logout')}}" style="color: red;">Logout</a></p>
     </nav>
     <main>
         @yield('content')
