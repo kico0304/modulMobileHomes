@@ -48,6 +48,8 @@
          <p><a href="{{ url('/admin/parts')}}">Create New Modul</a></p>
          <p style="margin-left: 30px;"><a href="{{ url('/admin')}}">Create New Product</a></p>
          <p style="margin-left: 30px;"><a href="{{ url('/admin/options')}}">Create New Option</a></p>
+         <p style="margin-left: 30px;"><a href="{{ url('/admin/actualities')}}">Create New Actualities</a></p>
+         <p style="margin-left: 30px;"><a href="{{ url('/admin/language')}}">Add new Language</a></p>
          <p style="margin-left: 30px;"><a href="{{ url('/logout')}}" style="color: red;">Logout</a></p>
     </nav>
     <main>

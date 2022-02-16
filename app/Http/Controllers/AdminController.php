@@ -75,19 +75,31 @@ class AdminController extends Controller
         $check = $request->all();
 
         foreach ($check as $key => $req){
+            if(strpos($key, 'part') !== false){
+                if($req != null && $req != '') {
+                    $product_part = new ProductParts();
+                    $product_part->product_id = $request['product_id'];
+                    $product_part->part_id = $req;
+                    $product_part->save();
+                }
+            }
             if(strpos($key, 'name') !== false){
-                $part_lang = explode('_',$key )[1];
-                PartNames::updateOrCreate(
-                    ['product_id' => $request['product_id'], 'language' => $part_lang],
-                    ['name' => $req]
-                );
+                if($req != null && $req != '') {
+                    $part_lang = explode('_', $key)[1];
+                    ProductNames::updateOrCreate(
+                        ['product_id' => $request['product_id'], 'language' => $part_lang],
+                        ['name' => $req]
+                    );
+                }
             }
             if(strpos($key, 'text') !== false){
-                $part_lang = explode('_',$key )[1];
-                PartTexts::updateOrCreate(
-                    ['product_id' => $request['product_id'], 'language' => $part_lang],
-                    ['text' => $req]
-                );
+                if($req != null && $req != '') {
+                    $part_lang = explode('_', $key)[1];
+                    ProductTexts::updateOrCreate(
+                        ['product_id' => $request['product_id'], 'language' => $part_lang],
+                        ['text' => $req]
+                    );
+                }
             }
         }
 
@@ -129,11 +141,15 @@ class AdminController extends Controller
 
         foreach ($check as $key => $req){
             if(strpos($key, 'part') !== false){
-                $part_id = explode('_',$key )[1];
-                $product_part = new ProductParts();
-                $product_part->product_id = $new_product->id;
-                $product_part->part_id = $part_id;
-                $product_part->save();
+                if($req != null && $req != '') {
+                    $part_id = explode('_', $key)[1];
+                    for ($x = 0; $x < $request['count_part_'.$part_id]; $x++) {
+                        $product_part = new ProductParts();
+                        $product_part->product_id = $new_product->id;
+                        $product_part->part_id = $req;
+                        $product_part->save();
+                    }
+                }
             }
             if(strpos($key, 'name') !== false){
                 if($req != null && $req != '') {
@@ -198,6 +214,23 @@ class AdminController extends Controller
 
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function delete_part_product (Request $request) {
+
+        $part_id = $request['id'];
+        $product_id = $request['product_id'];
+
+//        $product_part = ProductParts::where('product_id', $product_id)->where('part_id', $part_id)->find(1);
+//        $product_part->delete();
+
+        ProductParts::where('product_id', $product_id)->where('part_id', $part_id)->first()->delete();
+        return response()->json(['part_id' => $part_id]);
+
+    }
+
     /*
      *
      * PART *************************************************************************
@@ -251,18 +284,22 @@ class AdminController extends Controller
 
         foreach ($check as $key => $req){
             if(strpos($key, 'name') !== false){
-                $part_lang = explode('_',$key )[1];
-                PartNames::updateOrCreate(
-                    ['part_id' => $request['part_id'], 'language' => $part_lang],
-                    ['name' => $req]
-                );
+                if($req != null && $req != '') {
+                    $part_lang = explode('_', $key)[1];
+                    PartNames::updateOrCreate(
+                        ['part_id' => $request['part_id'], 'language' => $part_lang],
+                        ['name' => $req]
+                    );
+                }
             }
             if(strpos($key, 'text') !== false){
-                $part_lang = explode('_',$key )[1];
-                PartTexts::updateOrCreate(
-                    ['part_id' => $request['part_id'], 'language' => $part_lang],
-                    ['text' => $req]
-                );
+                if($req != null && $req != '') {
+                    $part_lang = explode('_', $key)[1];
+                    PartTexts::updateOrCreate(
+                        ['part_id' => $request['part_id'], 'language' => $part_lang],
+                        ['text' => $req]
+                    );
+                }
             }
         }
 

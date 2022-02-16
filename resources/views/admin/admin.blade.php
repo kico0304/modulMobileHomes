@@ -54,10 +54,11 @@
                     <label for="part_{{$part->id}}">Product Part</label><br>
                     <select class="form-control part_pro" id="part_{{$part->id}}" name="part_{{$part->id}}">
                         <option value="">Select Category</option>
-                        @foreach($parts as $part)
-                            <option name="{{$part->id}}" value="{{$part->part_names()->where('part_id', $part->id)->where('language', 'en')->first()->name}}" data-id="{{$part->id}}">{{$part->part_names()->where('part_id', $part->id)->where('language', 'en')->first()->name}}</option>
+                        @foreach($parts as $part1)
+                            <option name="{{$part1->id}}" value="{{$part1->id}}" data-id="{{$part1->id}}">{{$part1->part_names()->where('part_id', $part1->id)->where('language', 'en')->first()->name}}</option>
                         @endforeach
                     </select>
+                    <input type="number" value="1" class="form-control" name="count_part_{{$part->id}}" placeholder="Number of modules" style="margin-top: 5px;">
                 </div>
             @endforeach
             <div class="row">
@@ -120,11 +121,24 @@
                             </div>
                         @endforeach
 
+                        @foreach($parts as $part)
+                            <div class="row product_part_row">
+                                <label for="part_{{$part->id}}">Product Part</label><br>
+                                <select class="form-control part_pro" id="part_{{$part->id}}" name="part_{{$part->id}}">
+                                    <option value="">Select Category</option>
+                                    @foreach($parts as $part1)
+                                        <option name="{{$part1->id}}" value="{{$part1->id}}" data-id="{{$part1->id}}">{{$part1->part_names()->where('part_id', $part1->id)->where('language', 'en')->first()->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        @endforeach
+
                         <div class="row">
                             <label>Upload Images</label>
                             <input type="file" name="photos[]" class="form-control uploaded_photo" multiple="">
                         </div>
-
+                        <br>
+                        <br>
                         @if(!$product->images->isEmpty())
                             <div class="row">
                                 <h4>Product images</h4>
@@ -141,16 +155,20 @@
                                         @endforeach
                                     </div>
                                 </div>
-                                <br>
-                                <br>
-                                <h4>Parts of product images</h4>
+
+                                <h4 style="margin-top: 20px;">Product Modules</h4>
                                 <div class="col-md-12">
                                     <div class="row">
                                         @foreach($product->product_parts as $parts)
-                                            @foreach($parts->part_images as $prt_images)
-                                                    <div class="col-md-4">
-                                                        <img style="max-height: 300px; max-width: 300px;" alt="edit_image" src="{{asset('images/parts/part_'.$parts->id.'/'.$prt_images->name)}}">
-                                                    </div>
+                                            @foreach($parts->part_names()->where('language', 'en')->get() as $prt_names)
+                                                <div class="col-md-4 part_product_{{$parts->id}}">
+                                                    <p style="text-align: center;">{{$prt_names->name}}</p>
+                                                    @foreach($parts->part_images()->where('part_id', $prt_names->part_id)->get() as $prt_images)
+                                                        <img style="max-height: 300px; max-width: 300px; margin-top: 10px;" alt="edit_image" src="{{asset('images/parts/part_'.$parts->id.'/'.$prt_images->name)}}">
+                                                    @endforeach
+                                                    <br>
+                                                    <button class="btn btn-danger btn-sm delete_part" data-id="{{$parts->id}}" data-product_id="{{$product->id}}">Delete</button>
+                                                </div>
                                             @endforeach
                                         @endforeach
                                     </div>
@@ -158,7 +176,7 @@
                             </div>
                         @endif
 
-                        <div class="row" style="margin-top: 20px;">
+                        <div class="row" style="margin-top: 40px;">
                             <button type="submit" class="btn btn-success">Save Product Changes</button>
                             <button class="close_edit_modal btn btn-danger">Close</button>
                         </div>
@@ -254,8 +272,33 @@
 
             //part product show next div
             $('.part_pro').change(function(){
-                console.log('11');
                 $(this).parents().prev().show();
+            });
+
+            //delete part of product
+            $('.delete_part').click(function (e) {
+
+                e.preventDefault();
+
+                if(!confirm('Are you sure you want to delete module for product?')){
+                    return false;
+                }
+
+                let id = $(this).data('id');
+                let product_id = $(this).data('product_id');
+
+                $.ajax({
+                    url: '{{ url('/admin/delete_part_product') }}',
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    data: {'id': id, 'product_id': product_id},
+                    type: 'post',
+                    success: function (ret) {
+                        $('.part_product_'+ret.part_id).first().hide();
+                    },
+                    error: function (err) {
+                        alert("Error");
+                    }
+                })
             });
         });
     </script>
