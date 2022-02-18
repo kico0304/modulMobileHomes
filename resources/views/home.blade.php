@@ -19,7 +19,22 @@
 @section('content')
 
     <!-- TEMPLATE PART START -->
-
+{{--@foreach($products as $product)--}}
+{{--    <p>Product name: {{$product->names[0]->name}}</p>--}}
+{{--    <p>Product price: {{$product->price}}</p>--}}
+{{--    <p>Product surface: {{$product->surface}}</p>--}}
+{{--    <p>Product text: {{$product->texts[0]->text}}</p>--}}
+{{--    @foreach($product->images as $image)--}}
+{{--        <p>Product image name: {{$image->name}}</p>--}}
+{{--    @endforeach--}}
+{{--    @foreach($product->product_parts as $part)--}}
+{{--        <p>Product part name: {{$part->part_names[0]->name}}</p>--}}
+{{--        <p>Product part text: {{$part->part_texts[0]->text}}</p>--}}
+{{--        @foreach($part->part_images as $part_img)--}}
+{{--            <p>Product part images: {{$part_img->name}}</p>--}}
+{{--        @endforeach--}}
+{{--    @endforeach--}}
+{{--@endforeach--}}
     <header>
         <div class="header-top-bar">
             <div class="container">
@@ -50,7 +65,7 @@
                 <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="icofont-navigation-menu"></span>
             </button>
-        
+
             <div class="collapse navbar-collapse" id="navbarmain">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
@@ -69,7 +84,7 @@
                             <li><a class="dropdown-item" href="#">NAPRAVI SVOJU KOMBINACIJU</a></li>
                         </ul>
                     </li>
-                    
+
                     <li class="nav-item">
                         <a class="nav-link" href="#">Za investitore</a>
                     </li>
@@ -129,7 +144,7 @@
                             <p class="mb-4">Informišite se o našim proizvodima svakim radnim danom.</p>
                             <a href="appoinment.html" class="btn btn-main btn-round-full">Zakažite termin</a>
                         </div>
-                    
+
                         <div class="feature-item mb-5 mb-lg-0">
                             <div class="feature-icon mb-4">
                                 <i class="icofont-ui-clock"></i>
@@ -142,7 +157,7 @@
                                 <li class="d-flex justify-content-between">Nedjelja: <span>Ne radimo</span></li>
                             </ul>
                         </div>
-                    
+
                         <div class="feature-item mb-5 mb-lg-0">
                             <div class="feature-icon mb-4">
                                 <i class="icofont-support"></i>
@@ -260,7 +275,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="footer-btm py-4 mt-5">
                 <div class="row align-items-center justify-content-between">
                     <div class="col-lg-7">

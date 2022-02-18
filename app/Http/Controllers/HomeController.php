@@ -24,9 +24,16 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index(){
+
         $lang = Lang::locale();
 
-        $products = Product::whereNotNull($lang)->get();
+//        $products = Product::with('images')->with('product_parts')->with('names')->with('texts')->get();
+
+        $products = Product::with(['images', 'product_parts', 'names' => function($q) use($lang) {
+            $q->where('language', '=', $lang);
+        }, 'texts' => function($q) use($lang) {
+            $q->where('language', '=', $lang);
+        }])->get();
 
         return view('home', [
             'products' => $products

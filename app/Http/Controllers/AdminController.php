@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actualitie;
 use App\Language;
 use App\OptionImages;
 use App\OptionsForProduct;
@@ -222,9 +223,6 @@ class AdminController extends Controller
 
         $part_id = $request['id'];
         $product_id = $request['product_id'];
-
-//        $product_part = ProductParts::where('product_id', $product_id)->where('part_id', $part_id)->find(1);
-//        $product_part->delete();
 
         ProductParts::where('product_id', $product_id)->where('part_id', $part_id)->first()->delete();
         return response()->json(['part_id' => $part_id]);
@@ -524,6 +522,155 @@ class AdminController extends Controller
 
         OptionImages::where('id', $image_id)->delete();
         return response()->json(['image_id' => $image_id]);
+
+    }
+
+    /*
+     *
+     * Actualities *************************************************************************
+     *
+     */
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function actualities (Request $request) {
+
+        $actualities = Actualitie::all();
+
+        return view('admin.actualities', [
+            'actualities' => $actualities
+        ]);
+
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function delete_actualities (Request $request) {
+
+        $id_option = $request['id'];
+        OptionsForProduct::where('id', $id_option)->delete();
+        OptionImages::where('option_id', $id_option)->delete();
+        $image_path = public_path('images\options\option_'.$id_option); // upload path
+        if(File::exists($image_path)) {
+            File::deleteDirectory($image_path);
+        }
+
+        return back()->with('success', 'Option Deleted Successfully');
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function edit_actualities (Request $request) {
+
+        OptionsForProduct::where('id', $request['option_id'])->update(['name' => $request['name'], 'price' => $request['price'], 'surface' => $request['surface'], 'en' => $request['en'], 'de' => $request['de']]);
+
+        if ($photos = $request->file('photos')) {
+
+            // Define upload path
+            $destinationPath = public_path('/images/options/option_'.$request['option_id'].'/'); // upload path
+            foreach($photos as $img) {
+                // Upload Orginal Image
+                $profileImage =$img->getClientOriginalName();
+                $img->move($destinationPath, $profileImage);
+
+                //save photo in database
+                $new_photo = new OptionImages();
+                $new_photo->option_id = $request['option_id'];
+                $new_photo->name = $profileImage;
+                $new_photo->save();
+            }
+
+        }
+
+        return back()->with('success', 'Option Saved Successfully');
+
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function add_actualities (Request $request) {
+
+        //save option
+        $new_option = new OptionsForProduct();
+        $new_option->name = $request['name'];
+        $new_option->price = $request['price'];
+        $new_option->surface = $request['surface'];
+        $new_option->en = $request['en'];
+        $new_option->de = $request['de'];
+        $new_option->save();
+
+        if ($photos = $request->file('photos')) {
+
+            // Define upload path
+            $destinationPath = public_path('/images/options/option_'.$new_option->id.'/'); // upload path
+            foreach($photos as $img) {
+                // Upload Orginal Image
+                $profileImage =$img->getClientOriginalName();
+                $img->move($destinationPath, $profileImage);
+
+                //save photo in database
+                $new_photo = new OptionImages();
+                $new_photo->option_id = $new_option->id;
+                $new_photo->name = $profileImage;
+                $new_photo->save();
+            }
+
+        }
+
+        return back()->with('success', 'Option Saved Successfully');
+
+    }
+    
+    /*
+     *
+     * LANGUAGE ***********************************************************************
+     *
+     */
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function language (Request $request) {
+
+        $language = Language::all();
+
+        return view('admin.language', [
+            'languages' => $language
+        ]);
+
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function delete_language (Request $request) {
+
+        Language::where('id', $request['id'])->delete();
+        return back()->with('success', 'Language Deleted Successfully');
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function add_language (Request $request) {
+
+        //save language
+        $new_lang = new Language();
+        $new_lang->lang = $request['lang'];
+        $new_lang->save();
+
+        return back()->with('success', 'Language Saved Successfully');
 
     }
 
