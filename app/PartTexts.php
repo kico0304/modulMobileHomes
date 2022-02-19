@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PartNames extends Model
+class PartTexts extends Model
 {
     public $timestamps = false;
 
     protected $fillable = [
-        'name','language','part_id',
+        'text','language','part_id',
     ];
 
     public function part(){

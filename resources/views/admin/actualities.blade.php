@@ -8,7 +8,7 @@
 
 @section('content')
 
-    <button class="add_modal btn btn-success">Add new Part</button>
+    <button class="add_modal btn btn-success">Add new Actualities</button>
 
     @if(session('success'))
         <div class="alert alert-success">
@@ -18,38 +18,29 @@
 
     <div class="modal_add">
 
-        <form method="post" action="{{url('/admin/add_part')}}" enctype="multipart/form-data">
+        <form method="post" action="{{url('/admin/add_actualities')}}" enctype="multipart/form-data">
 
             @csrf
-            <h3>Add new Part</h3>
+            <h3>Add new Actualities</h3>
             <p>All values must be inserted</p>
             <div class="row">
-                <label for="part_price">Price :</label>
+                <label for="part_price">Name :</label>
                 <input id="part_price" name="price" type="text" class="form-control">
             </div>
             <div class="row">
-                <label for="part_surface">Surface :</label>
+                <label for="part_surface">Text :</label>
                 <input id="part_surface" name="surface" type="text" class="form-control">
             </div>
 
             @foreach($language as $lang)
                 <div class="row row_lang_style">
                     <label class="label_lang" for="part_{{$lang->lang}}">{{strtoupper($lang->lang)}} :</label>
-                    <div class="col-md-12 textarea_cls">
-                        <p>Name</p>
-                        <input name="name_{{$lang->lang}}" type="text" class="form-control">
-                        <p>Text</p>
-                        <textarea name="text_{{$lang->lang}}" type="text" class="form-control"></textarea>
-                    </div>
+                    <input name="name_{{$lang->lang}}" id="part_{{$lang->lang}}" type="checkbox" class="form-control">
                 </div>
             @endforeach
 
             <div class="row">
-                <label for="photo_upload">Upload Images</label>
-                <input type="file" name="photos[]" class="form-control uploaded_photo" id="photo_upload" multiple="">
-            </div>
-            <div class="row">
-                <button type="submit" class="btn btn-success">Save Part</button>
+                <button type="submit" class="btn btn-success">Save Actualities</button>
                 <button class="close_new_modal btn btn-danger">Close</button>
             </div>
 
@@ -57,17 +48,14 @@
 
     </div>
 
-    <table id="part_table" class="display" style="width:100%">
+    <table id="actualities_table" class="display" style="width:100%">
         <thead>
         <tr>
             <th class="text-center">ID</th>
-            <th class="text-center">Image</th>
             <th class="text-center">Name</th>
-            <th class="text-center">Price</th>
-            <th class="text-center">Surface</th>
-            @foreach($language as $lang)
-                <th class="text-center">{{strtoupper($lang->lang)}}</th>
-            @endforeach
+            <th class="text-center">Text</th>
+            <th class="text-center">Date</th>
+            <th class="text-center">Language</th>
             <th class="text-center">Edit</th>
             <th class="text-center">Delete</th>
         </tr>
@@ -93,15 +81,15 @@
                         </div>
 
                         @foreach($language as $lang)
-                        <div class="row row_lang_style">
-                            <label class="label_lang">{{strtoupper($lang->lang)}} :</label>
-                            <div class="col-md-12 textarea_cls">
-                                <p>Name</p>
-                                <input name="name_{{$lang->lang}}" type="text" class="form-control" value="@if ($part->part_names()->where('part_id', $part->id)->where('language', $lang->lang)->exists()) {{$part->part_names()->where('part_id', $part->id)->where('language', $lang->lang)->first()->name}} @endif">
-                                <p>Text</p>
-                                <textarea name="text_{{$lang->lang}}" type="text" class="form-control">@if ($part->part_texts()->where('part_id', $part->id)->where('language', $lang->lang)->exists()) {{$part->part_texts()->where('part_id', $part->id)->where('language', $lang->lang)->first()->text}} @endif</textarea>
+                            <div class="row row_lang_style">
+                                <label class="label_lang">{{strtoupper($lang->lang)}} :</label>
+                                <div class="col-md-12 textarea_cls">
+                                    <p>Name</p>
+                                    <input name="name_{{$lang->lang}}" type="text" class="form-control" value="@if ($part->part_names()->where('part_id', $part->id)->where('language', $lang->lang)->exists()) {{$part->part_names()->where('part_id', $part->id)->where('language', $lang->lang)->first()->name}} @endif">
+                                    <p>Text</p>
+                                    <textarea name="text_{{$lang->lang}}" type="text" class="form-control">@if ($part->part_texts()->where('part_id', $part->id)->where('language', $lang->lang)->exists()) {{$part->part_texts()->where('part_id', $part->id)->where('language', $lang->lang)->first()->text}} @endif</textarea>
+                                </div>
                             </div>
-                        </div>
                         @endforeach
 
                         <div class="row">

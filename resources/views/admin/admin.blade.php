@@ -30,27 +30,35 @@
             <p>All values must be inserted</p>
             <div class="row">
                 <label for="product_price">Price :</label>
-                <input id="product_price" name="price" type="number" step="0.01" class="form-control">
+                <input id="product_price" name="price" type="text" class="form-control">
             </div>
             <div class="row">
-                <label class="label_lang" for="product_en">EN :</label>
-                <input name="name_en" type="text" class="form-control textarea_cls">
-                <textarea name="en" type="text" class="form-control textarea_cls"></textarea>
+                <label for="product_surface">Surface :</label>
+                <input id="product_surface" name="surface" type="text" class="form-control">
             </div>
-            <div class="row">
-                <label class="label_lang" for="product_de">DE :</label>
-                <input name="name_de" type="text" class="form-control textarea_cls">
-                <textarea name="de" type="text" class="form-control textarea_cls"></textarea>
-            </div>
+
+            @foreach($language as $lang)
+                <div class="row row_lang_style">
+                    <label class="label_lang" for="product_{{$lang->lang}}">{{strtoupper($lang->lang)}} :</label>
+                    <div class="col-md-12 textarea_cls">
+                        <p>Name</p>
+                        <input name="name_{{$lang->lang}}" type="text" class="form-control">
+                        <p>Text</p>
+                        <textarea name="text_{{$lang->lang}}" type="text" class="form-control"></textarea>
+                    </div>
+                </div>
+            @endforeach
+
             @foreach($parts as $part)
                 <div class="row product_part_row">
                     <label for="part_{{$part->id}}">Product Part</label><br>
                     <select class="form-control part_pro" id="part_{{$part->id}}" name="part_{{$part->id}}">
                         <option value="">Select Category</option>
-                        @foreach($parts as $part)
-                            <option name="{{$part->id}}" value="{{$part->part_names()->where('part_id', $part->id)->where('language', 'en')->first()->name}}" data-id="{{$part->id}}">{{$part->part_names()->where('part_id', $part->id)->where('language', 'en')->first()->name}}</option>
+                        @foreach($parts as $part1)
+                            <option name="{{$part1->id}}" value="{{$part1->id}}" data-id="{{$part1->id}}">{{$part1->part_names()->where('part_id', $part1->id)->where('language', 'en')->first()->name}}</option>
                         @endforeach
                     </select>
+                    <input type="number" value="1" class="form-control" name="count_part_{{$part->id}}" placeholder="Number of modules" style="margin-top: 5px;">
                 </div>
             @endforeach
             <div class="row">
@@ -73,8 +81,10 @@
                 <th class="text-center">Image</th>
                 <th class="text-center">Name</th>
                 <th class="text-center">Price</th>
-                <th class="text-center">EN</th>
-                <th class="text-center">DE</th>
+                <th class="text-center">Surface</th>
+                @foreach($language as $lang)
+                    <th class="text-center">{{strtoupper($lang->lang)}}</th>
+                @endforeach
                 <th class="text-center">Edit</th>
                 <th class="text-center">Delete</th>
             </tr>
@@ -95,20 +105,40 @@
                             <input name="price" type="text" class="form-control" value="{{$product->price}}">
                         </div>
                         <div class="row">
-                            <label class="label_lang">EN :</label>
-                            <input name="name_en" type="text" class="form-control textarea_cls" value="{{$product->names()->where('product_id', $product->id)->where('language', 'en')->first()->name}}">
-                            <textarea name="en" type="text" class="form-control textarea_cls">{{$product->en}}</textarea>
+                            <label>Surface :</label>
+                            <input name="surface" type="text" class="form-control" value="{{$product->surface}}">
                         </div>
-                        <div class="row">
-                            <label class="label_lang">DE :</label>
-                            <input name="name_de" type="text" class="form-control textarea_cls" value="{{$product->names()->where('product_id', $product->id)->where('language', 'de')->first()->name}}">
-                            <textarea name="de" type="text" class="form-control textarea_cls">{{$product->de}}</textarea>
-                        </div>
+
+                        @foreach($language as $lang)
+                            <div class="row row_lang_style">
+                                <label class="label_lang">{{strtoupper($lang->lang)}} :</label>
+                                <div class="col-md-12 textarea_cls">
+                                    <p>Name</p>
+                                    <input name="name_{{$lang->lang}}" type="text" class="form-control" value="@if ($product->names()->where('product_id', $product->id)->where('language', $lang->lang)->exists()) {{$product->names()->where('product_id', $product->id)->where('language', $lang->lang)->first()->name}} @endif">
+                                    <p>Text</p>
+                                    <textarea name="text_{{$lang->lang}}" type="text" class="form-control">@if ($product->texts()->where('product_id', $product->id)->where('language', $lang->lang)->exists()) {{$product->texts()->where('product_id', $product->id)->where('language', $lang->lang)->first()->text}} @endif</textarea>
+                                </div>
+                            </div>
+                        @endforeach
+
+                        @foreach($parts as $part)
+                            <div class="row product_part_row">
+                                <label for="part_{{$part->id}}">Product Part</label><br>
+                                <select class="form-control part_pro" id="part_{{$part->id}}" name="part_{{$part->id}}">
+                                    <option value="">Select Category</option>
+                                    @foreach($parts as $part1)
+                                        <option name="{{$part1->id}}" value="{{$part1->id}}" data-id="{{$part1->id}}">{{$part1->part_names()->where('part_id', $part1->id)->where('language', 'en')->first()->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        @endforeach
+
                         <div class="row">
                             <label>Upload Images</label>
                             <input type="file" name="photos[]" class="form-control uploaded_photo" multiple="">
                         </div>
-
+                        <br>
+                        <br>
                         @if(!$product->images->isEmpty())
                             <div class="row">
                                 <h4>Product images</h4>
@@ -125,16 +155,20 @@
                                         @endforeach
                                     </div>
                                 </div>
-                                <br>
-                                <br>
-                                <h4>Parts of product images</h4>
+
+                                <h4 style="margin-top: 20px;">Product Modules</h4>
                                 <div class="col-md-12">
                                     <div class="row">
                                         @foreach($product->product_parts as $parts)
-                                            @foreach($parts->part_images as $prt_images)
-                                                    <div class="col-md-4">
-                                                        <img style="max-height: 300px; max-width: 300px;" alt="edit_image" src="{{asset('images/parts/part_'.$parts->id.'/'.$prt_images->name)}}">
-                                                    </div>
+                                            @foreach($parts->part_names()->where('language', 'en')->get() as $prt_names)
+                                                <div class="col-md-4 part_product_{{$parts->id}}">
+                                                    <p style="text-align: center;">{{$prt_names->name}}</p>
+                                                    @foreach($parts->part_images()->where('part_id', $prt_names->part_id)->get() as $prt_images)
+                                                        <img style="max-height: 300px; max-width: 300px; margin-top: 10px;" alt="edit_image" src="{{asset('images/parts/part_'.$parts->id.'/'.$prt_images->name)}}">
+                                                    @endforeach
+                                                    <br>
+                                                    <button class="btn btn-danger btn-sm delete_part" data-id="{{$parts->id}}" data-product_id="{{$product->id}}">Delete</button>
+                                                </div>
                                             @endforeach
                                         @endforeach
                                     </div>
@@ -142,7 +176,7 @@
                             </div>
                         @endif
 
-                        <div class="row" style="margin-top: 20px;">
+                        <div class="row" style="margin-top: 40px;">
                             <button type="submit" class="btn btn-success">Save Product Changes</button>
                             <button class="close_edit_modal btn btn-danger">Close</button>
                         </div>
@@ -155,8 +189,10 @@
                     <td>@if(!$product->images->isEmpty())<img class="img_table" alt="image" src="{{asset('images/products/product_'.$product->id.'/'.$product->images[0]->name)}}">@else - @endif</td>
                     <td>{{$product->names()->where('product_id', $product->id)->where('language', 'en')->first()->name}}</td>
                     <td>{{$product->price}}</td>
-                    <td>{{$product->en}}</td>
-                    <td>{{$product->de}}</td>
+                    <td>{{$product->surface}}</td>
+                    @foreach($language as $lang)
+                        <td>@if ($product->texts()->where('product_id', $product->id)->where('language', $lang->lang)->exists()) {{$product->texts()->where('product_id', $product->id)->where('language', $lang->lang)->first()->text}} @endif</td>
+                    @endforeach
                     <td>
                         <button class="edit_modal btn btn-primary" data-id="{{$product->id}}">Edit</button>
                     </td>
@@ -236,8 +272,33 @@
 
             //part product show next div
             $('.part_pro').change(function(){
-                console.log('11');
                 $(this).parents().prev().show();
+            });
+
+            //delete part of product
+            $('.delete_part').click(function (e) {
+
+                e.preventDefault();
+
+                if(!confirm('Are you sure you want to delete module for product?')){
+                    return false;
+                }
+
+                let id = $(this).data('id');
+                let product_id = $(this).data('product_id');
+
+                $.ajax({
+                    url: '{{ url('/admin/delete_part_product') }}',
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    data: {'id': id, 'product_id': product_id},
+                    type: 'post',
+                    success: function (ret) {
+                        $('.part_product_'+ret.part_id).first().hide();
+                    },
+                    error: function (err) {
+                        alert("Error");
+                    }
+                })
             });
         });
     </script>

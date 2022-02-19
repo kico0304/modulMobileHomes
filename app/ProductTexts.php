@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ProductNames extends Model
+class ProductTexts extends Model
 {
     public $timestamps = false;
 
     protected $fillable = [
-        'name','language','product_id',
+        'text','language','product_id',
     ];
 
     public function product(){

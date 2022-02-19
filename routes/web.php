@@ -11,7 +11,13 @@
 |
 */
 
-Auth::routes();
+//Auth::routes();
+Auth::routes([
+    'register' => false, // Registration Routes
+    'reset' => false, // Password Reset Routes
+    'verify' => false, // Email Verification Routes
+]);
+Route::get('/logout', 'Auth\LoginController@logout');
 
 
 Route::get('/',           'HomeController@index')->name('home');
@@ -28,12 +34,15 @@ Route::middleware(['auth', 'auth.admin'])->prefix('admin')->group(function () {
     Route::get('/',                      'AdminController@admin');
     Route::get('/parts',                 'AdminController@parts');
     Route::get('/options',               'AdminController@options');
+    Route::get('/language',              'AdminController@language');
+    Route::get('/actualities',           'AdminController@actualities');
 
     //product routes
     Route::post('/add_product',          'AdminController@add_product');
     Route::post('/edit_product',         'AdminController@edit_product');
     Route::post('/delete_product',       'AdminController@delete_product');
     Route::post('/delete_product_photo', 'AdminController@delete_product_photo');
+    Route::post('/delete_part_product',  'AdminController@delete_part_product');
 
     //part routes
     Route::post('/add_part',             'AdminController@add_part');
@@ -46,5 +55,14 @@ Route::middleware(['auth', 'auth.admin'])->prefix('admin')->group(function () {
     Route::post('/edit_option',          'AdminController@edit_option');
     Route::post('/delete_option',        'AdminController@delete_option');
     Route::post('/delete_option_photo',  'AdminController@delete_option_photo');
+
+    //language routes
+    Route::post('/add_language',         'AdminController@add_language');
+    Route::post('/delete_language',      'AdminController@delete_language');
+
+    //actualities routes
+    Route::post('/add_actualities',      'AdminController@add_actualities');
+    Route::post('/edit_actualities',     'AdminController@edit_actualities');
+    Route::post('/delete_actualities',   'AdminController@delete_actualities');
 
 });

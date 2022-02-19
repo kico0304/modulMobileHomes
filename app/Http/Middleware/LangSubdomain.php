@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Language;
 use Closure;
 use Illuminate\Support\Facades\App;
 
@@ -25,7 +26,7 @@ class LangSubdomain
             $country_code = strtolower($get_country->countryCode);
         }
 
-        $languages = ['en', 'de'];
+        $languages = Language::all()->toArray();
 
         if (in_array($subdomain, $languages)) {
             App::setLocale($subdomain);
