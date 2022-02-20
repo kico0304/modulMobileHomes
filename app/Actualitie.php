@@ -13,8 +13,7 @@ class Actualitie extends Model
 
     public function actualities_lang()
     {
-        return $this->belongsToMany('App\Language', 'actualities_languages', 'actualities_id', 'language_id
-');
+        return $this->belongsToMany('App\Language','actualities_languages','actualities_id','language_id');
     }
 
 }

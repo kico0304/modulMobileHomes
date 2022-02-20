@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Actualitie;
+use App\ActualitiesLanguage;
 use App\Language;
 use App\OptionImages;
 use App\OptionsForProduct;
@@ -537,10 +538,12 @@ class AdminController extends Controller
      */
     public function actualities (Request $request) {
 
-        $actualities = Actualitie::all();
+        $actualities = Actualitie::orderBy('id', 'DESC')->get();
+        $language = Language::all();
 
         return view('admin.actualities', [
-            'actualities' => $actualities
+            'actualities' => $actualities,
+            'language' => $language
         ]);
 
     }
@@ -551,13 +554,9 @@ class AdminController extends Controller
      */
     public function delete_actualities (Request $request) {
 
-        $id_option = $request['id'];
-        OptionsForProduct::where('id', $id_option)->delete();
-        OptionImages::where('option_id', $id_option)->delete();
-        $image_path = public_path('images\options\option_'.$id_option); // upload path
-        if(File::exists($image_path)) {
-            File::deleteDirectory($image_path);
-        }
+        $id_actualities = $request['id'];
+        Actualitie::where('id', $id_actualities)->delete();
+        ActualitiesLanguage::where('actualities_id', $id_actualities)->delete();
 
         return back()->with('success', 'Option Deleted Successfully');
     }
@@ -598,37 +597,30 @@ class AdminController extends Controller
      */
     public function add_actualities (Request $request) {
 
-        //save option
-        $new_option = new OptionsForProduct();
-        $new_option->name = $request['name'];
-        $new_option->price = $request['price'];
-        $new_option->surface = $request['surface'];
-        $new_option->en = $request['en'];
-        $new_option->de = $request['de'];
-        $new_option->save();
+        //save actualities
+        $new_actualities = new Actualitie();
+        $new_actualities->name = $request['name'];
+        $new_actualities->text = $request['text'];
+        $new_actualities->save();
 
-        if ($photos = $request->file('photos')) {
+        $check = $request->all();
 
-            // Define upload path
-            $destinationPath = public_path('/images/options/option_'.$new_option->id.'/'); // upload path
-            foreach($photos as $img) {
-                // Upload Orginal Image
-                $profileImage =$img->getClientOriginalName();
-                $img->move($destinationPath, $profileImage);
-
-                //save photo in database
-                $new_photo = new OptionImages();
-                $new_photo->option_id = $new_option->id;
-                $new_photo->name = $profileImage;
-                $new_photo->save();
+        foreach ($check as $key => $req){
+            if(strpos($key, 'lang') !== false){
+                $lang_id = explode('_',$key )[1];
+                if($req != null && $req != ''){
+                    $act_lang = new ActualitiesLanguage();
+                    $act_lang->actualities_id = $new_actualities->id;
+                    $act_lang->language_id = $lang_id;
+                    $act_lang->save();
+                }
             }
-
         }
 
-        return back()->with('success', 'Option Saved Successfully');
+        return back()->with('success', 'Actualities Saved Successfully');
 
     }
-    
+
     /*
      *
      * LANGUAGE ***********************************************************************
