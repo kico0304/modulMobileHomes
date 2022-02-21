@@ -84,7 +84,7 @@
                         @csrf
                         <h3>Edit Actualities</h3>
                         <p>All values must be inserted</p>
-                        <input name="$actualities_id" type="hidden" value="{{$actualitie->id}}">
+                        <input name="actualities_id" type="hidden" value="{{$actualitie->id}}">
                         <div class="row">
                             <label>Name :</label>
                             <input name="name" type="text" class="form-control" value="{{$actualitie->name}}">
@@ -94,17 +94,16 @@
                             <input id="text" name="text" type="text" class="form-control" value="{{$actualitie->text}}">
                         </div>
 
-{{--                        @foreach($language as $lang)--}}
-{{--                            <div class="row row_lang_style">--}}
-{{--                                <label class="label_lang">{{strtoupper($lang->lang)}} :</label>--}}
-{{--                                <div class="col-md-12 textarea_cls">--}}
-{{--                                    <p>Name</p>--}}
-{{--                                    <input name="name_{{$lang->lang}}" type="text" class="form-control" value="@if ($part->part_names()->where('part_id', $part->id)->where('language', $lang->lang)->exists()) {{$part->part_names()->where('part_id', $part->id)->where('language', $lang->lang)->first()->name}} @endif">--}}
-{{--                                    <p>Text</p>--}}
-{{--                                    <textarea name="text_{{$lang->lang}}" type="text" class="form-control">@if ($part->part_texts()->where('part_id', $part->id)->where('language', $lang->lang)->exists()) {{$part->part_texts()->where('part_id', $part->id)->where('language', $lang->lang)->first()->text}} @endif</textarea>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        @endforeach--}}
+                        <div class="row" style="margin-top: 10px; margin-bottom: 10px;">
+                            @foreach($language as $lang)
+                                @php $check = ''; @endphp
+                                @foreach($actualitie->actualities_lang as $lang_ac)
+                                   @if($lang->lang == $lang_ac->lang) @php $check = 'checked'; @endphp @endif
+                                @endforeach
+                                <input name="lang_{{$lang->id}}" id="actualities_edit_{{$lang->lang}}" type="checkbox" hidden {{$check}}>
+                                <label for="actualities_edit_{{$lang->lang}}" style="margin-left: 3px;">{{strtoupper($lang->lang)}}</label>
+                            @endforeach
+                        </div>
 
                         <div class="row">
                             <button type="submit" class="btn btn-success">Save Part Changes</button>

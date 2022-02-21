@@ -26,7 +26,7 @@ class AdminController extends Controller
 
     /*
      *
-     * PRODUCT ********************************************************************
+     * PRODUCT ******************************************************************
      *
      */
 
@@ -232,7 +232,7 @@ class AdminController extends Controller
 
     /*
      *
-     * PART *************************************************************************
+     * PART ***********************************************************************
      *
      */
 
@@ -405,7 +405,7 @@ class AdminController extends Controller
 
     /*
      *
-     * OPTION *************************************************************************
+     * OPTION ***********************************************************************
      *
      */
 
@@ -528,7 +528,7 @@ class AdminController extends Controller
 
     /*
      *
-     * Actualities *************************************************************************
+     * Actualities ********************************************************************
      *
      */
 
@@ -558,7 +558,7 @@ class AdminController extends Controller
         Actualitie::where('id', $id_actualities)->delete();
         ActualitiesLanguage::where('actualities_id', $id_actualities)->delete();
 
-        return back()->with('success', 'Option Deleted Successfully');
+        return back()->with('success', 'Actualities Deleted Successfully');
     }
 
     /**
@@ -567,27 +567,24 @@ class AdminController extends Controller
      */
     public function edit_actualities (Request $request) {
 
-        OptionsForProduct::where('id', $request['option_id'])->update(['name' => $request['name'], 'price' => $request['price'], 'surface' => $request['surface'], 'en' => $request['en'], 'de' => $request['de']]);
+        Actualitie::where('id', $request['actualities_id'])->update(['name' => $request['name'], 'text' => $request['text']]);
+        ActualitiesLanguage::where('actualities_id', $request['actualities_id'])->delete();
 
-        if ($photos = $request->file('photos')) {
+        $check = $request->all();
 
-            // Define upload path
-            $destinationPath = public_path('/images/options/option_'.$request['option_id'].'/'); // upload path
-            foreach($photos as $img) {
-                // Upload Orginal Image
-                $profileImage =$img->getClientOriginalName();
-                $img->move($destinationPath, $profileImage);
-
-                //save photo in database
-                $new_photo = new OptionImages();
-                $new_photo->option_id = $request['option_id'];
-                $new_photo->name = $profileImage;
-                $new_photo->save();
+        foreach ($check as $key => $req){
+            if(strpos($key, 'lang') !== false){
+                $lang_id = explode('_',$key )[1];
+                if($req != null && $req != ''){
+                    $act_lang = new ActualitiesLanguage();
+                    $act_lang->actualities_id = $request['actualities_id'];
+                    $act_lang->language_id = $lang_id;
+                    $act_lang->save();
+                }
             }
-
         }
 
-        return back()->with('success', 'Option Saved Successfully');
+        return back()->with('success', 'Actualities Saved Successfully');
 
     }
 
