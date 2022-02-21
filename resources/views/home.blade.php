@@ -347,7 +347,7 @@ if ($files){$filecount = count($files);}
                 }
             });
         });
-        // SLIDER END 
+        // SLIDER END
 
     </script>
 @endsection
