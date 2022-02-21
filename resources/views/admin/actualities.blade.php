@@ -2,7 +2,22 @@
 
 @section('componentcss')
     <style>
+        input[type=checkbox] + label {
+            width: 60px;
+            margin-bottom: 2px;
+            text-align: center;
+            padding: 2px 5px;
+            border-radius: 4px;
+            color: #fff;
+        }
 
+        input[type=checkbox]:checked + label {
+            background-color: rgba(90, 120, 217, 1);
+        }
+
+        input[type=checkbox]:not(:checked) + label {
+            background-color: #888;
+        }
     </style>
 @endsection
 
@@ -24,21 +39,19 @@
             <h3>Add new Actualities</h3>
             <p>All values must be inserted</p>
             <div class="row">
-                <label for="part_price">Name :</label>
-                <input id="part_price" name="price" type="text" class="form-control">
+                <label for="name">Name :</label>
+                <input id="name" name="name" type="text" class="form-control">
             </div>
             <div class="row">
-                <label for="part_surface">Text :</label>
-                <input id="part_surface" name="surface" type="text" class="form-control">
+                <label>Text :</label>
+                <textarea name="text" type="text" class="form-control"></textarea>
             </div>
-
-            @foreach($language as $lang)
-                <div class="row row_lang_style">
-                    <label class="label_lang" for="part_{{$lang->lang}}">{{strtoupper($lang->lang)}} :</label>
-                    <input name="name_{{$lang->lang}}" id="part_{{$lang->lang}}" type="checkbox" class="form-control">
-                </div>
-            @endforeach
-
+            <div class="row" style="margin-top: 10px; margin-bottom: 10px;">
+                @foreach($language as $lang)
+                    <input name="lang_{{$lang->id}}" id="actualities_{{$lang->lang}}" type="checkbox" hidden>
+                    <label for="actualities_{{$lang->lang}}" style="margin-left: 3px;">{{strtoupper($lang->lang)}}</label>
+                @endforeach
+            </div>
             <div class="row">
                 <button type="submit" class="btn btn-success">Save Actualities</button>
                 <button class="close_new_modal btn btn-danger">Close</button>
@@ -54,62 +67,44 @@
             <th class="text-center">ID</th>
             <th class="text-center">Name</th>
             <th class="text-center">Text</th>
-            <th class="text-center">Date</th>
             <th class="text-center">Language</th>
+            <th class="text-center">Date</th>
             <th class="text-center">Edit</th>
             <th class="text-center">Delete</th>
         </tr>
         </thead>
         <tbody>
-        @if(!$parts->isEmpty())
-            @foreach ($parts as $part)
-                <div class="modal_edit edit_modal_{{$part->id}}">
+        @if(!$actualities->isEmpty())
+            @foreach ($actualities as $actualitie)
 
-                    <form method="post" action="{{url('/admin/edit_part')}}" enctype="multipart/form-data">
+                <div class="modal_edit edit_modal_{{$actualitie->id}}">
+
+                    <form method="post" action="{{url('/admin/edit_actualities')}}" enctype="multipart/form-data">
 
                         @csrf
-                        <h3>Edit Part</h3>
+                        <h3>Edit Actualities</h3>
                         <p>All values must be inserted</p>
-                        <input name="part_id" type="hidden" value="{{$part->id}}">
+                        <input name="$actualities_id" type="hidden" value="{{$actualitie->id}}">
                         <div class="row">
-                            <label>Price :</label>
-                            <input name="price" type="number" step="any" class="form-control" value="{{$part->price}}">
+                            <label>Name :</label>
+                            <input name="name" type="text" class="form-control" value="{{$actualitie->name}}">
                         </div>
                         <div class="row">
-                            <label for="part_surface">Surface :</label>
-                            <input id="part_surface" name="surface" type="text" class="form-control" value="{{$part->surface}}">
+                            <label for="text">Text :</label>
+                            <input id="text" name="text" type="text" class="form-control" value="{{$actualitie->text}}">
                         </div>
 
-                        @foreach($language as $lang)
-                            <div class="row row_lang_style">
-                                <label class="label_lang">{{strtoupper($lang->lang)}} :</label>
-                                <div class="col-md-12 textarea_cls">
-                                    <p>Name</p>
-                                    <input name="name_{{$lang->lang}}" type="text" class="form-control" value="@if ($part->part_names()->where('part_id', $part->id)->where('language', $lang->lang)->exists()) {{$part->part_names()->where('part_id', $part->id)->where('language', $lang->lang)->first()->name}} @endif">
-                                    <p>Text</p>
-                                    <textarea name="text_{{$lang->lang}}" type="text" class="form-control">@if ($part->part_texts()->where('part_id', $part->id)->where('language', $lang->lang)->exists()) {{$part->part_texts()->where('part_id', $part->id)->where('language', $lang->lang)->first()->text}} @endif</textarea>
-                                </div>
-                            </div>
-                        @endforeach
-
-                        <div class="row">
-                            <label>Upload Images</label>
-                            <input type="file" name="photos[]" class="form-control uploaded_photo" multiple="">
-                        </div>
-
-                        @if(!$part->part_images->isEmpty())
-                            <div class="row">
-                                @foreach($part->part_images as $image)
-                                    <div class="col-md-4 edit_photo_{{$image->id}}">
-                                        <div class="edit_photos">
-                                            <img class="edit_img" alt="edit_image" src="{{asset('images/parts/part_'.$part->id.'/'.$image->name)}}">
-                                            <br>
-                                            <button class="btn btn-danger btn-sm delete_photo" data-name="{{$image->name}}" data-id="{{$part->id}}" data-photoid="{{$image->id}}">Delete</button>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        @endif
+{{--                        @foreach($language as $lang)--}}
+{{--                            <div class="row row_lang_style">--}}
+{{--                                <label class="label_lang">{{strtoupper($lang->lang)}} :</label>--}}
+{{--                                <div class="col-md-12 textarea_cls">--}}
+{{--                                    <p>Name</p>--}}
+{{--                                    <input name="name_{{$lang->lang}}" type="text" class="form-control" value="@if ($part->part_names()->where('part_id', $part->id)->where('language', $lang->lang)->exists()) {{$part->part_names()->where('part_id', $part->id)->where('language', $lang->lang)->first()->name}} @endif">--}}
+{{--                                    <p>Text</p>--}}
+{{--                                    <textarea name="text_{{$lang->lang}}" type="text" class="form-control">@if ($part->part_texts()->where('part_id', $part->id)->where('language', $lang->lang)->exists()) {{$part->part_texts()->where('part_id', $part->id)->where('language', $lang->lang)->first()->text}} @endif</textarea>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        @endforeach--}}
 
                         <div class="row">
                             <button type="submit" class="btn btn-success">Save Part Changes</button>
@@ -120,24 +115,21 @@
 
                 </div>
                 <tr>
-                    <td>{{$part->id}}</td>
-                    <td>@if(!$part->part_images->isEmpty())<img class="img_table" alt="image" src="{{asset('images/parts/part_'.$part->id.'/'.$part->part_images[0]->name)}}">@else - @endif</td>
-                    <td>{{$part->part_names()->where('part_id', $part->id)->where('language', 'en')->first()->name}}</td>
-                    <td>{{$part->price}}</td>
-                    <td>{{$part->surface}}</td>
-                    @foreach($language as $lang)
-                        <td>@if ($part->part_texts()->where('part_id', $part->id)->where('language', $lang->lang)->exists()) {{$part->part_texts()->where('part_id', $part->id)->where('language', $lang->lang)->first()->text}} @endif</td>
-                    @endforeach
+                    <td>{{$actualitie->id}}</td>
+                    <td>{{$actualitie->name}}</td>
+                    <td>{{$actualitie->text}}</td>
+                    <td>@foreach($actualitie->actualities_lang as $lang) <span style="border: 1px solid green; padding: 5px;">{{$lang->lang}}</span> @endforeach</td>
+                    <td>{{$actualitie->created_at}}</td>
                     <td>
-                        <button class="edit_modal btn btn-primary" data-id="{{$part->id}}">Edit</button>
+                        <button class="edit_modal btn btn-primary" data-id="{{$actualitie->id}}">Edit</button>
                     </td>
                     <td>
-                        <button class="delete_part btn btn-danger" data-id="{{$part->id}}">Delete</button>
+                        <button class="delete_actualities btn btn-danger" data-id="{{$actualitie->id}}">Delete</button>
                     </td>
                 </tr>
             @endforeach
         @else
-            <h1>No parts!</h1>
+            <h1>No actualities!</h1>
         @endif
         </tbody>
     </table>
@@ -148,7 +140,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             //datatables
-            $('#part_table').DataTable({
+            $('#actualities_table').DataTable({
                 "pageLength": 10,
                 "columnDefs": [ {
                     "className": "dt-center",
@@ -156,48 +148,21 @@
                 } ]
             });
 
-            //delete part
-            $('.delete_part').click(function () {
+            //delete actualities
+            $('.delete_actualities').click(function () {
 
-                if(!confirm('Are you sure you want to delete part?')){
+                if(!confirm('Are you sure you want to delete actualities?')){
                     return false;
                 }
 
                 let id = $(this).data('id');
                 $.ajax({
-                    url: '{{ url('/admin/delete_part') }}',
+                    url: '{{ url('/admin/delete_actualities') }}',
                     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                     data: {'id': id},
                     type: 'post',
                     success: function (ret) {
                         location.reload();
-                    },
-                    error: function (err) {
-                        alert("Error");
-                    }
-                })
-            });
-
-            //edit part delete photo
-            $('.delete_photo').click(function (e) {
-
-                e.preventDefault();
-
-                if(!confirm('Are you sure you want to delete part photo?')){
-                    return false;
-                }
-
-                let image_name = $(this).data('name');
-                let id = $(this).data('id');
-                let photo_id = $(this).data('photoid');
-
-                $.ajax({
-                    url: '{{ url('/admin/delete_part_photo') }}',
-                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                    data: {'image_name': image_name, 'id': id, 'photo_id': photo_id},
-                    type: 'post',
-                    success: function (ret) {
-                        $('.edit_photo_'+ret.image_id).hide();
                     },
                     error: function (err) {
                         alert("Error");
