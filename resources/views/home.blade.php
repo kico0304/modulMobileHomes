@@ -149,9 +149,9 @@
         </div>
     </section>
 
-    <!-- HEADER START -->
+    <!-- FOOTER START -->
     @include('footer') 
-    <!-- HEADER END -->
+    <!-- FOOTER END -->
 
     <!-- TEMPLATE PART END -->
 

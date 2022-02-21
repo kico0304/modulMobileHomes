@@ -120,13 +120,33 @@
         </div>
     </section>
 
-    <div class="google-map ">
-        <div id="map"></div>
+    <div class="mapouter">
+        <div class="gmap_canvas">
+            <iframe width="1920" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=Isaije%20MItrovi%C4%87a%203,%2078000%20Banja%20Luka&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+            <a href="https://123movies-to.org"></a><br>
+            <style>
+                .mapouter{
+                    position:relative;
+                    text-align:right;
+                    height:500px;
+                    width:100%;
+                }
+            </style>
+            <!-- <a href="https://www.embedgooglemap.net">google embedded</a> -->
+            <style>
+                .gmap_canvas{
+                    overflow:hidden;
+                    background:none!important;
+                    height:500px;
+                    width:100%;
+                }
+            </style>
+        </div>
     </div>
 
-    <!-- HEADER START -->
+    <!-- FOOTER START -->
     @include('footer') 
-    <!-- HEADER END -->
+    <!-- FOOTER END -->
 
 
 @endsection
@@ -137,25 +157,9 @@
 
         });
 
-        // Initialize and add the map
-        function initMap() {
-            // The location of Uluru
-            const uluru = { lat: -25.344, lng: 131.036 };
-            // The map, centered at Uluru
-            const map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 4,
-            center: uluru,
-            });
-            // The marker, positioned at Uluru
-            const marker = new google.maps.Marker({
-            position: uluru,
-            map: map,
-            });
-        }
+    </script>
 
-    </script>
-    <script async
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_OHZ1nXAma84mIvxl4nK5U9H4Xieq6mU&callback=initMap">
-    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_OHZ1nXAma84mIvxl4nK5U9H4Xieq6mU&callback=initMap&libraries=&v=weekly&channel=2"
+      async></script>
 
 @endsection
