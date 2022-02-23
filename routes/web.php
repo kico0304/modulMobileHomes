@@ -26,6 +26,7 @@ Route::get('/contact',    'HomeController@contact')->name('contact');
 Route::get('/investors',  'HomeController@investors')->name('investors');
 Route::get('/technology', 'HomeController@technology')->name('technology');
 Route::get('/actualities','HomeController@actualities')->name('actualities');
+Route::get('/singlearticle','HomeController@singlearticle')->name('singlearticle');
 
 //ADMIN ROUTES
 Route::middleware(['auth', 'auth.admin'])->prefix('admin')->group(function () {

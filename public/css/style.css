@@ -594,7 +594,7 @@ a:focus {
     align-items: center;
     display: flex;
     justify-content: center;
-    background: #eff0f3;
+    /*background: #eff0f3;*/
 }
 
 .appoinment-content {
@@ -1650,4 +1650,81 @@ a:focus {
     -webkit-filter: drop-shadow(0px 0px 5px #eee);
     -moz-filter: drop-shadow(0px 0px 5px #eee);
     filter: drop-shadow(0px 0px 5px #eee);
+}
+
+#countryChoose {
+    height: 60px;
+    border: 1px solid #eef2f6;
+    box-shadow: none;
+    width: 100%;
+    background: #f4f9fc;
+    cursor: pointer;
+    outline: none;
+    padding: 0 10px;
+    font-size: 14px;
+    max-width: 400px;
+}
+
+#submitContact {
+    cursor: pointer;
+}
+
+input:disabled,
+textarea:disabled {
+    opacity: 0.5 !important;
+}
+
+input.btn:disabled {
+    opacity: 0.25 !important;
+}
+
+input.btn:disabled:hover {
+    background: var(--main-orange);
+    border-color: var(--main-orange);
+    cursor: default !important;
+}
+
+#addressCounties {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.textLogoAddress {
+    text-align: left;
+    padding-left: 30px;
+}
+
+/* gallery */
+
+.gallery {
+    background: #eee;
+}
+
+.gallery-cell {
+    width: 66%;
+    /*height: 200px;*/
+    margin-right: 10px;
+    /*background: #8c8;*/
+    counter-increment: gallery-cell;
+    text-align: center;
+}
+
+.gallery-cell > img {
+    width: 100%;
+}
+
+/* gallery */
+
+.resizedFont {
+    font-size: 200%;
+}
+
+.centered {
+    text-align: center;
+}
+
+.justified {
+    text-align: justify;
 }

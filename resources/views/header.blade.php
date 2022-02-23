@@ -54,15 +54,15 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Tehničke karakteristike</a>
+                        <a class="nav-link" href="{{ route('technology') }}">Tehničke karakteristike</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">O nama</a>
+                        <a class="nav-link" href="{{ route('about-us') }}">O nama</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Aktuelnosti</a>
+                        <a class="nav-link" href="{{ route('actualities') }}">Aktuelnosti</a>
                     </li>
 
                     <li class="nav-item">

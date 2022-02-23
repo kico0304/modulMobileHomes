@@ -35,6 +35,8 @@
         <link rel="stylesheet" href="{{ asset('css/slick-theme.css') }}">
         <!-- Main Stylesheet -->
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <!-- Gallery Stylesheet -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.0.0/flickity.css">
         <!-- CSS files from template END -->
 
         @yield('componentcss')
@@ -66,6 +68,8 @@
         <!-- Other scripts -->
         <script src="{{ asset('js/script.js') }}"></script>
         <script src="{{ asset('js/contact.js') }}"></script>
+        <!-- Gallery -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.0.0/flickity.pkgd.js"></script>
         <!-- JS files from template END -->
         @yield('js')
     </body>
