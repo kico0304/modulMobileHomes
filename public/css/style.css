@@ -1728,3 +1728,19 @@ input.btn:disabled:hover {
 .justified {
     text-align: justify;
 }
+
+.eeeback {
+    /* background: #eee;
+    padding: 10px;
+    min-height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center; */
+}
+
+.newIcons {
+    color: #223a66;
+    font-size: 90px;
+    margin: 0 !important;
+    filter: drop-shadow(-1px 1px 1px black);
+}
