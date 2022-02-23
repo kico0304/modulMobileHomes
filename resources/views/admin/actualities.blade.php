@@ -106,7 +106,7 @@
                         </div>
 
                         <div class="row">
-                            <button type="submit" class="btn btn-success">Save Part Changes</button>
+                            <button type="submit" class="btn btn-success">Save Actualities Changes</button>
                             <button class="close_edit_modal btn btn-danger">Close</button>
                         </div>
 

@@ -416,9 +416,11 @@ class AdminController extends Controller
     public function options (Request $request) {
 
         $options = OptionsForProduct::all();
+        $language = Language::all();
 
         return view('admin.options', [
-            'options' => $options
+            'options' => $options,
+            'language' => $language
         ]);
 
     }

@@ -23,7 +23,7 @@
 
 @section('content')
 
-    <button class="add_modal btn btn-success">Add new Actualities</button>
+    <button class="add_modal btn btn-success">Add new Options</button>
 
     @if(session('success'))
         <div class="alert alert-success">
@@ -33,10 +33,10 @@
 
     <div class="modal_add">
 
-        <form method="post" action="{{url('/admin/add_actualities')}}" enctype="multipart/form-data">
+        <form method="post" action="{{url('/admin/add_options')}}" enctype="multipart/form-data">
 
             @csrf
-            <h3>Add new Actualities</h3>
+            <h3>Add new Options</h3>
             <p>All values must be inserted</p>
             <div class="row">
                 <label for="name">Name :</label>
@@ -48,12 +48,12 @@
             </div>
             <div class="row" style="margin-top: 10px; margin-bottom: 10px;">
                 @foreach($language as $lang)
-                    <input name="lang_{{$lang->id}}" id="actualities_{{$lang->lang}}" type="checkbox" hidden>
-                    <label for="actualities_{{$lang->lang}}" style="margin-left: 3px;">{{strtoupper($lang->lang)}}</label>
+                    <input name="lang_{{$lang->id}}" id="options_{{$lang->lang}}" type="checkbox" hidden>
+                    <label for="options_{{$lang->lang}}" style="margin-left: 3px;">{{strtoupper($lang->lang)}}</label>
                 @endforeach
             </div>
             <div class="row">
-                <button type="submit" class="btn btn-success">Save Actualities</button>
+                <button type="submit" class="btn btn-success">Save Options</button>
                 <button class="close_new_modal btn btn-danger">Close</button>
             </div>
 
@@ -61,52 +61,39 @@
 
     </div>
 
-    <table id="actualities_table" class="display" style="width:100%">
+    <table id="options_table" class="display" style="width:100%">
         <thead>
         <tr>
             <th class="text-center">ID</th>
             <th class="text-center">Name</th>
-            <th class="text-center">Text</th>
-            <th class="text-center">Language</th>
-            <th class="text-center">Date</th>
+            <th class="text-center">Price</th>
             <th class="text-center">Edit</th>
             <th class="text-center">Delete</th>
         </tr>
         </thead>
         <tbody>
-        @if(!$actualities->isEmpty())
-            @foreach ($actualities as $actualitie)
+        @if(!$options->isEmpty())
+            @foreach ($options as $option)
 
-                <div class="modal_edit edit_modal_{{$actualitie->id}}">
+                <div class="modal_edit edit_modal_{{$option->id}}">
 
-                    <form method="post" action="{{url('/admin/edit_actualities')}}" enctype="multipart/form-data">
+                    <form method="post" action="{{url('/admin/edit_options')}}" enctype="multipart/form-data">
 
                         @csrf
-                        <h3>Edit Actualities</h3>
+                        <h3>Edit Options</h3>
                         <p>All values must be inserted</p>
-                        <input name="actualities_id" type="hidden" value="{{$actualitie->id}}">
+                        <input name="options_id" type="hidden" value="{{$option->id}}">
                         <div class="row">
                             <label>Name :</label>
-                            <input name="name" type="text" class="form-control" value="{{$actualitie->name}}">
+                            <input name="name" type="text" class="form-control" value="{{$option->name}}">
                         </div>
                         <div class="row">
                             <label for="text">Text :</label>
-                            <input id="text" name="text" type="text" class="form-control" value="{{$actualitie->text}}">
-                        </div>
-
-                        <div class="row" style="margin-top: 10px; margin-bottom: 10px;">
-                            @foreach($language as $lang)
-                                @php $check = ''; @endphp
-                                @foreach($actualitie->actualities_lang as $lang_ac)
-                                    @if($lang->lang == $lang_ac->lang) @php $check = 'checked'; @endphp @endif
-                                @endforeach
-                                <input name="lang_{{$lang->id}}" id="actualities_edit_{{$lang->lang}}" type="checkbox" hidden {{$check}}>
-                                <label for="actualities_edit_{{$lang->lang}}" style="margin-left: 3px;">{{strtoupper($lang->lang)}}</label>
-                            @endforeach
+                            <input id="text" name="text" type="text" class="form-control" value="{{$option->text}}">
                         </div>
 
                         <div class="row">
-                            <button type="submit" class="btn btn-success">Save Part Changes</button>
+                            <button type="submit" class="btn btn-success">Save Option Changes</button>
                             <button class="close_edit_modal btn btn-danger">Close</button>
                         </div>
 
@@ -114,21 +101,19 @@
 
                 </div>
                 <tr>
-                    <td>{{$actualitie->id}}</td>
-                    <td>{{$actualitie->name}}</td>
-                    <td>{{$actualitie->text}}</td>
-                    <td>@foreach($actualitie->actualities_lang as $lang) <span style="border: 1px solid green; padding: 5px;">{{$lang->lang}}</span> @endforeach</td>
-                    <td>{{$actualitie->created_at}}</td>
+                    <td>{{$option->id}}</td>
+                    <td>{{$option->name}}</td>
+                    <td>{{$option->price}}</td>
                     <td>
-                        <button class="edit_modal btn btn-primary" data-id="{{$actualitie->id}}">Edit</button>
+                        <button class="edit_modal btn btn-primary" data-id="{{$option->id}}">Edit</button>
                     </td>
                     <td>
-                        <button class="delete_actualities btn btn-danger" data-id="{{$actualitie->id}}">Delete</button>
+                        <button class="delete_options btn btn-danger" data-id="{{$option->id}}">Delete</button>
                     </td>
                 </tr>
             @endforeach
         @else
-            <h1>No actualities!</h1>
+            <h1>No options!</h1>
         @endif
         </tbody>
     </table>
@@ -139,7 +124,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             //datatables
-            $('#actualities_table').DataTable({
+            $('#options_table').DataTable({
                 "pageLength": 10,
                 "columnDefs": [ {
                     "className": "dt-center",
@@ -147,16 +132,16 @@
                 } ]
             });
 
-            //delete actualities
-            $('.delete_actualities').click(function () {
+            //delete options
+            $('.delete_options').click(function () {
 
-                if(!confirm('Are you sure you want to delete actualities?')){
+                if(!confirm('Are you sure you want to delete options?')){
                     return false;
                 }
 
                 let id = $(this).data('id');
                 $.ajax({
-                    url: '{{ url('/admin/delete_actualities') }}',
+                    url: '{{ url('/admin/delete_options') }}',
                     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                     data: {'id': id},
                     type: 'post',
