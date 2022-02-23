@@ -82,6 +82,7 @@
                 <th class="text-center">Name</th>
                 <th class="text-center">Price</th>
                 <th class="text-center">Surface</th>
+                <th class="text-center">Views</th>
                 @foreach($language as $lang)
                     <th class="text-center">{{strtoupper($lang->lang)}}</th>
                 @endforeach
@@ -190,6 +191,7 @@
                     <td>{{$product->names()->where('product_id', $product->id)->where('language', 'en')->first()->name}}</td>
                     <td>{{$product->price}}</td>
                     <td>{{$product->surface}}</td>
+                    <td>{{$product->views}}</td>
                     @foreach($language as $lang)
                         <td>@if ($product->texts()->where('product_id', $product->id)->where('language', $lang->lang)->exists()) {{$product->texts()->where('product_id', $product->id)->where('language', $lang->lang)->first()->text}} @endif</td>
                     @endforeach
