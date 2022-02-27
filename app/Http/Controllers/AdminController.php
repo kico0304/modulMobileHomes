@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Actualitie;
+use App\ActualitieImages;
 use App\ActualitiesLanguage;
 use App\Language;
 use App\OptionImages;
@@ -559,6 +560,7 @@ class AdminController extends Controller
         $id_actualities = $request['id'];
         Actualitie::where('id', $id_actualities)->delete();
         ActualitiesLanguage::where('actualities_id', $id_actualities)->delete();
+        ActualitieImages::where('actualities_id', $id_actualities)->delete();
 
         return back()->with('success', 'Actualities Deleted Successfully');
     }
@@ -569,7 +571,8 @@ class AdminController extends Controller
      */
     public function edit_actualities (Request $request) {
 
-        Actualitie::where('id', $request['actualities_id'])->update(['name' => $request['name'], 'text' => $request['text']]);
+        $date = \DateTime::createFromFormat("U", strtotime($request['date']));
+        Actualitie::where('id', $request['actualities_id'])->update(['name' => $request['name'], 'text' => $request['text'], 'created_at' => $date]);
         ActualitiesLanguage::where('actualities_id', $request['actualities_id'])->delete();
 
         $check = $request->all();
@@ -586,6 +589,24 @@ class AdminController extends Controller
             }
         }
 
+        if ($photos = $request->file('photos')) {
+
+            // Define upload path
+            $destinationPath = public_path('/images/actualities/actualities_'.$request['actualities_id'].'/'); // upload path
+            foreach($photos as $img) {
+                // Upload Orginal Image
+                $profileImage =$img->getClientOriginalName();
+                $img->move($destinationPath, $profileImage);
+
+                //save photo in database
+                $new_photo = new ActualitieImages();
+                $new_photo->actualities_id = $request['actualities_id'];
+                $new_photo->name = $profileImage;
+                $new_photo->save();
+            }
+
+        }
+
         return back()->with('success', 'Actualities Saved Successfully');
 
     }
@@ -597,9 +618,12 @@ class AdminController extends Controller
     public function add_actualities (Request $request) {
 
         //save actualities
+        $date = \DateTime::createFromFormat("U", strtotime($request['date']));
+
         $new_actualities = new Actualitie();
         $new_actualities->name = $request['name'];
         $new_actualities->text = $request['text'];
+        $new_actualities->created_at = $date;
         $new_actualities->save();
 
         $check = $request->all();
@@ -616,7 +640,44 @@ class AdminController extends Controller
             }
         }
 
+        if ($photos = $request->file('photos')) {
+
+            // Define upload path
+            $destinationPath = public_path('/images/actualities/actualities_'.$new_actualities->id.'/'); // upload path
+            foreach($photos as $img) {
+                // Upload Orginal Image
+                $profileImage =$img->getClientOriginalName();
+                $img->move($destinationPath, $profileImage);
+
+                //save photo in database
+                $new_photo = new ActualitieImages();
+                $new_photo->actualities_id = $new_actualities->id;
+                $new_photo->name = $profileImage;
+                $new_photo->save();
+            }
+
+        }
+
         return back()->with('success', 'Actualities Saved Successfully');
+
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function delete_actualities_photo (Request $request) {
+
+        $image_name = $request['image_name'];
+        $id = $request['id'];
+        $image_id = $request['photo_id'];
+        $image_path = public_path('/images/actualities/actualities_'.$id.'/'.$image_name); // upload path
+        if(File::exists($image_path)) {
+            File::delete($image_path);
+        }
+
+        ActualitieImages::where('id', $image_id)->delete();
+        return response()->json(['image_id' => $image_id]);
 
     }
 

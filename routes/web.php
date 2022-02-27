@@ -32,38 +32,39 @@ Route::get('/singlearticle','HomeController@singlearticle')->name('singlearticle
 Route::middleware(['auth', 'auth.admin'])->prefix('admin')->group(function () {
 
     //routes views
-    Route::get('/',                      'AdminController@admin');
-    Route::get('/parts',                 'AdminController@parts');
-    Route::get('/options',               'AdminController@options');
-    Route::get('/language',              'AdminController@language');
-    Route::get('/actualities',           'AdminController@actualities');
+    Route::get('/',                         'AdminController@admin');
+    Route::get('/parts',                    'AdminController@parts');
+    Route::get('/options',                  'AdminController@options');
+    Route::get('/language',                 'AdminController@language');
+    Route::get('/actualities',              'AdminController@actualities');
 
     //product routes
-    Route::post('/add_product',          'AdminController@add_product');
-    Route::post('/edit_product',         'AdminController@edit_product');
-    Route::post('/delete_product',       'AdminController@delete_product');
-    Route::post('/delete_product_photo', 'AdminController@delete_product_photo');
-    Route::post('/delete_part_product',  'AdminController@delete_part_product');
+    Route::post('/add_product',             'AdminController@add_product');
+    Route::post('/edit_product',            'AdminController@edit_product');
+    Route::post('/delete_product',          'AdminController@delete_product');
+    Route::post('/delete_product_photo',    'AdminController@delete_product_photo');
+    Route::post('/delete_part_product',     'AdminController@delete_part_product');
 
     //part routes
-    Route::post('/add_part',             'AdminController@add_part');
-    Route::post('/edit_part',            'AdminController@edit_part');
-    Route::post('/delete_part',          'AdminController@delete_part');
-    Route::post('/delete_part_photo',    'AdminController@delete_part_photo');
+    Route::post('/add_part',                'AdminController@add_part');
+    Route::post('/edit_part',               'AdminController@edit_part');
+    Route::post('/delete_part',             'AdminController@delete_part');
+    Route::post('/delete_part_photo',       'AdminController@delete_part_photo');
 
     //option routes
-    Route::post('/add_option',           'AdminController@add_option');
-    Route::post('/edit_option',          'AdminController@edit_option');
-    Route::post('/delete_option',        'AdminController@delete_option');
-    Route::post('/delete_option_photo',  'AdminController@delete_option_photo');
+    Route::post('/add_option',              'AdminController@add_option');
+    Route::post('/edit_option',             'AdminController@edit_option');
+    Route::post('/delete_option',           'AdminController@delete_option');
+    Route::post('/delete_option_photo',     'AdminController@delete_option_photo');
 
     //language routes
-    Route::post('/add_language',         'AdminController@add_language');
-    Route::post('/delete_language',      'AdminController@delete_language');
+    Route::post('/add_language',            'AdminController@add_language');
+    Route::post('/delete_language',         'AdminController@delete_language');
 
     //actualities routes
-    Route::post('/add_actualities',      'AdminController@add_actualities');
-    Route::post('/edit_actualities',     'AdminController@edit_actualities');
-    Route::post('/delete_actualities',   'AdminController@delete_actualities');
+    Route::post('/add_actualities',         'AdminController@add_actualities');
+    Route::post('/edit_actualities',        'AdminController@edit_actualities');
+    Route::post('/delete_actualities',      'AdminController@delete_actualities');
+    Route::post('/delete_actualities_photo','AdminController@delete_actualities_photo');
 
 });
