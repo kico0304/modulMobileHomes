@@ -84,4 +84,37 @@ class HomeController extends Controller
     {
         return view('singlearticle');
     }
+
+    public function products(){
+
+        $lang = Lang::locale();
+
+        $products = Product::with(['images', 'product_parts', 'names' => function($q) use($lang) {
+            $q->where('language', '=', $lang);
+        }, 'texts' => function($q) use($lang) {
+            $q->where('language', '=', $lang);
+        }])->get();
+
+        return view('products', [
+            'products' => $products
+        ]);
+    }
+
+    public function product(Request $request){
+
+        $id = $request['id'];
+        $lang = Lang::locale();
+
+        $product = Product::with(['images', 'product_parts', 'names' => function($q) use($lang) {
+            $q->where('language', '=', $lang);
+        }, 'texts' => function($q) use($lang) {
+            $q->where('language', '=', $lang);
+        }])->where('id', $id)->get();
+
+        return view('product', [
+            'products' => $product
+        ]);
+    }
+
+
 }

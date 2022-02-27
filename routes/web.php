@@ -27,6 +27,8 @@ Route::get('/investors',  'HomeController@investors')->name('investors');
 Route::get('/technology', 'HomeController@technology')->name('technology');
 Route::get('/actualities','HomeController@actualities')->name('actualities');
 Route::get('/singlearticle','HomeController@singlearticle')->name('singlearticle');
+Route::get('/products',    'HomeController@products')->name('products');
+Route::get('/product/{id}','HomeController@product')->name('product');
 
 //ADMIN ROUTES
 Route::middleware(['auth', 'auth.admin'])->prefix('admin')->group(function () {
