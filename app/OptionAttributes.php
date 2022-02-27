@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class OptionNames extends Model
+class OptionAttributes extends Model
 {
     public $timestamps = false;
 
     protected $fillable = [
-        'name','language','option_id',
+        'attributes','language','option_id',
     ];
 
     public function option(){

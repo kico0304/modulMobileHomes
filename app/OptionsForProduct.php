@@ -12,8 +12,16 @@ class OptionsForProduct extends Model
         return $this->hasMany('App\OptionImages', 'option_id', 'id');
     }
 
-    public function option_name(){
+    public function names(){
         return $this->hasMany('App\OptionNames', 'option_id', 'id');
+    }
+
+    public function texts(){
+        return $this->hasMany('App\OptionTexts', 'option_id', 'id');
+    }
+
+    public function attributes(){
+        return $this->hasMany('App\OptionAttributes', 'option_id', 'id');
     }
 
 }

@@ -11,12 +11,26 @@
             color: #fff;
         }
 
-        input[type=checkbox]:checked + label {
+        input[type=checkbox]:checked + label, input[type=radio]:checked + label {
             background-color: rgba(90, 120, 217, 1);
         }
 
-        input[type=checkbox]:not(:checked) + label {
+        input[type=checkbox]:not(:checked) + label, input[type=radio]:not(:checked) + label {
             background-color: #888;
+        }
+
+        input[type=radio] + label {
+            width: 120px;
+            margin-bottom: 2px;
+            text-align: center;
+            padding: 2px 5px;
+            border-radius: 4px;
+            color: #fff;
+            margin-right: 10px;
+        }
+        .notice{
+            color: red;
+            font-weight: bold;
         }
     </style>
 @endsection
@@ -33,26 +47,33 @@
 
     <div class="modal_add">
 
-        <form method="post" action="{{url('/admin/add_options')}}" enctype="multipart/form-data">
+        <form method="post" action="{{url('/admin/add_option')}}" enctype="multipart/form-data">
 
             @csrf
             <h3>Add new Options</h3>
             <p>All values must be inserted</p>
             <div class="row">
-                <label for="name">Name :</label>
-                <input id="name" name="name" type="text" class="form-control">
+                <input name="type" id="type1" type="radio" value="checkbox" hidden checked>
+                <label for="type1">Checkbox</label>
+                <input name="type" id="type2" type="radio" value="radio" hidden>
+                <label for="type2">Radio</label>
             </div>
-            <div class="row">
-                <label>Text :</label>
-                <textarea name="text" type="text" class="form-control"></textarea>
-            </div>
-            <div class="row" style="margin-top: 10px; margin-bottom: 10px;">
-                @foreach($language as $lang)
-                    <input name="lang_{{$lang->id}}" id="options_{{$lang->lang}}" type="checkbox" hidden>
-                    <label for="options_{{$lang->lang}}" style="margin-left: 3px;">{{strtoupper($lang->lang)}}</label>
-                @endforeach
-            </div>
-            <div class="row">
+
+            @foreach($language as $lang)
+                <div class="row row_lang_style">
+                    <label class="label_lang" for="part_{{$lang->lang}}">{{strtoupper($lang->lang)}} :</label>
+                    <div class="col-md-12 textarea_cls">
+                        <p>Name</p>
+                        <input name="name_{{$lang->lang}}" type="text" class="form-control">
+                        <p>Text</p>
+                        <textarea name="text_{{$lang->lang}}" type="text" class="form-control"></textarea>
+                        <p>Attributes <span class="notice">Split attributes with /</span></p>
+                        <textarea name="attributes_{{$lang->lang}}" type="text" class="form-control"></textarea>
+                    </div>
+                </div>
+            @endforeach
+
+            <div class="row" style="margin-top: 10px;">
                 <button type="submit" class="btn btn-success">Save Options</button>
                 <button class="close_new_modal btn btn-danger">Close</button>
             </div>
@@ -66,7 +87,11 @@
         <tr>
             <th class="text-center">ID</th>
             <th class="text-center">Name</th>
-            <th class="text-center">Price</th>
+            <th class="text-center">Type</th>
+            <th class="text-center">Attributes</th>
+            @foreach($language as $lang)
+                <th class="text-center">{{strtoupper($lang->lang)}}</th>
+            @endforeach
             <th class="text-center">Edit</th>
             <th class="text-center">Delete</th>
         </tr>
@@ -77,22 +102,34 @@
 
                 <div class="modal_edit edit_modal_{{$option->id}}">
 
-                    <form method="post" action="{{url('/admin/edit_options')}}" enctype="multipart/form-data">
+                    <form method="post" action="{{url('/admin/edit_option')}}" enctype="multipart/form-data">
 
                         @csrf
                         <h3>Edit Options</h3>
                         <p>All values must be inserted</p>
-                        <input name="options_id" type="hidden" value="{{$option->id}}">
+                        <input name="option_id" type="hidden" value="{{$option->id}}">
                         <div class="row">
-                            <label>Name :</label>
-                            <input name="name" type="text" class="form-control" value="{{$option->name}}">
-                        </div>
-                        <div class="row">
-                            <label for="text">Text :</label>
-                            <input id="text" name="text" type="text" class="form-control" value="{{$option->text}}">
+                            <input name="type" id="type1_{{$option->id}}" type="radio" value="checkbox" hidden @if($option->type == 'checkbox') checked @endif>
+                            <label for="type1_{{$option->id}}">Checkbox</label>
+                            <input name="type" id="type2_{{$option->id}}" type="radio" value="radio" hidden @if($option->type == 'radio') checked @endif>
+                            <label for="type2_{{$option->id}}">Radio</label>
                         </div>
 
-                        <div class="row">
+                        @foreach($language as $lang)
+                            <div class="row row_lang_style">
+                                <label class="label_lang" for="part_{{$lang->lang}}">{{strtoupper($lang->lang)}} :</label>
+                                <div class="col-md-12 textarea_cls">
+                                    <p>Name</p>
+                                    <input name="name_{{$lang->lang}}" type="text" class="form-control" value="@if ($option->names()->where('option_id', $option->id)->where('language', $lang->lang)->exists()) {{$option->names()->where('option_id', $option->id)->where('language', $lang->lang)->first()->name}} @endif">
+                                    <p>Text</p>
+                                    <textarea name="text_{{$lang->lang}}" type="text" class="form-control">@if ($option->texts()->where('option_id', $option->id)->where('language', $lang->lang)->exists()) {{$option->texts()->where('option_id', $option->id)->where('language', $lang->lang)->first()->text}} @endif</textarea>
+                                    <p>Attributes</p>
+                                    <textarea name="attributes_{{$lang->lang}}" type="text" class="form-control">@if ($option->attributes()->where('option_id', $option->id)->where('language', $lang->lang)->exists()) {{$option->attributes()->where('option_id', $option->id)->where('language', $lang->lang)->first()->attributes}} @endif</textarea>
+                                </div>
+                            </div>
+                        @endforeach
+
+                        <div class="row" style="margin-top: 15px;">
                             <button type="submit" class="btn btn-success">Save Option Changes</button>
                             <button class="close_edit_modal btn btn-danger">Close</button>
                         </div>
@@ -102,8 +139,12 @@
                 </div>
                 <tr>
                     <td>{{$option->id}}</td>
-                    <td>{{$option->name}}</td>
-                    <td>{{$option->price}}</td>
+                    <td>{{$option->names()->where('option_id', $option->id)->where('language', 'en')->first()->name}}</td>
+                    <td>{{$option->type}}</td>
+                    <td>{{$option->attributes()->where('option_id', $option->id)->where('language', 'en')->first()->attributes}}</td>
+                    @foreach($language as $lang)
+                        <td>@if ($option->texts()->where('option_id', $option->id)->where('language', $lang->lang)->exists()) {{$option->texts()->where('option_id', $option->id)->where('language', $lang->lang)->first()->text}} @endif</td>
+                    @endforeach
                     <td>
                         <button class="edit_modal btn btn-primary" data-id="{{$option->id}}">Edit</button>
                     </td>
@@ -141,7 +182,7 @@
 
                 let id = $(this).data('id');
                 $.ajax({
-                    url: '{{ url('/admin/delete_options') }}',
+                    url: '{{ url('/admin/delete_option') }}',
                     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                     data: {'id': id},
                     type: 'post',

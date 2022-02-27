@@ -6,8 +6,11 @@ use App\Actualitie;
 use App\ActualitieImages;
 use App\ActualitiesLanguage;
 use App\Language;
+use App\OptionAttributes;
 use App\OptionImages;
+use App\OptionNames;
 use App\OptionsForProduct;
+use App\OptionTexts;
 use App\PartImages;
 use App\PartNames;
 use App\PartsForProduct;
@@ -434,11 +437,15 @@ class AdminController extends Controller
 
         $id_option = $request['id'];
         OptionsForProduct::where('id', $id_option)->delete();
-        OptionImages::where('option_id', $id_option)->delete();
-        $image_path = public_path('images\options\option_'.$id_option); // upload path
-        if(File::exists($image_path)) {
-            File::deleteDirectory($image_path);
-        }
+        OptionAttributes::where('option_id', $id_option)->delete();
+        OptionTexts::where('option_id', $id_option)->delete();
+        OptionNames::where('option_id', $id_option)->delete();
+
+//        OptionImages::where('option_id', $id_option)->delete();
+//        $image_path = public_path('images\options\option_'.$id_option); // upload path
+//        if(File::exists($image_path)) {
+//            File::deleteDirectory($image_path);
+//        }
 
         return back()->with('success', 'Option Deleted Successfully');
     }
@@ -449,25 +456,57 @@ class AdminController extends Controller
      */
     public function edit_option (Request $request) {
 
-        OptionsForProduct::where('id', $request['option_id'])->update(['name' => $request['name'], 'price' => $request['price'], 'surface' => $request['surface'], 'en' => $request['en'], 'de' => $request['de']]);
+        OptionsForProduct::where('id', $request['option_id'])->update(['type' => $request['type']]);
 
-        if ($photos = $request->file('photos')) {
+        $check = $request->all();
 
-            // Define upload path
-            $destinationPath = public_path('/images/options/option_'.$request['option_id'].'/'); // upload path
-            foreach($photos as $img) {
-                // Upload Orginal Image
-                $profileImage =$img->getClientOriginalName();
-                $img->move($destinationPath, $profileImage);
-
-                //save photo in database
-                $new_photo = new OptionImages();
-                $new_photo->option_id = $request['option_id'];
-                $new_photo->name = $profileImage;
-                $new_photo->save();
+        foreach ($check as $key => $req){
+            if(strpos($key, 'name') !== false){
+                if($req != null && $req != '') {
+                    $option_lang = explode('_', $key)[1];
+                    OptionNames::updateOrCreate(
+                        ['option_id' => $request['option_id'], 'language' => $option_lang],
+                        ['name' => $req]
+                    );
+                }
             }
-
+            if(strpos($key, 'text') !== false){
+                if($req != null && $req != '') {
+                    $option_lang = explode('_', $key)[1];
+                    OptionTexts::updateOrCreate(
+                        ['option_id' => $request['option_id'], 'language' => $option_lang],
+                        ['text' => $req]
+                    );
+                }
+            }
+            if(strpos($key, 'attributes') !== false){
+                if($req != null && $req != '') {
+                    $option_lang = explode('_', $key)[1];
+                    OptionAttributes::updateOrCreate(
+                        ['option_id' => $request['option_id'], 'language' => $option_lang],
+                        ['attributes' => $req]
+                    );
+                }
+            }
         }
+
+//        if ($photos = $request->file('photos')) {
+//
+//            // Define upload path
+//            $destinationPath = public_path('/images/options/option_'.$request['option_id'].'/'); // upload path
+//            foreach($photos as $img) {
+//                // Upload Orginal Image
+//                $profileImage =$img->getClientOriginalName();
+//                $img->move($destinationPath, $profileImage);
+//
+//                //save photo in database
+//                $new_photo = new OptionImages();
+//                $new_photo->option_id = $request['option_id'];
+//                $new_photo->name = $profileImage;
+//                $new_photo->save();
+//            }
+//
+//        }
 
         return back()->with('success', 'Option Saved Successfully');
 
@@ -481,30 +520,63 @@ class AdminController extends Controller
 
         //save option
         $new_option = new OptionsForProduct();
-        $new_option->name = $request['name'];
-        $new_option->price = $request['price'];
-        $new_option->surface = $request['surface'];
-        $new_option->en = $request['en'];
-        $new_option->de = $request['de'];
+        $new_option->type = $request['type'];
         $new_option->save();
 
-        if ($photos = $request->file('photos')) {
+        $check = $request->all();
 
-            // Define upload path
-            $destinationPath = public_path('/images/options/option_'.$new_option->id.'/'); // upload path
-            foreach($photos as $img) {
-                // Upload Orginal Image
-                $profileImage =$img->getClientOriginalName();
-                $img->move($destinationPath, $profileImage);
-
-                //save photo in database
-                $new_photo = new OptionImages();
-                $new_photo->option_id = $new_option->id;
-                $new_photo->name = $profileImage;
-                $new_photo->save();
+        foreach ($check as $key => $req){
+            if(strpos($key, 'name') !== false){
+                if($req != null && $req != '') {
+                    $part_lang = explode('_', $key)[1];
+                    $part_name = new OptionNames();
+                    $part_name->name = $req;
+                    $part_name->language = $part_lang;
+                    $part_name->option_id = $new_option->id;
+                    $part_name->save();
+                }
             }
 
+            if(strpos($key, 'text') !== false){
+                $part_lang = explode('_',$key )[1];
+                if($req != null && $req != ''){
+                    $part_text = new OptionTexts();
+                    $part_text->text = $req;
+                    $part_text->language = $part_lang;
+                    $part_text->option_id = $new_option->id;
+                    $part_text->save();
+                }
+            }
+
+            if(strpos($key, 'attributes') !== false){
+                $part_lang = explode('_',$key )[1];
+                if($req != null && $req != ''){
+                    $part_text = new OptionAttributes();
+                    $part_text->attributes = $req;
+                    $part_text->language = $part_lang;
+                    $part_text->option_id = $new_option->id;
+                    $part_text->save();
+                }
+            }
         }
+
+//        if ($photos = $request->file('photos')) {
+//
+//            // Define upload path
+//            $destinationPath = public_path('/images/options/option_'.$new_option->id.'/'); // upload path
+//            foreach($photos as $img) {
+//                // Upload Orginal Image
+//                $profileImage =$img->getClientOriginalName();
+//                $img->move($destinationPath, $profileImage);
+//
+//                //save photo in database
+//                $new_photo = new OptionImages();
+//                $new_photo->option_id = $new_option->id;
+//                $new_photo->name = $profileImage;
+//                $new_photo->save();
+//            }
+//
+//        }
 
         return back()->with('success', 'Option Saved Successfully');
 
