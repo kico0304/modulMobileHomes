@@ -40,7 +40,7 @@ class AdminController extends Controller
     public function admin (){
 
         $products = Product::all();
-        $parts = PartsForProduct::all();
+        $parts = PartsForProduct::get();
         $language = Language::all();
 
         return view('admin.admin', [

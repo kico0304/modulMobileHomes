@@ -5,9 +5,19 @@
         .product_part_row{
             display:none;
         }
-        .product_part_row ~ .product_part_row{
-            display:block;
-        }
+        /*.product_part_row ~ .product_part_row{*/
+        /*    display:block;*/
+        /*}*/
+        /*div :last-child .product_part_row {*/
+        /*    color: red;*/
+        /*}*/
+        /*form > .product_part_row {*/
+        /*    background: green;*/
+        /*}*/
+
+        /*[class~='product_part_row']:last-of-type  {*/
+        /*    background: #000;*/
+        /*}*/
     </style>
 @endsection
 
@@ -121,18 +131,32 @@
                                 </div>
                             </div>
                         @endforeach
-
+                        @php
+                            $num = 0;
+                            if(isset($parts)){
+                                $num = $parts->count();
+                            }
+                            $i = 0;
+                        @endphp
+                        @if($parts)
                         @foreach($parts as $part)
-                            <div class="row product_part_row">
-                                <label for="part_{{$part->id}}">Product Part</label><br>
-                                <select class="form-control part_pro" id="part_{{$part->id}}" name="part_{{$part->id}}">
-                                    <option value="">Select Category</option>
-                                    @foreach($parts as $part1)
-                                        <option name="{{$part1->id}}" value="{{$part1->id}}" data-id="{{$part1->id}}">{{$part1->part_names()->where('part_id', $part1->id)->where('language', 'en')->first()->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+                            @if(isset($part->id))
+                                <div class="row product_part_row" @if(++$i === $num) style="display: block;" @endif>
+                                    <label>Product Part</label><br>
+                                    <select class="form-control part_pro" name="part_{{$part->id}}">
+                                        <option value="">Select Category</option>
+                                        @if($parts)
+                                            @foreach($parts as $part1)
+                                                @if(isset($part1->id))
+                                                    <option name="{{$part1->id}}" value="{{$part1->id}}" data-id="{{$part1->id}}">{{$part1->part_names()->where('part_id', $part1->id)->where('language', 'en')->first()->name}}</option>
+                                                @endif
+                                            @endforeach
+                                        @endif
+                                    </select>
+                                </div>
+                            @endif
                         @endforeach
+                        @endif
 
                         <div class="row">
                             <label>Upload Images</label>
@@ -275,6 +299,10 @@
             //part product show next div
             $('.part_pro').change(function(){
                 $(this).parents().prev().show();
+            });
+
+            $(function () {
+                $('form div.product_part_row:last').show();
             });
 
             //delete part of product
