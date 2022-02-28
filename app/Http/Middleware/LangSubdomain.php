@@ -26,15 +26,15 @@ class LangSubdomain
             $country_code = strtolower($get_country->countryCode);
         }
 
-        dd($country_code);
-
         $languages = Language::pluck('lang')->toArray();
 
         if($country_code != ''){
             if(in_array($country_code, $languages)){
                 App::setLocale($country_code);
             }
-        }else if (in_array($subdomain, $languages)) {
+        }
+
+        if (in_array($subdomain, $languages)) {
             App::setLocale($subdomain);
         }
 
