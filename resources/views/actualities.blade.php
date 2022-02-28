@@ -14,8 +14,16 @@
 
 @section('content')
 
+    @foreach($actualities as $actualitie)
+        <p>Actualities name: {{$actualitie->name}}</p>
+        <p>Actualities text: {{$actualitie->text}}</p>
+        @foreach($actualitie->images as $image)
+            <img class="edit_img" alt="edit_image" src="{{asset('images/actualities/actualities_'.$actualitie->id.'/'.$image->name)}}">
+        @endforeach
+    @endforeach
+
     <!-- HEADER START -->
-    @include('header') 
+    @include('header')
     <!-- HEADER END -->
 
     <section class="page-title bg-1">
@@ -45,7 +53,7 @@
                                 <div class="blog-item-content">
                                     <div class="blog-item-meta mb-3 mt-4">
                                         <span class="text-black text-capitalize mr-3"><i class="icofont-calendar mr-1"></i>25. April 2021</span>
-                                    </div> 
+                                    </div>
                                     <h2 class="mt-3 mb-3"><a href="{{ route('singlearticle') }}">Postavljanje uzornog objekta</a></h2>
                                     <p class="mb-4">Danas smo postavili objekat MMH21.M01 na raskršću ulica Patre i Kralja Petra I Oslobodioca. Objekat ćemo koristiti kao SHOWROOM i moći ćete ga obići svaki radni dan od 12-16 sati (skraćeno zbog godišnjih odmora) ili po dogovoru sa našim prodajnim agentima. Obilazak možete zakazati na broj telefona 065 95 95 95 ili popunite formular na linku. </p>
                                     <a href="{{ route('singlearticle') }}" class="btn btn-main btn-icon btn-round-full">Opširnije<i class="icofont-simple-right ml-2  "></i></a>
@@ -61,7 +69,7 @@
                                 <div class="blog-item-content">
                                     <div class="blog-item-meta mb-3 mt-4">
                                         <span class="text-black text-capitalize mr-3"><i class="icofont-calendar mr-1"></i>25. April 2021</span>
-                                    </div> 
+                                    </div>
                                     <h2 class="mt-3 mb-3"><a href="{{ route('singlearticle') }}">Postavljanje uzornog objekta</a></h2>
                                     <p class="mb-4">Danas smo postavili objekat MMH21.M01 na raskršću ulica Patre i Kralja Petra I Oslobodioca. Objekat ćemo koristiti kao SHOWROOM i moći ćete ga obići svaki radni dan od 12-16 sati (skraćeno zbog godišnjih odmora) ili po dogovoru sa našim prodajnim agentima. Obilazak možete zakazati na broj telefona 065 95 95 95 ili popunite formular na linku. </p>
                                     <a href="{{ route('singlearticle') }}" class="btn btn-main btn-icon btn-round-full">Opširnije<i class="icofont-simple-right ml-2  "></i></a>
@@ -77,7 +85,7 @@
                                 <div class="blog-item-content">
                                     <div class="blog-item-meta mb-3 mt-4">
                                         <span class="text-black text-capitalize mr-3"><i class="icofont-calendar mr-1"></i>25. April 2021</span>
-                                    </div> 
+                                    </div>
                                     <h2 class="mt-3 mb-3"><a href="{{ route('singlearticle') }}">Postavljanje uzornog objekta</a></h2>
                                     <p class="mb-4">Danas smo postavili objekat MMH21.M01 na raskršću ulica Patre i Kralja Petra I Oslobodioca. Objekat ćemo koristiti kao SHOWROOM i moći ćete ga obići svaki radni dan od 12-16 sati (skraćeno zbog godišnjih odmora) ili po dogovoru sa našim prodajnim agentima. Obilazak možete zakazati na broj telefona 065 95 95 95 ili popunite formular na linku.</p>
                                     <a href="{{ route('singlearticle') }}" class="btn btn-main btn-icon btn-round-full">Opširnije<i class="icofont-simple-right ml-2  "></i></a>
@@ -111,7 +119,7 @@
                             </div>
                         </div>
                     </div>
-                </div>   
+                </div>
             </div>
 
             <div class="row mt-5">
@@ -131,7 +139,7 @@
     </section>
 
     <!-- FOOTER START -->
-    @include('footer') 
+    @include('footer')
     <!-- FOOTER END -->
 
 

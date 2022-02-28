@@ -20,15 +20,16 @@ Auth::routes([
 Route::get('/logout', 'Auth\LoginController@logout');
 
 
-Route::get('/',           'HomeController@index')->name('home');
-Route::get('/about-us',   'HomeController@about')->name('about-us');
-Route::get('/contact',    'HomeController@contact')->name('contact');
-Route::get('/investors',  'HomeController@investors')->name('investors');
-Route::get('/technology', 'HomeController@technology')->name('technology');
-Route::get('/actualities','HomeController@actualities')->name('actualities');
-Route::get('/singlearticle','HomeController@singlearticle')->name('singlearticle');
-Route::get('/products',    'HomeController@products')->name('products');
-Route::get('/product/{id}','HomeController@product')->name('product');
+Route::get('/',                 'HomeController@index')->name('home');
+    Route::get('/about-us',     'HomeController@about')->name('about-us');
+Route::get('/contact',          'HomeController@contact')->name('contact');
+Route::get('/investors',        'HomeController@investors')->name('investors');
+Route::get('/technology',       'HomeController@technology')->name('technology');
+Route::get('/actualities',      'HomeController@actualities')->name('actualities');
+Route::get('/actualities/{id}', 'HomeController@actualitie');
+Route::get('/singlearticle',    'HomeController@singlearticle')->name('singlearticle');
+Route::get('/products',         'HomeController@products')->name('products');
+Route::get('/product/{id}',     'HomeController@product')->name('product');
 
 //ADMIN ROUTES
 Route::middleware(['auth', 'auth.admin'])->prefix('admin')->group(function () {

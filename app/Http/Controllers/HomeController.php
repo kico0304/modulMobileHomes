@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Actualitie;
+use App\Language;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Lang;
@@ -74,7 +76,35 @@ class HomeController extends Controller
      */
     public function actualities()
     {
-        return view('actualities');
+        $lang = Lang::locale();
+        $lang_id = Language::where('lang', $lang)->first()->id;
+
+        $actualities = Actualitie::with(['images'])->whereHas('actualities_lang', function ($q) use ($lang_id) {
+            $q->where('language_id', $lang_id);
+        })->get();
+
+        return view('actualities', [
+            'actualities' => $actualities
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function actualitie(Request $request)
+    {
+        $id = $request['id'];
+        $lang = Lang::locale();
+        $lang_id = Language::where('lang', $lang)->first()->id;
+
+        $actualities = Actualitie::with(['images'])->whereHas('actualities_lang', function ($q) use ($lang_id) {
+            $q->where('language_id', $lang_id);
+        })->where('id', $id)->get();
+
+        return view('actualities', [
+            'actualitie' => $actualities
+        ]);
     }
 
     /**
@@ -85,6 +115,9 @@ class HomeController extends Controller
         return view('singlearticle');
     }
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function products(){
 
         $lang = Lang::locale();
@@ -100,6 +133,10 @@ class HomeController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function product(Request $request){
 
         $id = $request['id'];
