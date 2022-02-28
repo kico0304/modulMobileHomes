@@ -26,7 +26,7 @@ class LangSubdomain
             $country_code = strtolower($get_country->countryCode);
         }
 
-        dd($get_country);
+        dd($country_code);
 
         $languages = Language::pluck('lang')->toArray();
 
