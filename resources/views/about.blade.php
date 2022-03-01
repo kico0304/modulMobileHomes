@@ -14,9 +14,9 @@
 
 @section('content')
 
-    <!-- HEADER START -->
-    @include('header') 
-    <!-- HEADER END -->
+<!-- HEADER START -->
+@include('header') 
+<!-- HEADER END -->
 
     <section class="page-title bg-1">
         <div class="overlay"></div>
@@ -121,9 +121,9 @@
         </div>
     </section>
 
-    <!-- FOOTER START -->
-    @include('footer') 
-    <!-- FOOTER END -->
+<!-- FOOTER START -->
+@include('footer') 
+<!-- FOOTER END -->
 
 
 @endsection

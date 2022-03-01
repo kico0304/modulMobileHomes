@@ -4,7 +4,7 @@
                 <div class="col-lg-4 mr-auto col-sm-6">
                     <div class="widget mb-5 mb-lg-0">
                         <div class="logo mb-4">
-                            <img src="images/logo.png" alt="" class="img-fluid">
+                            <img src="{{url('/images/logo.png')}}" alt="" class="img-fluid">
                         </div>
                         <div class="widget mb-5 mb-lg-0">
                             GRAD PROJEKT STUDIO d.o.o. <br/>

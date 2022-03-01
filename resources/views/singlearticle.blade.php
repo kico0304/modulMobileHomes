@@ -39,21 +39,6 @@
                     <div class="row">
                         <div class="col-lg-12 mb-5">
                             <div class="single-blog-item">
-                                <!-- <div id="imageGallery">
-                                    <div id="activeImageGallery"><img src="images/aktuelnosti/blog-1.jpg" alt="" class="img-fluid"></div>
-                                    <div id="imageGalleryThumbs">
-                                        <img src="images/aktuelnosti/blog-1.jpg" >
-                                        <img src="images/aktuelnosti/blog-2.jpg" >
-                                        <img src="images/aktuelnosti/blog-3.jpg" >
-                                        <img src="images/aktuelnosti/blog-4.jpg" >
-                                        <img src="images/aktuelnosti/blog-5.jpg" >
-                                        <img src="images/aktuelnosti/blog-6.jpg" >
-                                        <img src="images/aktuelnosti/blog-7.jpg" >
-                                        <img src="images/aktuelnosti/blog-8.jpg" >
-                                        <img src="images/aktuelnosti/blog-9.jpg" >
-                                        <img src="images/aktuelnosti/blog-10.jpg" >
-                                    </div>
-                                </div> -->
                                 <div class="gallery js-flickity" data-flickity-options='{ "wrapAround": true }'>
                                     <div class="gallery-cell"><img src="images/aktuelnosti/blog-1.jpg" ></div>
                                     <div class="gallery-cell"><img src="images/aktuelnosti/blog-2.jpg" ></div>

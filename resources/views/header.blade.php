@@ -23,7 +23,7 @@
             <div class="container">
 
                 <a class="navbar-brand" href="index.html">
-                    <img src="images/logo.png" alt="" class="img-fluid">
+                    <img src="{{url('/images/logo.png')}}" alt="" class="img-fluid">
                 </a>
 
                 <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,9 +36,9 @@
                         <a class="nav-link" href="{{ route('home') }}">Početna</a>
                     </li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="department.html" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Katalog + <i class="icofont-thin-down"></i></a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdown02">
+                    <li class="nav-item">  <!-- dropdown -->
+                        <a class="nav-link" href="{{ route('products') }}">Proizvodi <!--<i class="icofont-thin-down"></i> --></a>
+                        <!-- <ul class="dropdown-menu" aria-labelledby="dropdown02">
                             <li><a class="dropdown-item" href="#">MMH21.S01 – kuća za 2 osobe</a></li>
                             <li><a class="dropdown-item" href="#">MMH21.M01 – kuća za 4 osobe</a></li>
                             <li><a class="dropdown-item" href="#">MMH21.M02- kuća za 4 osobe</a></li>
@@ -46,7 +46,7 @@
                             <li><a class="dropdown-item" href="#">MMH21.L.02- kuća za 6 osoba</a></li>
                             <li><a class="dropdown-item" href="#">MMH21.XL01- kuća za 8 osoba</a></li>
                             <li><a class="dropdown-item" href="#">NAPRAVI SVOJU KOMBINACIJU</a></li>
-                        </ul>
+                        </ul> -->
                     </li>
 
                     <li class="nav-item">
