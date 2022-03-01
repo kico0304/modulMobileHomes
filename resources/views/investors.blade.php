@@ -35,7 +35,7 @@
     <section class="section service-2">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-7 text-center">
+                <div class="col-lg-8 text-center">
                     <div class="section-title">
                         <h2>Želite li da napravite MMH kamp?</h2>
                         <div class="divider mx-auto my-4"></div>
