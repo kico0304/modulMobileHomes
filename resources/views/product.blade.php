@@ -15,7 +15,7 @@
 @section('content')
 
 <!-- HEADER START -->
-@include('header') 
+@include('header')
 <!-- HEADER END -->
 
     <section class="page-title bg-1">
@@ -87,8 +87,8 @@
                     @foreach($product->product_parts as $part)
                     <div class="col-lg-6 mb-5 flexOnly">
                         <div class="partsTexts flexCentered">
-                            <h3>{{$part->part_names[0]->name}}</h3>
-                            <p>{{$part->part_texts[0]->text}}</p>
+                            <h3>{{$part->part_names()->where('language', $lang)->first()->name}}</h3>
+                            <p>{{$part->part_texts()->where('language', $lang)->first()->text}}</p>
                         </div>
                     </div>
                     <div class="col-lg-6 mb-5">
@@ -111,7 +111,7 @@
 
 
 <!-- FOOTER START -->
-@include('footer') 
+@include('footer')
 <!-- FOOTER END -->
 
 

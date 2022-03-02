@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Actualitie;
 use App\Language;
+use App\OptionsForProduct;
+use App\PartsForProduct;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Lang;
@@ -149,7 +151,46 @@ class HomeController extends Controller
         }])->where('id', $id)->get();
 
         return view('product', [
-            'products' => $product
+            'products' => $product,
+            'lang' => $lang
+        ]);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function modules(){
+
+        $lang = Lang::locale();
+
+        $modules = PartsForProduct::with(['part_images', 'part_names' => function($q) use($lang) {
+            $q->where('language', '=', $lang);
+        }, 'part_texts' => function($q) use($lang) {
+            $q->where('language', '=', $lang);
+        }])->get();
+
+        return view('modules', [
+            'modules' => $modules
+        ]);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function options(){
+
+        $lang = Lang::locale();
+
+        $options = OptionsForProduct::with(['names' => function($q) use($lang) {
+            $q->where('language', '=', $lang);
+        }, 'texts' => function($q) use($lang) {
+            $q->where('language', '=', $lang);
+        }, 'attributes' => function($q) use($lang) {
+            $q->where('language', '=', $lang);
+        }])->get();
+
+        return view('options', [
+            'options' => $options
         ]);
     }
 
