@@ -8,7 +8,7 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'welcome' => 'Cao Stojane',
+    'welcome' => 'pozdrav',
     'goodbye' => 'Goodbye',
 
 ];

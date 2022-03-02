@@ -12,7 +12,7 @@
                         <div class="text-lg-right top-right-bar mt-2 mt-lg-0">
                             <a href="tel:+23-345-67890" >
                                 <span>Tel./Viber: </span>
-                                <span class="h4">+387 65 959 595</span>
+                                <span tel:0038765959595 class="h4">+387 65 959 595</span>
                             </a>
                         </div>
                     </div>
@@ -22,7 +22,7 @@
         <nav class="navbar navbar-expand-lg navigation" id="navbar">
             <div class="container">
 
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="{{ route('home') }}">
                     <img src="{{url('/images/logo.png')}}" alt="" class="img-fluid">
                 </a>
 
