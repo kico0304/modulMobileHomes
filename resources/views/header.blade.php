@@ -10,7 +10,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="text-lg-right top-right-bar mt-2 mt-lg-0">
-                            <a href="tel:0038765959595" >
+                            <a href="tel:+38765959595" >
                                 <span>Tel./Viber: </span>
                                 <span class="h4">+387 65 959 595</span>
                             </a>
