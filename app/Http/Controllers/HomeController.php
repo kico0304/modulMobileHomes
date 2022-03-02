@@ -149,7 +149,8 @@ class HomeController extends Controller
         }])->where('id', $id)->get();
 
         return view('product', [
-            'products' => $product
+            'products' => $product,
+            'lang' => $lang
         ]);
     }
 
