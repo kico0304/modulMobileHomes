@@ -17,6 +17,7 @@ use App\PartsForProduct;
 use App\PartTexts;
 use App\ProductNames;
 use App\ProductParts;
+use App\ProductSurface;
 use App\ProductTexts;
 use Illuminate\Http\Request;
 use App\Product;
@@ -62,6 +63,7 @@ class AdminController extends Controller
         ProductNames::where('product_id', $id_product)->delete();
         ProductTexts::where('product_id', $id_product)->delete();
         ProductParts::where('product_id', $id_product)->delete();
+        ProductSurface::where('product_id', $id_product)->delete();
         $image_path = public_path('images\products\product_'.$id_product); // upload path
         if(File::exists($image_path)) {
             File::deleteDirectory($image_path);
@@ -76,7 +78,7 @@ class AdminController extends Controller
      */
     public function edit_product (Request $request) {
 
-        Product::where('id', $request['product_id'])->update(['price' => $request['price'], 'surface' => $request['surface']]);
+        Product::where('id', $request['product_id'])->update(['price' => $request['price'], 'surface' => $request['surface'], 'type' => $request['type']]);
 
         $check = $request->all();
 
@@ -104,6 +106,16 @@ class AdminController extends Controller
                     ProductTexts::updateOrCreate(
                         ['product_id' => $request['product_id'], 'language' => $part_lang],
                         ['text' => $req]
+                    );
+                }
+            }
+
+            if(strpos($key, 'surtxt') !== false){
+                if($req != null && $req != '') {
+                    $part_lang = explode('_', $key)[1];
+                    ProductSurface::updateOrCreate(
+                        ['product_id' => $request['product_id'], 'language' => $part_lang],
+                        ['surface' => $req]
                     );
                 }
             }
@@ -141,6 +153,7 @@ class AdminController extends Controller
         $new_product = new Product();
         $new_product->price = $request['price'];
         $new_product->surface = $request['surface'];
+        $new_product->type = $request['type'];
         $new_product->save();
 
         $check = $request->all();
@@ -172,6 +185,16 @@ class AdminController extends Controller
                 if($req != null && $req != ''){
                     $product_text = new ProductTexts();
                     $product_text->text = $req;
+                    $product_text->language = $part_lang;
+                    $product_text->product_id = $new_product->id;
+                    $product_text->save();
+                }
+            }
+            if(strpos($key, 'surtxt') !== false){
+                $part_lang = explode('_',$key )[1];
+                if($req != null && $req != ''){
+                    $product_text = new ProductSurface();
+                    $product_text->surface = $req;
                     $product_text->language = $part_lang;
                     $product_text->product_id = $new_product->id;
                     $product_text->save();

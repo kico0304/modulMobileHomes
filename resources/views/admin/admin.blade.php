@@ -5,19 +5,23 @@
         .product_part_row{
             display:none;
         }
-        /*.product_part_row ~ .product_part_row{*/
-        /*    display:block;*/
-        /*}*/
-        /*div :last-child .product_part_row {*/
-        /*    color: red;*/
-        /*}*/
-        /*form > .product_part_row {*/
-        /*    background: green;*/
-        /*}*/
+        input[type=checkbox]:checked + label, input[type=radio]:checked + label {
+            background-color: rgba(90, 120, 217, 1);
+        }
 
-        /*[class~='product_part_row']:last-of-type  {*/
-        /*    background: #000;*/
-        /*}*/
+        input[type=checkbox]:not(:checked) + label, input[type=radio]:not(:checked) + label {
+            background-color: #888;
+        }
+
+        input[type=radio] + label {
+            width: 120px;
+            margin-bottom: 2px;
+            text-align: center;
+            padding: 2px 5px;
+            border-radius: 4px;
+            color: #fff;
+            margin-right: 10px;
+        }
     </style>
 @endsection
 
@@ -39,6 +43,12 @@
             <h3>Add new Product</h3>
             <p>All values must be inserted</p>
             <div class="row">
+                <input name="type" id="type1" type="radio" value="1" hidden checked>
+                <label for="type1">Residential</label>
+                <input name="type" id="type2" type="radio" value="2" hidden>
+                <label for="type2">Business</label>
+            </div>
+            <div class="row">
                 <label for="product_price">Price :</label>
                 <input id="product_price" name="price" type="text" class="form-control">
             </div>
@@ -55,6 +65,8 @@
                         <input name="name_{{$lang->lang}}" type="text" class="form-control">
                         <p>Text</p>
                         <textarea name="text_{{$lang->lang}}" type="text" class="form-control"></textarea>
+                        <p>Surface Text</p>
+                        <textarea name="surtxt_{{$lang->lang}}" type="text" class="form-control"></textarea>
                     </div>
                 </div>
             @endforeach
@@ -112,6 +124,12 @@
                         <p>All values must be inserted</p>
                         <input name="product_id" type="hidden" value="{{$product->id}}">
                         <div class="row">
+                            <input name="type" id="type1_{{$product->id}}" type="radio" value="1" hidden @if($product->type == 1) checked @endif>
+                            <label for="type1_{{$product->id}}">Residential</label>
+                            <input name="type" id="type2_{{$product->id}}" type="radio" value="2" hidden @if($product->type == 2) checked @endif>
+                            <label for="type2_{{$product->id}}">Business</label>
+                        </div>
+                        <div class="row">
                             <label>Price :</label>
                             <input name="price" type="text" class="form-control" value="{{$product->price}}">
                         </div>
@@ -128,6 +146,8 @@
                                     <input name="name_{{$lang->lang}}" type="text" class="form-control" value="@if ($product->names()->where('product_id', $product->id)->where('language', $lang->lang)->exists()) {{$product->names()->where('product_id', $product->id)->where('language', $lang->lang)->first()->name}} @endif">
                                     <p>Text</p>
                                     <textarea name="text_{{$lang->lang}}" type="text" class="form-control">@if ($product->texts()->where('product_id', $product->id)->where('language', $lang->lang)->exists()) {{$product->texts()->where('product_id', $product->id)->where('language', $lang->lang)->first()->text}} @endif</textarea>
+                                    <p>Surface Text</p>
+                                    <textarea name="surtxt_{{$lang->lang}}" type="text" class="form-control">@if ($product->surface()->where('product_id', $product->id)->where('language', $lang->lang)->exists()) {{$product->surface()->where('product_id', $product->id)->where('language', $lang->lang)->first()->surface}} @endif</textarea>
                                 </div>
                             </div>
                         @endforeach
