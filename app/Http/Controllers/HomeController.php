@@ -76,18 +76,31 @@ class HomeController extends Controller
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function actualities()
+    public function actualities(Request $request)
     {
         $lang = Lang::locale();
         $lang_id = Language::where('lang', $lang)->first()->id;
 
-        $actualities = Actualitie::with(['images'])->whereHas('actualities_lang', function ($q) use ($lang_id) {
-            $q->where('language_id', $lang_id);
-        })->get();
+        $filter = $request->query('filter');
+
+        if (!empty($filter)) {
+            $actualities = Actualitie::with(['images'])->whereHas('actualities_lang', function ($q) use ($lang_id) {
+                $q->where('language_id', $lang_id);
+            })->where('name', 'like', '%'.$filter.'%')
+                ->paginate(5);
+        } else {
+            $actualities = Actualitie::with(['images'])->whereHas('actualities_lang', function ($q) use ($lang_id) {
+                $q->where('language_id', $lang_id);
+            })->paginate(5);
+        }
+
+//        $actualities = Actualitie::with(['images'])->whereHas('actualities_lang', function ($q) use ($lang_id) {
+//            $q->where('language_id', $lang_id);
+//        })->get();
 
         return view('actualities', [
             'actualities' => $actualities
-        ]);
+        ])->with('filter', $filter);
     }
 
     /**

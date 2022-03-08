@@ -98,8 +98,8 @@
                     <div class="sidebar-wrap pl-lg-4 mt-5 mt-lg-0">
 	                    <div class="sidebar-widget search  mb-3 ">
 		                    <h5>Pretraga</h5>
-                            <form action="#" class="search-form">
-                                <input type="text" class="form-control" placeholder="Traži...">
+                            <form action="{{url('/actualities')}}" class="search-form" method="GET">
+                                <input name="filter" type="text" value="{{$filter}}" class="form-control" placeholder="Traži...">
                                 <i class="ti-search"></i>
                             </form>
 	                    </div>
