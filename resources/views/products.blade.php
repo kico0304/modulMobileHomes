@@ -15,7 +15,7 @@
 @section('content')
 
 <!-- HEADER START -->
-@include('header') 
+@include('header')
 <!-- HEADER END -->
 
     <section class="page-title bg-1">
@@ -73,56 +73,15 @@
                                 <img src="{{asset('images/products/product_'.$product->id.'/'.$product->images[0]->name)}}" class="img-fluid w-100">
                         </div>
                         </div>
-                        <div class="content mt-3">
+                        <div class="content mt-3 product_view" data-id="{{$product->id}}">
                             <h4 class="mb-0"><a href="{{ route('product', $product->id) }}">{{$product->names[0]->name}}</a></h4>
                             <p>Kvadratura: {{$product->surface}} m<span class="superscript">2<span></p>
                             <!-- <p>{{$product->id}}</p> -->
-                        </div> 
+                        </div>
                     </div>
                 </div>
             @endforeach
-            @foreach($products as $product)
-                <!-- <p>Product name: {{$product->names[0]->name}}</p> -->
-                <!-- <p>Product price: {{$product->price}}</p> -->
-                <!-- <p>Product surface: {{$product->surface}}</p> -->
-                <!-- <p>Product text: {{$product->texts[0]->text}}</p> -->
-                <!-- <img class="img" alt="" src="{{asset('images/products/product_'.$product->id.'/'.$product->images[0]->name)}}"> -->
 
-                <div class="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item" data-groups="[&quot;cat1&quot;]">
-                    <div class="position-relative doctor-inner-box">
-                        <div class="doctor-profile">
-                        <div class="doctor-img">
-                                <img src="{{asset('images/products/product_'.$product->id.'/'.$product->images[0]->name)}}" class="img-fluid w-100">
-                        </div>
-                        </div>
-                        <div class="content mt-3">
-                            <h4 class="mb-0"><a href="{{ route('product', $product->id) }}">{{$product->names[0]->name}}</a></h4>
-                            <p>Kvadratura: {{$product->surface}} m<span class="superscript">2<span></p>
-                        </div> 
-                    </div>
-                </div>
-            @endforeach
-            @foreach($products as $product)
-                <!-- <p>Product name: {{$product->names[0]->name}}</p> -->
-                <!-- <p>Product price: {{$product->price}}</p> -->
-                <!-- <p>Product surface: {{$product->surface}}</p> -->
-                <!-- <p>Product text: {{$product->texts[0]->text}}</p> -->
-                <!-- <img class="img" alt="" src="{{asset('images/products/product_'.$product->id.'/'.$product->images[0]->name)}}"> -->
-
-                <div class="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item" data-groups="[&quot;cat2&quot;]">
-                    <div class="position-relative doctor-inner-box">
-                        <div class="doctor-profile">
-                        <div class="doctor-img">
-                                <img src="{{asset('images/products/product_'.$product->id.'/'.$product->images[0]->name)}}" class="img-fluid w-100">
-                        </div>
-                        </div>
-                        <div class="content mt-3">
-                            <h4 class="mb-0"><a href="{{ route('product', $product->id) }}">{{$product->names[0]->name}}</a></h4>
-                            <p>Kvadratura: {{$product->surface}} m<span class="superscript">2<span></p>
-                        </div> 
-                    </div>
-                </div>
-            @endforeach
                 <div class="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item" data-groups="[&quot;cat1&quot;,&quot;cat2&quot;]">
                     <div class="position-relative doctor-inner-box">
                         <div class="doctor-profile">
@@ -135,7 +94,7 @@
                         <div class="content mt-3">
                             <h4 style="text-align:center" class="mb-0"><a href="#">NAPRAVI SVOJU KOMBINACIJU</a></h4>
                             <!-- <p>Kvadratura: {{$product->surface}} m<span class="superscript">2<span></p> -->
-                        </div> 
+                        </div>
                     </div>
                 </div>
             </div>
@@ -143,7 +102,7 @@
     </section>
 
 <!-- FOOTER START -->
-@include('footer') 
+@include('footer')
 <!-- FOOTER END -->
 
 
@@ -151,7 +110,23 @@
 
 @section('js')
     <script type="text/javascript">
-
+        //increment view product
+        $('.product_view').click(function (e) {
+            e.preventDefault();
+            let id = $(this).data('id');
+            $.ajax({
+                url: '{{ url('/product_view') }}',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                data: {'id': id},
+                type: 'post',
+                success: function (ret) {
+                    window.location.href = '{{ url('/product/' ) }}/' + id;
+                },
+                error: function (err) {
+                    window.location.href = '{{ url('/product/' ) }}/' + id;
+                }
+            })
+        });
     </script>
 
 @endsection

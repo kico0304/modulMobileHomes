@@ -33,6 +33,9 @@ Route::get('/product/{id}',     'HomeController@product')->name('product');
 Route::get('/modules',          'HomeController@modules')->name('modules');
 Route::get('/options',          'HomeController@options')->name('options');
 
+Route::post('/product_view',    'HomeController@product_view');
+
+
 //ADMIN ROUTES
 Route::middleware(['auth', 'auth.admin'])->prefix('admin')->group(function () {
 

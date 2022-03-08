@@ -19,25 +19,9 @@
 @section('content')
 
     <!-- TEMPLATE PART START -->
-{{--@foreach($products as $product)--}}
-{{--    <p>Product name: {{$product->names[0]->name}}</p>--}}
-{{--    <p>Product price: {{$product->price}}</p>--}}
-{{--    <p>Product surface: {{$product->surface}}</p>--}}
-{{--    <p>Product text: {{$product->texts[0]->text}}</p>--}}
-{{--    @foreach($product->images as $image)--}}
-{{--        <p>Product image name: {{$image->name}}</p>--}}
-{{--    @endforeach--}}
-{{--    @foreach($product->product_parts as $part)--}}
-{{--        <p>Product part name: {{$part->part_names[0]->name}}</p>--}}
-{{--        <p>Product part text: {{$part->part_texts[0]->text}}</p>--}}
-{{--        @foreach($part->part_images as $part_img)--}}
-{{--            <p>Product part images: {{$part_img->name}}</p>--}}
-{{--        @endforeach--}}
-{{--    @endforeach--}}
-{{--@endforeach--}}
-    
+
     <!-- HEADER START -->
-    @include('header') 
+    @include('header')
     <!-- HEADER END -->
 
     <!-- Slider Start -->
@@ -150,7 +134,7 @@
     </section>
 
     <!-- FOOTER START -->
-    @include('footer') 
+    @include('footer')
     <!-- FOOTER END -->
 
     <!-- TEMPLATE PART END -->
@@ -172,16 +156,16 @@
 @endsection
 
 <!-- BROJAC SLIKA ZA SLIDER START -->
-<?php 
+<?php
 $directory = "images/slider/";
 $filecount = 0;
 $files = glob($directory . "*");
 if ($files){$filecount = count($files);}
 ?>
-<!-- BROJAC SLIKA ZA SLIDER END --> 
+<!-- BROJAC SLIKA ZA SLIDER END -->
 
 @section('js')
-    
+
     <script src="{{ asset('js/slider.js') }}"></script>
 
     <script type="text/javascript">
@@ -195,22 +179,22 @@ if ($files){$filecount = count($files);}
 
                     //smallText
                     $("#smallText").animate({'opacity': 0}, 400, function(){
-                        $("#smallText").html(slideTexts[1].smallText).animate({'opacity': 1}, 400);    
+                        $("#smallText").html(slideTexts[1].smallText).animate({'opacity': 1}, 400);
                     });
 
                     //mainTitle
                     $("#mainTitle").animate({'opacity': 0}, 400, function(){
-                        $("#mainTitle").html(slideTexts[1].mainTitle).animate({'opacity': 1}, 400);    
+                        $("#mainTitle").html(slideTexts[1].mainTitle).animate({'opacity': 1}, 400);
                     });
 
                     //descText
                     $("#descText").animate({'opacity': 0}, 400, function(){
-                        $("#descText").html(slideTexts[1].descText).animate({'opacity': 1}, 400);    
+                        $("#descText").html(slideTexts[1].descText).animate({'opacity': 1}, 400);
                     });
 
                     //buttonText
                     $("#buttonText").animate({'opacity': 0}, 400, function(){
-                        $("#buttonText").html(slideTexts[1].buttonText+'<i class="icofont-simple-right ml-2  "></i>').animate({'opacity': 1}, 400);    
+                        $("#buttonText").html(slideTexts[1].buttonText+'<i class="icofont-simple-right ml-2  "></i>').animate({'opacity': 1}, 400);
                     });
 
                     //set new text attribute
@@ -220,22 +204,22 @@ if ($files){$filecount = count($files);}
 
                     //smallText
                     $("#smallText").animate({'opacity': 0}, 400, function(){
-                        $(this).html(slideTexts[numberNeeded].smallText).animate({'opacity': 1}, 400);    
+                        $(this).html(slideTexts[numberNeeded].smallText).animate({'opacity': 1}, 400);
                     });
 
                     //mainTitle
                     $("#mainTitle").animate({'opacity': 0}, 400, function(){
-                        $("#mainTitle").html(slideTexts[numberNeeded].mainTitle).animate({'opacity': 1}, 400);    
+                        $("#mainTitle").html(slideTexts[numberNeeded].mainTitle).animate({'opacity': 1}, 400);
                     });
 
                     //descText
                     $("#descText").animate({'opacity': 0}, 400, function(){
-                        $("#descText").html(slideTexts[numberNeeded].descText).animate({'opacity': 1}, 400);    
+                        $("#descText").html(slideTexts[numberNeeded].descText).animate({'opacity': 1}, 400);
                     });
 
                     //buttonText
                     $("#buttonText").animate({'opacity': 0}, 400, function(){
-                        $("#buttonText").html(slideTexts[numberNeeded].buttonText+'<i class="icofont-simple-right ml-2  "></i>').animate({'opacity': 1}, 400);    
+                        $("#buttonText").html(slideTexts[numberNeeded].buttonText+'<i class="icofont-simple-right ml-2  "></i>').animate({'opacity': 1}, 400);
                     });
 
                     //set new text attribute
@@ -246,22 +230,22 @@ if ($files){$filecount = count($files);}
 
                     //smallText
                     $("#smallText").animate({'opacity': 0}, 400, function(){
-                        $("#smallText").html(slideTexts[numberOfSliderTexts].smallText).animate({'opacity': 1}, 400);    
+                        $("#smallText").html(slideTexts[numberOfSliderTexts].smallText).animate({'opacity': 1}, 400);
                     });
 
                     //mainTitle
                     $("#mainTitle").animate({'opacity': 0}, 400, function(){
-                        $("#mainTitle").html(slideTexts[numberOfSliderTexts].mainTitle).animate({'opacity': 1}, 400);    
+                        $("#mainTitle").html(slideTexts[numberOfSliderTexts].mainTitle).animate({'opacity': 1}, 400);
                     });
 
                     //descText
                     $("#descText").animate({'opacity': 0}, 400, function(){
-                        $("#descText").html(slideTexts[numberOfSliderTexts].descText).animate({'opacity': 1}, 400);    
+                        $("#descText").html(slideTexts[numberOfSliderTexts].descText).animate({'opacity': 1}, 400);
                     });
 
                     //buttonText
                     $("#buttonText").animate({'opacity': 0}, 400, function(){
-                        $("#buttonText").html(slideTexts[numberOfSliderTexts].buttonText+'<i class="icofont-simple-right ml-2  "></i>').animate({'opacity': 1}, 400);    
+                        $("#buttonText").html(slideTexts[numberOfSliderTexts].buttonText+'<i class="icofont-simple-right ml-2  "></i>').animate({'opacity': 1}, 400);
                     });
 
                     //set new text attribute
@@ -271,22 +255,22 @@ if ($files){$filecount = count($files);}
 
                     //smallText
                     $("#smallText").animate({'opacity': 0}, 400, function(){
-                        $(this).html(slideTexts[numberNeeded].smallText).animate({'opacity': 1}, 400);    
+                        $(this).html(slideTexts[numberNeeded].smallText).animate({'opacity': 1}, 400);
                     });
 
                     //mainTitle
                     $("#mainTitle").animate({'opacity': 0}, 400, function(){
-                        $("#mainTitle").html(slideTexts[numberNeeded].mainTitle).animate({'opacity': 1}, 400);    
+                        $("#mainTitle").html(slideTexts[numberNeeded].mainTitle).animate({'opacity': 1}, 400);
                     });
 
                     //descText
                     $("#descText").animate({'opacity': 0}, 400, function(){
-                        $("#descText").html(slideTexts[numberNeeded].descText).animate({'opacity': 1}, 400);    
+                        $("#descText").html(slideTexts[numberNeeded].descText).animate({'opacity': 1}, 400);
                     });
 
                     //buttonText
                     $("#buttonText").animate({'opacity': 0}, 400, function(){
-                        $("#buttonText").html(slideTexts[numberNeeded].buttonText+'<i class="icofont-simple-right ml-2  "></i>').animate({'opacity': 1}, 400);    
+                        $("#buttonText").html(slideTexts[numberNeeded].buttonText+'<i class="icofont-simple-right ml-2  "></i>').animate({'opacity': 1}, 400);
                     });
 
                     //set new text attribute

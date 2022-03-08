@@ -157,6 +157,16 @@ class HomeController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function product_view(Request $request){
+        $id = $request['id'];
+        Product::find($id)->increment('views');
+        return response()->json(['id' => $id]);
+    }
+
+    /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function modules(){
