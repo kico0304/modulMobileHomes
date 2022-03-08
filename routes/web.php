@@ -45,6 +45,7 @@ Route::middleware(['auth', 'auth.admin'])->prefix('admin')->group(function () {
     Route::get('/options',                  'AdminController@options');
     Route::get('/language',                 'AdminController@language');
     Route::get('/actualities',              'AdminController@actualities');
+    Route::get('/emails',                   'AdminController@emails');
 
     //product routes
     Route::post('/add_product',             'AdminController@add_product');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Actualitie;
 use App\ActualitieImages;
 use App\ActualitiesLanguage;
+use App\Email;
 use App\Language;
 use App\OptionAttributes;
 use App\OptionImages;
@@ -818,6 +819,26 @@ class AdminController extends Controller
         $new_lang->save();
 
         return back()->with('success', 'Language Saved Successfully');
+
+    }
+
+    /*
+    *
+    * EMAILS ***********************************************************************
+    *
+    */
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function emails (Request $request) {
+
+        $emails = Email::all();
+
+        return view('admin.emails', [
+            'emails' => $emails
+        ]);
 
     }
 
