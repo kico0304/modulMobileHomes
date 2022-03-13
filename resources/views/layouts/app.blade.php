@@ -70,6 +70,8 @@
         <script src="{{ asset('js/contact.js') }}"></script>
         <!-- Gallery -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.0.0/flickity.pkgd.js"></script>
+        <!-- Counter -->
+        <script src="{{ asset('js/jquery.flipper-responsive.js') }}"></script>
         <!-- JS files from template END -->
         @yield('js')
     </body>

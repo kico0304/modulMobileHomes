@@ -92,7 +92,7 @@
                         </div>
                         </div>
                         <div class="content mt-3">
-                            <h4 style="text-align:center" class="mb-0"><a href="#">NAPRAVI SVOJU KOMBINACIJU</a></h4>
+                            <h4 style="text-align:center" class="mb-0"><a href="{{ route('config') }">NAPRAVI SVOJU KOMBINACIJU</a></h4>
                             <!-- <p>Kvadratura: {{$product->surface}} m<span class="superscript">2<span></p> -->
                         </div>
                     </div>
