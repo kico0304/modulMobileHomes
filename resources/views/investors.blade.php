@@ -157,8 +157,9 @@
                         <div class="col-lg-12 col-md-6 margined10">
                             <h3 class="myMainColorForTexts">Ukupna investicija bez PDV-a: <span id="ukupnaInvesticija">0.00 €</span></h3>
                         </div>
-                        <div class="col-lg-12 col-md-6 margined10">
+                        <div class="col-lg-12 col-md-6 margined10" style="margin-top: 50px!important">
                             <h4 class="myMainColorForTexts">Kreditni kalkulator</h4>
+                            <div class="divider mx-auto my-4" style="margin: 0 0 0 0px!important"></div>
                         </div>
                         <div class="col-lg-4 col-md-6 margined10">
                             <div class="form-group">
@@ -180,6 +181,7 @@
                         </div>
                         <div class="col-lg-12 col-md-6 margined10">
                             <h4 class="myMainColorForTexts">Prihodi</h4>
+                            <div class="divider mx-auto my-4" style="margin: 0 0 0 0px!important"></div>
                         </div>
                         <div class="col-lg-4 col-md-6 margined10">
                             <div class="form-group">
