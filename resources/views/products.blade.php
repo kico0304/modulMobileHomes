@@ -92,7 +92,7 @@
                         </div>
                         </div>
                         <div class="content mt-3">
-                            <h4 style="text-align:center" class="mb-0"><a href="#">NAPRAVI SVOJU KOMBINACIJU</a></h4>
+                            <h4 style="text-align:center" class="mb-0"><a href="{{ route('modules') }}">NAPRAVI SVOJU KOMBINACIJU</a></h4>
                         </div>
                     </div>
                 </div>
