@@ -192,8 +192,17 @@ class HomeController extends Controller
             $q->where('language', '=', $lang);
         }])->get();
 
+        $options = OptionsForProduct::with(['names' => function($q) use($lang) {
+            $q->where('language', '=', $lang);
+        }, 'texts' => function($q) use($lang) {
+            $q->where('language', '=', $lang);
+        }, 'attributes' => function($q) use($lang) {
+            $q->where('language', '=', $lang);
+        }])->get();
+
         return view('modules', [
-            'modules' => $modules
+            'modules' => $modules,
+            'options' => $options
         ]);
     }
 
@@ -212,8 +221,15 @@ class HomeController extends Controller
             $q->where('language', '=', $lang);
         }])->get();
 
+        $modules = PartsForProduct::with(['part_images', 'part_names' => function($q) use($lang) {
+            $q->where('language', '=', $lang);
+        }, 'part_texts' => function($q) use($lang) {
+            $q->where('language', '=', $lang);
+        }])->get();
+
         return view('options', [
-            'options' => $options
+            'options' => $options,
+            'modules' => $modules
         ]);
     }
 
