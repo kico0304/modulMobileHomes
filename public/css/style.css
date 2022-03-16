@@ -1847,6 +1847,10 @@ input.btn:disabled:hover {
     margin: 30px 0;
 }
 
+.margined2030 {
+    margin: 20px 0 30px;
+}
+
 .flexGrow1 {
     flex-grow: 1;
 }
@@ -2123,3 +2127,21 @@ input.btn:disabled:hover {
 }
 
 /* counter */
+
+.btn-inactive {
+    opacity: 0.25;
+}
+
+.btn-inactive:hover {
+    background: var(--main-orange);
+    border-color: var(--main-orange);
+    opacity: 1;
+}
+
+#contactRow {
+    display: none;
+}
+
+.requiredField {
+    font-size: 12px;
+}
