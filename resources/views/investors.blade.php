@@ -207,40 +207,40 @@
                             <h3 class="margined2030">Detalji Vaše kalkulacije:</h3>
                         </div>
                         <div class="col-lg-4 col-md-6">
-                            <p>Cena zemljišta: <span id="landPrice_">0 €</span></p>
+                            <p>Cena zemljišta: <span id="landPrice_">- €</span></p>
                         </div>
                         <div class="col-lg-4 col-md-6">
-                            <p>Modul A (Garsonjera): <span id="modelAnumber_">0</span></p>
+                            <p>Modul A (Garsonjera): <span id="modelAnumber_">-</span></p>
                         </div>
                         <div class="col-lg-4 col-md-6">
-                            <p>Modul B (Jednosoban stan): <span id="modelBnumber_">0</span></p>
+                            <p>Modul B (Jednosoban stan): <span id="modelBnumber_">-</span></p>
                         </div>
                         <div class="col-lg-4 col-md-6">
-                            <p>Soba s kupatilom (D2): <span id="modelDnumber_">0</span></p>
+                            <p>Soba s kupatilom (D2): <span id="modelDnumber_">-</span></p>
                         </div>
                         <div class="col-lg-4 col-md-6">
-                            <p>Ukupan broj soba za izdavanje: <span id="finalBrojSoba_">0</span></p>
+                            <p>Ukupan broj soba za izdavanje: <span id="finalBrojSoba_">-</span></p>
                         </div>
                         <div class="col-lg-4 col-md-6">
-                            <p>Ukupna investicija bez PDV-a: <span id="totalInvestion_">0 €</span></p>
+                            <p>Ukupna investicija bez PDV-a: <span id="totalInvestion_">- €</span></p>
                         </div>
                         <div class="col-lg-4 col-md-6">
-                            <p>Broj godina kredita: <span id="numberOfYears_"></span></p>
+                            <p>Broj godina kredita: <span id="numberOfYears_"> - </span></p>
                         </div>
                         <div class="col-lg-4 col-md-6">
-                            <p>Godišnja kamatna stopa: <span id="loanInterest_"></span></p>
+                            <p>Godišnja kamatna stopa: <span id="loanInterest_"> - %</span></p>
                         </div>
                         <div class="col-lg-4 col-md-6">
-                            <p>Ukupni mesečni rashod: <span id="loanPayment_"></span></p>
+                            <p>Ukupni mesečni rashod: <span id="loanPayment_"> - €</span></p>
                         </div>
                         <div class="col-lg-4 col-md-6">
-                            <p>Cena najma sobe: <span id="dailyRentPrice_"></span></p>
+                            <p>Cena najma sobe: <span id="dailyRentPrice_"> - €</span></p>
                         </div>
                         <div class="col-lg-4 col-md-6">
-                            <p>Prosečna popunjenost: <span id="averageRent_"></span></p>
+                            <p>Prosečna popunjenost: <span id="averageRent_"> - %</span></p>
                         </div>
                         <div class="col-lg-4 col-md-6">
-                            <p>Ukupni mesečni prihod: <span id="totalIncome_"></span></p>
+                            <p>Ukupni mesečni prihod: <span id="totalIncome_"> - €</span></p>
                         </div>
                         <div class="col-lg-12 col-md-6">
                             <h3 class="margined2030">Kontaktirajte nas</h3>
@@ -376,7 +376,7 @@
             $("#landPrice, #modelAnumber, #modelBnumber, #modelDnumber").change(function(){
                 if($("#landPrice").val()){
                     landPrice = $("#landPrice").val();
-                    $("#landPrice_").text(landPrice+"€");
+                    $("#landPrice_").text(landPrice+".00 €");
                 } else{
                     landPrice = 0;
                 }
@@ -427,8 +427,10 @@
                     //getting loan payment
                     loanPayment = (totalInvestion * monthlyInterest * Math.pow(1 + monthlyInterest, monthsNumber)) / (Math.pow(1 + monthlyInterest, monthsNumber) - 1);
                     //writing result to input
-                    $("#totalMinus").val(loanPayment.toFixed(2));
-                    $("#loanPayment_").text(loanPayment.toFixed(2)+ " €");
+                    if($("#numberOfYears").val() && $("#yearlyInterest").val()){
+                        $("#totalMinus").val(loanPayment.toFixed(2));
+                        $("#loanPayment_").text(parseInt(loanPayment).toFixed(2)+ " €");
+                    }
                 }
                 if(finalBrojSoba != undefined){
                     if($("#dailyRentPrice").val()){
@@ -473,17 +475,21 @@
         /* calc and contact switch */
 
         $("#calculationButton, #sendCalculationButton").click(function(){
-            if($(this).hasClass("btn-inactive")){
-                $(".btn-active").removeClass("btn-active").addClass("btn-inactive");
-                $(this).removeClass("btn-inactive").addClass("btn-active");
-                clickedButton = $(this).attr("id");
-            }
-            if(clickedButton == "calculationButton"){
-                $("#calculationRow").css("display", "flex");
-                $("#contactRow").hide();
+            if($("#ukupnaInvesticija").html() == "0.00 €"){
+                //do nothing
             }else{
-                $("#contactRow").css("display", "flex");
-                $("#calculationRow").hide();
+                if($(this).hasClass("btn-inactive")){
+                    $(".btn-active").removeClass("btn-active").addClass("btn-inactive");
+                    $(this).removeClass("btn-inactive").addClass("btn-active");
+                    clickedButton = $(this).attr("id");
+                }
+                if(clickedButton == "calculationButton"){
+                    $("#calculationRow").css("display", "flex");
+                    $("#contactRow").hide();
+                }else{
+                    $("#contactRow").css("display", "flex");
+                    $("#calculationRow").hide();
+                }
             }
         });
 
