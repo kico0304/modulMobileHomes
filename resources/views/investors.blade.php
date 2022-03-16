@@ -97,7 +97,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" style="margin:0">
                 <p class="textJustify">Želite sigurno ulaganje i isplativu investiciju? Želite da svojim gostima pružite komfor kakav očekuju? Da li ste upoznati sa pojmom „glampinga“? Želite li brzo da saznate okvirnu procenu Vaše investicije? MMH tim ima odgovore na većinu Vaših pitanja! Način na koji živimo i putujemo se promenio. Ljudi više ne žele jednodimenzionalni odmor. Ne žele biti samo puki statisti u luksuzim hotelima, već žele biti deo prirode, zbog čega kampovanje postaje sve popularnije. Kako bi se omogućio aktivni odmor u prirodi i pri tome se odstupilo od loših navika tradicionalnog kampovanja, sa pogodnostima kakve postoje u hotelima sa pet zvezdica, glamping postaje nova dimenzija odmora. Ovo jedinstveno iskustvo Vam omogućava da odaberete udoban smeštaj, da birate okolinu, a da pritom uživate u luksuzu, udobnosti, kao i ostalim pogodnostima koje pruže savremena tehnologija. MMH tim Vam nudi mogućnost stručne analize lokacije i izradu idejnih rešenja za Vaše nove potrebe, kao i alat koji će Vam biti od pomoći prilikom procene odnosa vrednosti uloženih sredstava i potencijalnih prihoda, odnosno da Vam napravi procenu isplativosti investicije. Unošenjem odgovarajućih podataka u data polja, kroz par koraka, dobijate orjentacionu kalkulaciju prihoda i rashoda za projekat Vašeg novog kampa. Novo vreme. Nove navike. Nove odluke. Donesite svoju! Vaš MMH tim!</p>
             </div>
             <div class="row">
@@ -105,10 +105,10 @@
                 <form id="calc-form" class="calc-form" method="post" action="calc.php">
                     <div class="row centered">
                         <div class="col-lg-6 col-md-6">
-                            <div id="calculationButton" class="btn btn-main btn-round-full btn-active">Kalkulacija</div>
+                            <div id="calculationButton" class="btn btn-main btn-round-full btn-active" style="margin-bottom:30px">Kalkulacija</div>
                         </div>
                         <div class="col-lg-6 col-md-6">
-                            <div id="sendCalculationButton" class="btn btn-main btn-round-full btn-inactive">Kontakt</div>
+                            <div id="sendCalculationButton" class="btn btn-main btn-round-full btn-inactive" style="margin-bottom:30px">Kontakt</div>
                         </div>
                     </div>
                     <div class="row" id="calculationRow">
@@ -263,7 +263,7 @@
                             <div class="form-group">
                                 <label>Telefon</label>
                                 <input name="phone_" id="phone_" type="text" class="form-control" placeholder="Broj telefona">
-                                <span class="requiredField">*nije obavezno polje</span>
+                                <span class="requiredFieldNo">*nije obavezno polje</span>
                             </div>
                         </div>
                         <div class="col-lg-12 col-md-6">
@@ -304,6 +304,17 @@
                 </div>
             </div>
     </section>
+
+    <style>
+
+    @media screen and (max-width: 575px) {
+        .row .row {
+            margin-right: 0 !important;
+            margin-left: 0 !important;
+        }
+    }
+
+    </style>
 
     <!-- FOOTER START -->
     @include('footer') 

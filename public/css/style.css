@@ -2144,4 +2144,10 @@ input.btn:disabled:hover {
 
 .requiredField {
     font-size: 12px;
+    color: red;
+}
+
+.requiredFieldNo {
+    font-size: 12px;
+    color: gray;
 }
