@@ -1,7 +1,9 @@
 @foreach($options as $option)
-    <p>Option name: {{$option->names[0]->name}}</p>
-    <p>Option text: {{$option->texts[0]->text}}</p>
-
+    <div class="col-sm-12">
+        <p><b>{{$option->names[0]->name}}</b></p>
+        <p>{{$option->texts[0]->text}}</p>
+    </div>
+    <div class="col-sm-12">
     @foreach($option->attributes as $attribute)
 
         @php
@@ -11,18 +13,18 @@
         @foreach($att as $at)
 
             @if($option->type == 'radio')
-                <label>{{$at}}</label>
+            <div class="col-sm-12">
                 <input type="{{$option->type}}" name="{{$option->names[0]->name}}" value="{{$at}}">
-            @else
                 <label>{{$at}}</label>
-                <input type="{{$option->type}}" name="{{$at}}" value="{{$at}}">
+            </div>
+                @else
+                <input style="width: 20px;height: 20px;position: absolute;top: 2px;left: 15px;" type="{{$option->type}}" name="{{$at}}" value="{{$at}}">
+                <label style="margin-left: 30px;">{{$at}}</label>
             @endif
 
         @endforeach
 
     @endforeach
-
     <hr>
-    <hr>
-
+    </div>
 @endforeach

@@ -32,7 +32,7 @@
         </div>
     </section>
 
-    <section class="section centered" style="padding: 30px 0;">
+    <section class="section centered" style="padding: 30px 0 0;">
         <div class="row">
             <div class="col-lg-12 col-md-12 margined10">
                 <h3 class="centered mainBlue">Standardne kombinacije:</h3>
@@ -84,9 +84,13 @@
                             @endforeach
                         </div>
                         @endforeach
+                        <div class="col-sm-12">
+                            <h3 class="centered mainBlue">Dodatne opcije:</h3>
+                        </div>
+                        @include('options')
                     </div>
                 </div>
-                <div id="selectedResults" class="col-sm-4">
+                <div id="selectedResults" class="col-sm-4 fixedElement">
                     <div id="selectedElements">
                         <p>Izabrali ste:</p>
                         <p>1x model A</p>
@@ -105,7 +109,16 @@
         </div>
     </section>
 
-@include('options')
+    <style>
+
+    .fixedElement {
+        position:static;
+        top:0;
+        width:100%;
+        z-index:100;
+    }
+
+    </style>
 
 
 <!-- FOOTER START -->
@@ -117,7 +130,22 @@
 
 @section('js')
     <script type="text/javascript">
-
+        let $el;
+        let $udaljenost;
+        $(document).ready(function(){
+            $el = $('.fixedElement');
+            $udaljenost = ($el.position().top).toFixed(0);
+            console.log($udaljenost);
+        });
+        $(window).scroll(function(e){ 
+            var isPositionFixed = ($el.css('position') == 'fixed');
+            if ($(this).scrollTop() > $udaljenost && !isPositionFixed){ 
+                $el.css({'position': 'fixed', 'top': '15px', 'right': '30px', 'width': 'calc(35% - 40px)'}); 
+            }
+            if ($(this).scrollTop() < $udaljenost && isPositionFixed){
+                $el.css({'position': 'static', 'top': '0px'}); 
+            } 
+        });
     </script>
 
 @endsection
