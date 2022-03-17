@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
