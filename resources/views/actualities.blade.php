@@ -31,7 +31,7 @@
             </div>
         </div>
     </section>
-    
+
     <section class="section blog-wrap">
         <div class="container">
             <div class="row">
@@ -41,9 +41,7 @@
                         <div class="col-lg-12 col-md-12 mb-5">
                             <div class="blog-item">
                                 <div class="blog-thumb">
-                                @foreach($actualitie->images as $image)
-                                <img src="{{asset('images/actualities/actualities_'.$actualitie->id.'/'.$image->name)}}" alt="" class="img-fluid">
-                                @endforeach
+                                    <img src="{{asset('images/actualities/actualities_'.$actualitie->id.'/'.$actualitie->images[0]->name)}}" alt="" class="img-fluid">
                                 </div>
                                 <div class="blog-item-content">
                                     <div class="blog-item-meta mb-3 mt-4">
@@ -51,10 +49,10 @@
                                     </div>
                                     <h2 class="mt-3 mb-3"><a href="{{ route('singlearticle') }}">{{$actualitie->name}}</a></h2>
                                     <p class="mb-4">{{$actualitie->text}}</p>
-                                    <a href="{{ route('singlearticle') }}" class="btn btn-main btn-icon btn-round-full">Opširnije<i class="icofont-simple-right ml-2  "></i></a>
+                                    <a href="{{ url('/actualities/'.$actualitie->id) }}" class="btn btn-main btn-icon btn-round-full">Opširnije<i class="icofont-simple-right ml-2  "></i></a>
                                 </div>
                             </div>
-                        </div>                        
+                        </div>
                     @endforeach
                     </div>
                 </div>

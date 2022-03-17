@@ -144,7 +144,11 @@
                         <button class="edit_modal btn btn-primary" data-id="{{$part->id}}">Edit</button>
                     </td>
                     <td>
-                        <button class="delete_part btn btn-danger" data-id="{{$part->id}}">Delete</button>
+                        <form method="post" action="{{url('/admin/delete_part')}}" enctype="multipart/form-data">
+                            @csrf
+                            <input type="hidden" value="{{$part->id}}" name="id">
+                            <button class="delete_part btn btn-danger" data-id="{{$part->id}}">Delete</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
@@ -169,26 +173,26 @@
             });
 
             //delete part
-            $('.delete_part').click(function () {
+            {{--$('.delete_part').click(function () {--}}
 
-                if(!confirm('Are you sure you want to delete part?')){
-                    return false;
-                }
+            {{--    if(!confirm('Are you sure you want to delete part?')){--}}
+            {{--        return false;--}}
+            {{--    }--}}
 
-                let id = $(this).data('id');
-                $.ajax({
-                    url: '{{ url('/admin/delete_part') }}',
-                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                    data: {'id': id},
-                    type: 'post',
-                    success: function (ret) {
-                        location.reload();
-                    },
-                    error: function (err) {
-                        alert("Error");
-                    }
-                })
-            });
+            {{--    let id = $(this).data('id');--}}
+            {{--    $.ajax({--}}
+            {{--        url: '{{ url('/admin/delete_part') }}',--}}
+            {{--        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},--}}
+            {{--        data: {'id': id},--}}
+            {{--        type: 'post',--}}
+            {{--        success: function (ret) {--}}
+            {{--            location.reload();--}}
+            {{--        },--}}
+            {{--        error: function (err) {--}}
+            {{--            alert("Error");--}}
+            {{--        }--}}
+            {{--    })--}}
+            {{--});--}}
 
             //edit part delete photo
             $('.delete_photo').click(function (e) {

@@ -480,7 +480,7 @@ class AdminController extends Controller
      */
     public function edit_option (Request $request) {
 
-        OptionsForProduct::where('id', $request['option_id'])->update(['type' => $request['type']]);
+        OptionsForProduct::where('id', $request['option_id'])->update(['type' => $request['type'], 'price' => $request['price']]);
 
         $check = $request->all();
 
@@ -545,6 +545,7 @@ class AdminController extends Controller
         //save option
         $new_option = new OptionsForProduct();
         $new_option->type = $request['type'];
+        $new_option->price = $request['price'];
         $new_option->save();
 
         $check = $request->all();
