@@ -201,6 +201,9 @@
                                 <input name="totalPlus" id="totalPlus" type="number" class="form-control" placeholder="" disabled="true">
                             </div>
                         </div>
+                        <div class="col-lg-12 col-md-12" style="text-align:center;">
+                            <div id="sendCalculationButton_" class="btn btn-main btn-round-full btn-inactive" style="margin-bottom:30px">Kontakt</div>
+                        </div>
                     </div>
                     <div class="row" id="contactRow">
                         <div class="col-lg-12 col-md-6">
@@ -474,21 +477,30 @@
 
         /* calc and contact switch */
 
-        $("#calculationButton, #sendCalculationButton").click(function(){
+        $("#calculationButton, #sendCalculationButton, #sendCalculationButton_").click(function(){
             if($("#ukupnaInvesticija").html() == "0.00 €"){
-                //do nothing
+                alert("Molimo popunite Vašu kalkulaciju.");
+                $([document.documentElement, document.body]).animate({scrollTop: $("#calculationRow").offset().top}, 1000);
             }else{
-                if($(this).hasClass("btn-inactive")){
-                    $(".btn-active").removeClass("btn-active").addClass("btn-inactive");
-                    $(this).removeClass("btn-inactive").addClass("btn-active");
+                if($(this).is("#calculationButton")){
+                    if($(this).hasClass("btn-inactive")){
+                        $(".btn-active").removeClass("btn-active").addClass("btn-inactive");
+                        $(this).removeClass("btn-inactive").addClass("btn-active");
+                    }
+                    clickedButton = $(this).attr("id");
+                }else{
+                    $("#calculationButton").removeClass("btn-active").addClass("btn-inactive");
+                    $("#sendCalculationButton, #sendCalculationButton_").removeClass("btn-inactive").addClass("btn-active");
                     clickedButton = $(this).attr("id");
                 }
                 if(clickedButton == "calculationButton"){
                     $("#calculationRow").css("display", "flex");
+                    $([document.documentElement, document.body]).animate({scrollTop: $("#calculationRow").offset().top}, 1000);
                     $("#contactRow").hide();
                 }else{
                     $("#contactRow").css("display", "flex");
                     $("#calculationRow").hide();
+                    $([document.documentElement, document.body]).animate({scrollTop: $("#contactRow").offset().top}, 1000);
                 }
             }
         });

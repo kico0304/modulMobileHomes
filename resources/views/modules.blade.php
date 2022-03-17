@@ -32,19 +32,78 @@
         </div>
     </section>
 
-@foreach($modules as $module)
-     <p>Product name: {{$module->part_names[0]->name}}</p>
-     <p>Product price: {{$module->price}}</p>
-     <p>Product surface: {{$module->surface}}</p>
-     <p>Product text: {{$module->part_texts[0]->text}}</p>
-
-        <div class="col-lg-6 mb-5">
-            @foreach($module->part_images as $part_img)
-                <img style="max-width:200px; max-height: 200px;" src="{{asset('images/parts/part_'.$module->id.'/'.$part_img->name)}}">
-            @endforeach
+    <section class="section centered" style="padding: 30px 0;">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 margined10">
+                <h3 class="centered mainBlue">Standardne kombinacije:</h3>
+            </div>
+            <div class="col-lg-4 col-md-6 margined10">
+                <div class="btn btn-main btn-round-full" id="MMH21_S.01">MMH21_S.01</div>
+            </div>
+            <div class="col-lg-4 col-md-6 margined10">
+                <div class="btn btn-main btn-round-full" id="MMH21_M.02">MMH21_M.02</div>
+            </div>
+            <div class="col-lg-4 col-md-6 margined10">
+                <div class="btn btn-main btn-round-full" id="MMH21_XL.01">MMH21_XL.01</div>
+            </div>
+            <div class="col-lg-4 col-md-6 margined10">
+                <div class="btn btn-main btn-round-full" id="MMH21_L.01">MMH21_L.01</div>
+            </div>
+            <div class="col-lg-4 col-md-6 margined10">
+                <div class="btn btn-main btn-round-full" id="MMH21_M.01">MMH21_M.01</div>
+            </div>
+            <div class="col-lg-4 col-md-6 margined10">
+                <div class="btn btn-main btn-round-full" id="MMH21_L.02">MMH21_L.02</div>
+            </div>
         </div>
+    <section>
 
-@endforeach
+    <section class="section" style="padding: 30px 15px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 margined10">
+                    <h3 class="centered mainBlue  margined30">Svoju konfiguraciju možete odabrati izborom donjih modula i dodataka.</h3>
+                </div>
+                <div class="col-sm-8" style="text-align: left;">
+                    <div class="row">
+                        @foreach($modules as $module)
+                        <div class="col-sm-6">
+                            <input style="width: 20px;height: 20px;position: absolute;top: 2px;left: 15px;" class="inlineFlex" type="checkbox" price="{{$module->price}}" itemName="{{$module->part_names[0]->name}}">
+                            <p style="margin-left: 30px;" class="inlineFlex"><b>{{$module->part_names[0]->name}}</b></p>
+                            <div id="hiddableQuantity" style="margin-left: 30px; margin-bottom: 15px; display: none;">
+                                <p style="margin-bottom: 0;">Količina:</p>
+                                <input type="number" placeholder="Unesite količinu">
+                            </div>
+                            <p style="margin-left: 30px;">{{$module->part_texts[0]->text}}</p>
+                            <p style="margin-left: 30px;">Površina: {{$module->surface}}</p>
+                            <p style="margin-left: 30px;"><b>Cena: {{$module->price}}</b></p>
+                        </div>
+                        <div class="col-sm-6 centered">
+                            @foreach($module->part_images as $part_img)
+                            <img style="max-width:90%;" src="{{asset('images/parts/part_'.  $module->id.'/'.$part_img->name)}}">
+                            @endforeach
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+                <div id="selectedResults" class="col-sm-4">
+                    <div id="selectedElements">
+                        <p>Izabrali ste:</p>
+                        <p>1x model A</p>
+                        <p>1x model A</p>
+                        <p>1x model A</p>
+                        <p>1x model A</p>
+                        <p>1x model A</p>
+                        <p>1x model A</p>
+                        <p>1x model A</p>
+                    </div>
+                    <div id="selectedElementsPrice">
+                        <p>Ukupna cena: 5000€</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 @include('options')
 

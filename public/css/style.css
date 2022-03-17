@@ -2128,8 +2128,13 @@ input.btn:disabled:hover {
 
 /* counter */
 
+.btn-active {
+    background: var(--main-purple);
+    border-color: var(--main-purple);
+}
+
 .btn-inactive {
-    opacity: 0.25;
+    /*opacity: 0.25;*/
 }
 
 .btn-inactive:hover {
@@ -2170,4 +2175,9 @@ input.btn:disabled:hover {
     a.navbar-brand {
         max-width: 20%;
     }
+}
+
+.inlineFlex {
+    display: inline-flex;
+    max-width: 90%;
 }
