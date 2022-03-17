@@ -98,8 +98,11 @@ class HomeController extends Controller
 //            $q->where('language_id', $lang_id);
 //        })->get();
 
+        $rand_actu = Actualitie::all()->random(3);
+
         return view('actualities', [
-            'actualities' => $actualities
+            'actualities' => $actualities,
+            'most_read' => $rand_actu
         ])->with('filter', $filter);
     }
 
@@ -117,11 +120,8 @@ class HomeController extends Controller
             $q->where('language_id', $lang_id);
         })->where('id', $id)->get();
 
-        $rand_actu = Actualitie::all()->random(3);
-
         return view('actualitie', [
-            'actualities' => $actualities,
-            'most_read' => $rand_actu
+            'actualities' => $actualities
         ]);
     }
 
