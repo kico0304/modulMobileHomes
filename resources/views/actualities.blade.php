@@ -67,86 +67,28 @@
 	                    </div>
                         <div class="sidebar-widget latest-post mb-3">
                             <h5>Najpopularnije</h5>
-                            <div class="py-2">
-                                <span class="text-sm text-muted">25. April 2021</span>
-                                <h6 class="my-2"><a href="{{ route('singlearticle') }}">Postavljanje uzornog objekta</a></h6>
-                            </div>
-                            <div class="py-2">
-                                <span class="text-sm text-muted">25. April 2021</span>
-                                <h6 class="my-2"><a href="{{ route('singlearticle') }}">Postavljanje uzornog objekta</a></h6>
-                            </div>
-                            <div class="py-2">
-                                <span class="text-sm text-muted">25. April 2021</span>
-                                <h6 class="my-2"><a href="{{ route('singlearticle') }}">Postavljanje uzornog objekta</a></h6>
-                            </div>
+                            @foreach($most_read as $mr)
+                                <div class="py-2">
+                                    <span class="text-sm text-muted">{{$mr->created_at}}</span>
+                                    <h6 class="my-2"><a href="{{ url('/actualities/'.$mr->id) }}">{{$mr->name}}</a></h6>
+                                </div>
+                            @endforeach
+{{--                            <div class="py-2">--}}
+{{--                                <span class="text-sm text-muted">25. April 2021</span>--}}
+{{--                                <h6 class="my-2"><a href="{{ route('singlearticle') }}">Postavljanje uzornog objekta</a></h6>--}}
+{{--                            </div>--}}
+{{--                            <div class="py-2">--}}
+{{--                                <span class="text-sm text-muted">25. April 2021</span>--}}
+{{--                                <h6 class="my-2"><a href="{{ route('singlearticle') }}">Postavljanje uzornog objekta</a></h6>--}}
+{{--                            </div>--}}
+{{--                            <div class="py-2">--}}
+{{--                                <span class="text-sm text-muted">25. April 2021</span>--}}
+{{--                                <h6 class="my-2"><a href="{{ route('singlearticle') }}">Postavljanje uzornog objekta</a></h6>--}}
+{{--                            </div>--}}
                         </div>
                     </div>
                 </div>
             </div>
-
-
-            @if (isset($paginator) && $paginator->lastPage() > 1)
-
-                <ul class="pagination">
-
-                <?php
-                $interval = isset($interval) ? abs(intval($interval)) : 3 ;
-                $from = $paginator->currentPage() - $interval;
-                if($from < 1){
-                    $from = 1;
-                }
-
-                $to = $paginator->currentPage() + $interval;
-                if($to > $paginator->lastPage()){
-                    $to = $paginator->lastPage();
-                }
-                ?>
-
-                <!-- first/previous -->
-                    @if($paginator->currentPage() > 1)
-                        <li>
-                            <a class="page-numbers" href="{{ $paginator->url(1) }}" aria-label="First">
-                                <span aria-hidden="true"><i class="icofont-thin-double-left"></i></span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="page-numbers" href="{{ $paginator->url($paginator->currentPage() - 1) }}" aria-label="Previous">
-                                <span aria-hidden="true">‹</span>
-                            </a>
-                        </li>
-                    @endif
-
-                <!-- links -->
-                    @for($i = $from; $i <= $to; $i++)
-                        <?php
-                        $isCurrentPage = $paginator->currentPage() == $i;
-                        ?>
-                        <li class="{{ $isCurrentPage ? 'active' : '' }}">
-                            <a class="page-numbers" href="{{ !$isCurrentPage ? $paginator->url($i) : '#' }}">
-                                {{ $i }}
-                            </a>
-                        </li>
-                    @endfor
-
-                <!-- next/last -->
-                    @if($paginator->currentPage() < $paginator->lastPage())
-                        <li>
-                            <a class="page-numbers" href="{{ $paginator->url($paginator->currentPage() + 1) }}" aria-label="Next">
-                                <span aria-hidden="true">›</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="page-numbers" href="{{ $paginator->url($paginator->lastpage()) }}" aria-label="Last">
-                                <span aria-hidden="true"><i class="icofont-thin-double-right"></i></span>
-                            </a>
-                        </li>
-                    @endif
-
-                </ul>
-
-            @endif
 
             <div class="row mt-5">
                 <div class="col-lg-8">
