@@ -98,7 +98,12 @@ class HomeController extends Controller
 //            $q->where('language_id', $lang_id);
 //        })->get();
 
-        $rand_actu = Actualitie::all()->random(3);
+
+        if(Actualitie::all()->count() > 3){
+            $rand_actu = Actualitie::all()->random(3);
+        }else{
+            $rand_actu = Actualitie::all();
+        }
 
         return view('actualities', [
             'actualities' => $actualities,
