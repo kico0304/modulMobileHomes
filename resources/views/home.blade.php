@@ -13,7 +13,7 @@
 @endsection
 
 @section('sidebar')
-    <p>This is appended to the master navbar.</p>
+{{--    <p>This is appended to the master navbar.</p>--}}
 @endsection
 
 @section('content')
@@ -55,22 +55,22 @@
                             <div class="feature-icon mb-4">
                                 <i class="icofont-headphone-alt-2"></i>
                             </div>
-                            <span>Tu smo za Vas</span>
-                            <h4 class="mb-3">Online konsultacije</h4>
-                            <p class="mb-4">Informišite se o našim proizvodima svakim radnim danom.</p>
-                            <a href="appoinment.html" class="btn btn-main btn-round-full">Zakažite termin</a>
+                            <span>{{__('home.text1')}}</span>
+                            <h4 class="mb-3">{{__('home.text2')}}</h4>
+                            <p class="mb-4">{{__('home.text3')}}</p>
+                            <a href="appoinment.html" class="btn btn-main btn-round-full">{{__('home.text4')}}</a>
                         </div>
 
                         <div class="feature-item mb-5 mb-lg-0">
                             <div class="feature-icon mb-4">
                                 <i class="icofont-ui-clock"></i>
                             </div>
-                            <span>Naš raspored</span>
-                            <h4 class="mb-3">Radno vrijeme</h4>
+                            <span>{{__('home.text5')}}</span>
+                            <h4 class="mb-3">{{__('home.text6')}}</h4>
                             <ul class="w-hours list-unstyled">
-                                <li class="d-flex justify-content-between">Pon - Pet: <span>8:00 - 16:00</span></li>
-                                <li class="d-flex justify-content-between">Subota: <span>9:00 - 14:00</span></li>
-                                <li class="d-flex justify-content-between">Nedjelja: <span>Ne radimo</span></li>
+                                <li class="d-flex justify-content-between">{{__('home.text7')}} <span>{{__('home.text10')}}</span></li>
+                                <li class="d-flex justify-content-between">{{__('home.text8')}} <span>{{__('home.text11')}}</span></li>
+                                <li class="d-flex justify-content-between">{{__('home.text9')}} <span>{{__('home.text12')}}</span></li>
                             </ul>
                         </div>
 
@@ -78,9 +78,9 @@
                             <div class="feature-icon mb-4">
                                 <i class="icofont-support"></i>
                             </div>
-                            <span>Podrška</span>
-                            <h4 class="mb-3">+387 65 959 595</h4>
-                            <p>Tu smo za Vas 24 sata snevno u slučaju hitnih slučajeva. Tu smo za Vas 24 sata snevno u slučaju hitnih slučajeva.</p>
+                            <span>{{__('home.text13')}}</span>
+                            <h4 class="mb-3">{{__('home.tel_br')}}</h4>
+                            <p>{{__('home.text14')}}</p>
                         </div>
                     </div>
                 </div>
@@ -95,8 +95,8 @@
                 <div class="col-lg-6">
                     <div class="cta-content">
                         <div class="divider mb-4"></div>
-                        <h2 class="mb-5 text-lg">Za Vas smo postavili kućicu <span class="title-color">koju možete posjetiti svakim radnim danom uz prethodnu najavu</span></h2>
-                        <a href="appoinment.html" class="btn btn-main-2 btn-round-full">Posjetite showroom<i class="icofont-simple-right  ml-2"></i></a>
+                        <h2 class="mb-5 text-lg">{{__('home.text15')}} <span class="title-color">{{__('home.text16')}}</span></h2>
+                        <a href="appoinment.html" class="btn btn-main-2 btn-round-full">{{__('home.text17')}}<i class="icofont-simple-right  ml-2"></i></a>
                     </div>
                 </div>
             </div>
@@ -120,13 +120,13 @@
                 <div class="col-lg-8">
                     <div class="about-content pl-4 mt-4 mt-lg-0">
                         <!-- <h2 class="title-color">Personal care <br>& healthy living</h2> -->
-                        <p class="mt-4 mb-5 mb-5-exception">Zato što su naši objekti dimenziosani prema vašim stvarnim potrebama</p>
-                        <p class="mt-4 mb-5 mb-5-exception">Zato što se mogućnošću kombinovanja modula može stvoriti jednistvena stambena struktura</p>
-                        <p class="mt-4 mb-5 mb-5-exception">Zato što jednostavnost gradnje štedi vaše vreme</p>
-                        <p class="mt-4 mb-5 mb-5-exception">Zato što vašu kuću možete u svakom trenutku dograditi  prema nekim novim potrebma</p>
-                        <p class="mt-4 mb-5 mb-5-exception">Zato šte se moderan dizajn uklapa u svako prirodno okruženje</p>
-                        <p class="mt-4 mb-5 mb-5-exception">Zato što se u cilju smanjenja utroška energije katrakteristike objekta mogu prilagoditi svim uslovima, lokalnim zahtevima i propisima i time stvoriti efikasan energetski sistem</p>
-                        <a href="service.html" class="btn btn-main-2 btn-round-full btn-icon">Kontaktirajte nas<i class="icofont-simple-right ml-3"></i></a>
+                        <p class="mt-4 mb-5 mb-5-exception">{{__('home.text18')}}</p>
+                        <p class="mt-4 mb-5 mb-5-exception">{{__('home.text19')}}</p>
+                        <p class="mt-4 mb-5 mb-5-exception">{{__('home.text20')}}</p>
+                        <p class="mt-4 mb-5 mb-5-exception">{{__('home.text21')}}</p>
+                        <p class="mt-4 mb-5 mb-5-exception">{{__('home.text22')}}</p>
+                        <p class="mt-4 mb-5 mb-5-exception">{{__('home.text23')}}</p>
+                        <a href="service.html" class="btn btn-main-2 btn-round-full btn-icon">{{__('home.text24')}}<i class="icofont-simple-right ml-3"></i></a>
                     </div>
                 </div>
             </div>
