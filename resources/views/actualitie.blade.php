@@ -37,7 +37,6 @@
     <section class="section blog-wrap">
         <div class="container">
             <div class="row">
-                <div class="">
                     <div class="row">
                         <div class="col-lg-12 mb-5">
                             <div class="single-blog-item">
@@ -72,7 +71,6 @@
                         </div>
                     </div>
                 </div>   
-            </div>
         </div>
     </section>
 
