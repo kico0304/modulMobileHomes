@@ -37,40 +37,38 @@
     <section class="section blog-wrap">
         <div class="container">
             <div class="row">
-                    <div class="row">
-                        <div class="col-lg-12 mb-5">
-                            <div class="single-blog-item">
-                                <!-- <div class="gallery js-flickity" data-flickity-options='{ "wrapAround": true }'>
-                                    @foreach($actualitie->images as $image) 
-                                    <img src="" alt="" class="img-fluid">
-                                    <div class="gallery-cell"><img src="{{asset('images/actualities/actualities_'.$actualitie->id.'/'.$image->name)}}" ></div>
-                                    @endforeach
-                                </div> -->
-                                <div class="swiper mySwiper">
-                                    <div class="swiper-wrapper">
-                                        <div class="swiper-slide">
-                                            <img src="{{asset('images/actualities/actualities_'.$actualitie->id.'/'.$image->name)}}" />
-                                        </div>
-                                    </div>
-                                    <div class="swiper-button-next"></div>
-                                    <div class="swiper-button-prev"></div>
-                                </div>
-                                <div class="blog-item-content mt-5">
-                                    <!-- <div class="blog-item-meta mb-3">
-                                        <span class="text-black text-capitalize mr-3"><i class="icofont-calendar mr-2"></i>25. April 2021</span>
-                                    </div>  -->
-                                    @foreach($actualities as $actualitie)
-                                    <h2 class="mb-4 text-md">{{$actualitie->name}}</h2>
-                                    <p class="lead mb-4">{{$actualitie->text}}</p>
-                                    @endforeach
-                                    <!-- <blockquote class="quote">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    </blockquote> -->
+                <div class="col-lg-12 mb-5">
+                    <div class="single-blog-item">
+                        <!-- <div class="gallery js-flickity" data-flickity-options='{ "wrapAround": true }'>
+                            @foreach($actualitie->images as $image) 
+                            <img src="" alt="" class="img-fluid">
+                            <div class="gallery-cell"><img src="{{asset('images/actualities/actualities_'.$actualitie->id.'/'.$image->name)}}" ></div>
+                            @endforeach
+                        </div> -->
+                        <div class="swiper mySwiper">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="{{asset('images/actualities/actualities_'.$actualitie->id.'/'.$image->name)}}" />
                                 </div>
                             </div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                        </div>
+                        <div class="blog-item-content mt-5">
+                            <!-- <div class="blog-item-meta mb-3">
+                                <span class="text-black text-capitalize mr-3"><i class="icofont-calendar mr-2"></i>25. April 2021</span>
+                            </div>  -->
+                            @foreach($actualities as $actualitie)
+                            <h2 class="mb-4 text-md">{{$actualitie->name}}</h2>
+                            <p class="lead mb-4">{{$actualitie->text}}</p>
+                            @endforeach
+                            <!-- <blockquote class="quote">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            </blockquote> -->
                         </div>
                     </div>
-                </div>   
+                </div>
+            </div>  
         </div>
     </section>
 
