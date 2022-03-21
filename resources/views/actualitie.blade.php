@@ -45,7 +45,7 @@
                             <div class="gallery-cell"><img src="{{asset('images/actualities/actualities_'.$actualitie->id.'/'.$image->name)}}" ></div>
                             @endforeach
                         </div> -->
-                        <div class="swiper mySwiper" style="max-height. 400px">
+                        <div class="swiper mySwiper" style="max-height:400px">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
                                     <img src="{{asset('images/actualities/actualities_'.$actualitie->id.'/'.$image->name)}}" />
