@@ -1,18 +1,18 @@
-    <header>    
+    <header>
         <div class="header-top-bar">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6">
                         <ul class="top-bar-info list-inline-item pl-0 mb-0">
-                            <li class="list-inline-item"><a href="mailto:support@gmail.com"><i class="icofont-support-faq mr-2"></i>info@modulmobilehomes.com</a></li>
-                            <li class="list-inline-item"><i class="icofont-location-pin mr-2"></i>Isaije Mitrovića 3, Banja Luka, BiH </li>
+                            <li class="list-inline-item"><a href="mailto:support@gmail.com"><i class="icofont-support-faq mr-2">{{__('home.email')}}</i></a></li>
+                            <li class="list-inline-item"><i class="icofont-location-pin mr-2"></i>{{__('home.adresa')}}</li>
                         </ul>
                     </div>
                     <div class="col-lg-6">
                         <div class="text-lg-right top-right-bar mt-2 mt-lg-0">
                             <a href="tel:+38765959595" >
-                                <span>Tel./Viber: </span>
-                                <span class="h4">+387 65 959 595</span>
+                                <span>{{__('home.tel')}} </span>
+                                <span class="h4">{{__('home.tel_br')}}</span>
                             </a>
                         </div>
                     </div>
@@ -33,11 +33,11 @@
             <div class="collapse navbar-collapse" id="navbarmain">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="{{ route('home') }}">Početna</a>
+                        <a class="nav-link" href="{{ route('home') }}">{{__('home.pocetna')}}</a>
                     </li>
 
                     <li class="nav-item">  <!-- dropdown -->
-                        <a class="nav-link" href="{{ route('products') }}">Proizvodi <!--<i class="icofont-thin-down"></i> --></a>
+                        <a class="nav-link" href="{{ route('products') }}">{{__('home.proizvodi')}} <!--<i class="icofont-thin-down"></i> --></a>
                         <!-- <ul class="dropdown-menu" aria-labelledby="dropdown02">
                             <li><a class="dropdown-item" href="#">MMH21.S01 – kuća za 2 osobe</a></li>
                             <li><a class="dropdown-item" href="#">MMH21.M01 – kuća za 4 osobe</a></li>
@@ -50,23 +50,23 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('investors') }}">Za investitore</a>
+                        <a class="nav-link" href="{{ route('investors') }}">{{__('home.investitori')}}</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('technology') }}">Tehničke karakteristike</a>
+                        <a class="nav-link" href="{{ route('technology') }}">{{__('home.teh_karakteristike')}}</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('about-us') }}">O nama</a>
+                        <a class="nav-link" href="{{ route('about-us') }}">{{__('home.onama')}}</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('actualities') }}">Aktuelnosti</a>
+                        <a class="nav-link" href="{{ route('actualities') }}">{{__('home.aktuelnosti')}}</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('contact') }}">Kontakt</a>
+                        <a class="nav-link" href="{{ route('contact') }}">{{__('home.kontakt')}}</a>
                     </li>
                 </ul>
             </div>

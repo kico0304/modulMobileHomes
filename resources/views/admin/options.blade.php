@@ -58,6 +58,10 @@
                 <input name="type" id="type2" type="radio" value="radio" hidden>
                 <label for="type2">Radio</label>
             </div>
+            <div class="row">
+                <label for="price">Price :</label>
+                <input id="price" name="price" type="text" class="form-control">
+            </div>
 
             @foreach($language as $lang)
                 <div class="row row_lang_style">
@@ -87,6 +91,7 @@
         <tr>
             <th class="text-center">ID</th>
             <th class="text-center">Name</th>
+            <th class="text-center">Price</th>
             <th class="text-center">Type</th>
             <th class="text-center">Attributes</th>
             @foreach($language as $lang)
@@ -114,6 +119,10 @@
                             <input name="type" id="type2_{{$option->id}}" type="radio" value="radio" hidden @if($option->type == 'radio') checked @endif>
                             <label for="type2_{{$option->id}}">Radio</label>
                         </div>
+                        <div class="row">
+                            <label>Price :</label>
+                            <input name="price" type="text" class="form-control" value="{{$option->price}}">
+                        </div>
 
                         @foreach($language as $lang)
                             <div class="row row_lang_style">
@@ -140,6 +149,7 @@
                 <tr>
                     <td>{{$option->id}}</td>
                     <td>{{$option->names()->where('option_id', $option->id)->where('language', 'en')->first()->name}}</td>
+                    <td>{{$option->price}}</td>
                     <td>{{$option->type}}</td>
                     <td>{{$option->attributes()->where('option_id', $option->id)->where('language', 'en')->first()->attributes}}</td>
                     @foreach($language as $lang)
@@ -149,7 +159,11 @@
                         <button class="edit_modal btn btn-primary" data-id="{{$option->id}}">Edit</button>
                     </td>
                     <td>
-                        <button class="delete_options btn btn-danger" data-id="{{$option->id}}">Delete</button>
+                        <form method="post" action="{{url('/admin/delete_option')}}" enctype="multipart/form-data">
+                            @csrf
+                            <input type="hidden" value="{{$option->id}}" name="id">
+                            <button class="delete_options btn btn-danger" type="submit" data-id="{{$option->id}}">Delete</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
@@ -171,28 +185,6 @@
                     "className": "dt-center",
                     "targets": "_all"
                 } ]
-            });
-
-            //delete options
-            $('.delete_options').click(function () {
-
-                if(!confirm('Are you sure you want to delete options?')){
-                    return false;
-                }
-
-                let id = $(this).data('id');
-                $.ajax({
-                    url: '{{ url('/admin/delete_option') }}',
-                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                    data: {'id': id},
-                    type: 'post',
-                    success: function (ret) {
-                        location.reload();
-                    },
-                    error: function (err) {
-                        alert("Error");
-                    }
-                })
             });
         });
     </script>

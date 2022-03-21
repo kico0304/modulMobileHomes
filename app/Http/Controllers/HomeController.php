@@ -87,19 +87,27 @@ class HomeController extends Controller
             $actualities = Actualitie::with(['images'])->whereHas('actualities_lang', function ($q) use ($lang_id) {
                 $q->where('language_id', $lang_id);
             })->where('name', 'like', '%'.$filter.'%')
-                ->paginate(5);
+                ->paginate(3);
         } else {
             $actualities = Actualitie::with(['images'])->whereHas('actualities_lang', function ($q) use ($lang_id) {
                 $q->where('language_id', $lang_id);
-            })->paginate(5);
+            })->paginate(3);
         }
 
 //        $actualities = Actualitie::with(['images'])->whereHas('actualities_lang', function ($q) use ($lang_id) {
 //            $q->where('language_id', $lang_id);
 //        })->get();
 
+
+        if(Actualitie::all()->count() > 3){
+            $rand_actu = Actualitie::all()->random(3);
+        }else{
+            $rand_actu = Actualitie::all();
+        }
+
         return view('actualities', [
-            'actualities' => $actualities
+            'actualities' => $actualities,
+            'most_read' => $rand_actu
         ])->with('filter', $filter);
     }
 
@@ -117,8 +125,8 @@ class HomeController extends Controller
             $q->where('language_id', $lang_id);
         })->where('id', $id)->get();
 
-        return view('actualities', [
-            'actualitie' => $actualities
+        return view('actualitie', [
+            'actualities' => $actualities
         ]);
     }
 

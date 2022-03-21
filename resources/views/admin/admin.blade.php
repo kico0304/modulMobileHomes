@@ -243,7 +243,11 @@
                         <button class="edit_modal btn btn-primary" data-id="{{$product->id}}">Edit</button>
                     </td>
                     <td>
-                        <button class="delete_product btn btn-danger" data-id="{{$product->id}}">Delete</button>
+                        <form method="post" action="{{url('/admin/delete_product')}}" enctype="multipart/form-data">
+                            @csrf
+                            <input type="hidden" value="{{$product->id}}" name="id">
+                            <button class="delete_product btn btn-danger" data-id="{{$product->id}}">Delete</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
@@ -268,26 +272,26 @@
             });
 
             //delete product
-            $('.delete_product').click(function () {
+            {{--$('.delete_product').click(function () {--}}
 
-                if(!confirm('Are you sure you want to delete product?')){
-                    return false;
-                }
+            {{--    if(!confirm('Are you sure you want to delete product?')){--}}
+            {{--        return false;--}}
+            {{--    }--}}
 
-                let id = $(this).data('id');
-                $.ajax({
-                    url: '{{ url('/admin/delete_product') }}',
-                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                    data: {'id': id},
-                    type: 'post',
-                    success: function (ret) {
-                        location.reload();
-                    },
-                    error: function (err) {
-                        alert("Error");
-                    }
-                })
-            });
+            {{--    let id = $(this).data('id');--}}
+            {{--    $.ajax({--}}
+            {{--        url: '{{ url('/admin/delete_product') }}',--}}
+            {{--        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},--}}
+            {{--        data: {'id': id},--}}
+            {{--        type: 'post',--}}
+            {{--        success: function (ret) {--}}
+            {{--            location.reload();--}}
+            {{--        },--}}
+            {{--        error: function (err) {--}}
+            {{--            alert("Error");--}}
+            {{--        }--}}
+            {{--    })--}}
+            {{--});--}}
 
             //edit product delete photo
             $('.delete_photo').click(function (e) {
