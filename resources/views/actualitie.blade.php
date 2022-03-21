@@ -41,11 +41,20 @@
                     <div class="row">
                         <div class="col-lg-12 mb-5">
                             <div class="single-blog-item">
-                                <div class="gallery js-flickity" data-flickity-options='{ "wrapAround": true }'>
+                                <!-- <div class="gallery js-flickity" data-flickity-options='{ "wrapAround": true }'>
                                     @foreach($actualitie->images as $image) 
                                     <img src="" alt="" class="img-fluid">
                                     <div class="gallery-cell"><img src="{{asset('images/actualities/actualities_'.$actualitie->id.'/'.$image->name)}}" ></div>
                                     @endforeach
+                                </div> -->
+                                <div class="swiper mySwiper">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <img src="{{asset('images/actualities/actualities_'.$actualitie->id.'/'.$image->name)}}" />
+                                        </div>
+                                    </div>
+                                    <div class="swiper-button-next"></div>
+                                    <div class="swiper-button-prev"></div>
                                 </div>
                                 <div class="blog-item-content mt-5">
                                     <!-- <div class="blog-item-meta mb-3">
