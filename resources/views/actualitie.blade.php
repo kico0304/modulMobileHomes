@@ -57,9 +57,9 @@
                             <div class="swiper-button-prev"></div>
                         </div>
                         <div class="blog-item-content mt-5">
-                            <!-- <div class="blog-item-meta mb-3">
-                                <span class="text-black text-capitalize mr-3"><i class="icofont-calendar mr-2"></i>25. April 2021</span>
-                            </div>  -->
+                            <div class="blog-item-meta mb-3">
+                                <span class="text-black text-capitalize mr-3"><i class="icofont-calendar mr-2"></i>{{date('d-m-Y', strtotime($actualitie->created_at))}}</span>
+                            </div> 
                             @foreach($actualities as $actualitie)
                             <h2 class="mb-4 text-md">{{$actualitie->name}}</h2>
                             <p class="lead mb-4">{{$actualitie->text}}</p>
