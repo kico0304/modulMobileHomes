@@ -48,7 +48,9 @@
                         <div class="swiper mySwiper" style="max-height:400px">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
+                                    @foreach($actualitie->images as $image)
                                     <img src="{{asset('images/actualities/actualities_'.$actualitie->id.'/'.$image->name)}}" />
+                                    @endforeach
                                 </div>
                             </div>
                             <div class="swiper-button-next"></div>
@@ -75,6 +77,21 @@
     <!-- FOOTER START -->
     @include('footer') 
     <!-- FOOTER END -->
+    <script>
+      var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+    </script>
 
 
 @endsection

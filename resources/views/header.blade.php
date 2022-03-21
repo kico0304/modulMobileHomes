@@ -4,7 +4,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6">
                         <ul class="top-bar-info list-inline-item pl-0 mb-0">
-                            <li class="list-inline-item"><a href="mailto:support@gmail.com"><i class="icofont-support-faq mr-2">{{__('home.email')}}</i></a></li>
+                            <li class="list-inline-item"><a href="mailto:support@gmail.com"><i class="icofont-support-faq mr-2"></i>{{__('home.email')}}</a></li>
                             <li class="list-inline-item"><i class="icofont-location-pin mr-2"></i>{{__('home.adresa')}}</li>
                         </ul>
                     </div>
