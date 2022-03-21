@@ -9,6 +9,45 @@
         #test {
             color: red;
         }
+        .swiper-button-next, .swiper-button-prev{
+            color: var(--main-orange);
+        }
+        .swiper {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .swiper {
+            margin-left: auto;
+            margin-right: auto;
+        }
     </style>
 @endsection
 
@@ -25,8 +64,8 @@
     <!-- HEADER END -->
 
     <!-- Slider Start -->
-    <section class="banner" active-slide=1 active-text=1>
-        <div id="arrow-left">&#171;</div>
+    <section class="banner">
+        <!-- <div id="arrow-left">&#171;</div>
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-12 col-xl-7">
@@ -42,7 +81,77 @@
                 </div>
             </div>
         </div>
-        <div id="arrow-right">&#187;</div>
+        <div id="arrow-right">&#187;</div> -->
+
+
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <?php
+
+                    $sliderTexts = array (
+                        array(
+                            "ZAŠTO MMH?",
+                            "ModulMobileHomes",
+                            "MMH objekti su dimenzionisani prema stvarnim potrebama korisnika, a modularnost i jedinstvenost stambene strukture je postignuta zahvaljujući mogućnostima kombinovanja mobilnih jedinica, koje se modernim dizajnom uklapaju u svako prirodno okruženje.",
+                            "Kontaktirajte nas "
+                        ),
+                        array(
+                            "ZAŠTO MMH?",
+                            "ModulMobileHomes",
+                            "MMH objekti su dimenzionisani prema stvarnim potrebama korisnika, a modularnost i jedinstvenost stambene strukture je postignuta zahvaljujući mogućnostima kombinovanja mobilnih jedinica, koje se modernim dizajnom uklapaju u svako prirodno okruženje.",
+                            "Kontaktirajte nas "
+                            ),
+                        array(
+                            "ZAŠTO MMH?",
+                            "ModulMobileHomes",
+                            "MMH objekti su dimenzionisani prema stvarnim potrebama korisnika, a modularnost i jedinstvenost stambene strukture je postignuta zahvaljujući mogućnostima kombinovanja mobilnih jedinica, koje se modernim dizajnom uklapaju u svako prirodno okruženje.",
+                            "Kontaktirajte nas "
+                            )
+                    );
+                    $numberoftexts = count($sliderTexts);
+                    $dir = "images/slider/";
+                    $images = array();
+                    if (is_dir($dir)){
+                        if ($dh = opendir($dir)){
+                            while (($file = readdir($dh)) !== false){
+                                if (!is_dir($dir.$file)) $images[] = $file;
+                            }
+                            closedir($dh);
+                        }
+                    }
+                    $numberofimages = count($images);
+
+                    //getting images
+                    $newArray = array();
+                    $finalNumber = $numberofimages * $numberoftexts;
+                    for($i=0; $i<$finalNumber; $i++){
+                        $k = $i % count($images);
+                        $newArray[$i] =  $images[$k];
+                    }
+
+                    //getting texts
+                    $newArray_ = array();
+                    for($i=0; $i<$finalNumber; $i++){
+                        $k = $i % count($sliderTexts);
+                        $newArray_[$i] =  $sliderTexts[$k];
+                    }
+
+                    for($i=0;$i<count($newArray);$i++) : ?>
+                       <div class="swiper-slide">
+                           <img src="images/slider/<?php echo $newArray[$i] ?>" />
+                           <div class="sliderTextSingle">
+                                <p class="text-uppercase text-sm letter-spacing animate"><?php echo $newArray_[$i][0] ?></p>
+                                <h1  class="mb-3 mt-3 animate"><?php echo $newArray_[$i][1] ?></h1>
+                                <p class="mb-4 pr-5 animate"><?php echo $newArray_[$i][2] ?></p>
+                                <a id="buttonText" href="#" class="btn btn-main-2 btn-icon btn-round-full animate"><?php echo $newArray_[$i][3] ?><i class="icofont-simple-right ml-2  "></i></a>
+                           </div>
+                       </div>
+                    <?php endfor;
+                ?>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
     </section>
 
     <!-- Features Start -->
@@ -155,183 +264,23 @@
     <!-- STOLETOV DIO ZA TESTIRANJE END -->
 @endsection
 
-<!-- BROJAC SLIKA ZA SLIDER START -->
-<?php
-$directory = "images/slider/";
-$filecount = 0;
-$files = glob($directory . "*");
-if ($files){$filecount = count($files);}
-?>
-<!-- BROJAC SLIKA ZA SLIDER END -->
-
 @section('js')
 
-    <script src="{{ asset('js/slider.js') }}"></script>
-
-    <script type="text/javascript">
-
-        //get number of texts for slider
-        var numberOfSliderTexts = Object.keys(slideTexts).length;
-
-        function textSwitch(atn, side, ewa){
-            if(side == "right"){
-                if(atn == numberOfSliderTexts){
-
-                    //smallText
-                    $("#smallText").animate({'opacity': 0}, 400, function(){
-                        $("#smallText").html(slideTexts[1].smallText).animate({'opacity': 1}, 400);
-                    });
-
-                    //mainTitle
-                    $("#mainTitle").animate({'opacity': 0}, 400, function(){
-                        $("#mainTitle").html(slideTexts[1].mainTitle).animate({'opacity': 1}, 400);
-                    });
-
-                    //descText
-                    $("#descText").animate({'opacity': 0}, 400, function(){
-                        $("#descText").html(slideTexts[1].descText).animate({'opacity': 1}, 400);
-                    });
-
-                    //buttonText
-                    $("#buttonText").animate({'opacity': 0}, 400, function(){
-                        $("#buttonText").html(slideTexts[1].buttonText+'<i class="icofont-simple-right ml-2  "></i>').animate({'opacity': 1}, 400);
-                    });
-
-                    //set new text attribute
-                    ewa.attr("active-text", 1);
-                }else{
-                    var numberNeeded = parseInt(atn) + 1;
-
-                    //smallText
-                    $("#smallText").animate({'opacity': 0}, 400, function(){
-                        $(this).html(slideTexts[numberNeeded].smallText).animate({'opacity': 1}, 400);
-                    });
-
-                    //mainTitle
-                    $("#mainTitle").animate({'opacity': 0}, 400, function(){
-                        $("#mainTitle").html(slideTexts[numberNeeded].mainTitle).animate({'opacity': 1}, 400);
-                    });
-
-                    //descText
-                    $("#descText").animate({'opacity': 0}, 400, function(){
-                        $("#descText").html(slideTexts[numberNeeded].descText).animate({'opacity': 1}, 400);
-                    });
-
-                    //buttonText
-                    $("#buttonText").animate({'opacity': 0}, 400, function(){
-                        $("#buttonText").html(slideTexts[numberNeeded].buttonText+'<i class="icofont-simple-right ml-2  "></i>').animate({'opacity': 1}, 400);
-                    });
-
-                    //set new text attribute
-                    ewa.attr("active-text", numberNeeded);
-                }
-            }else if(side == "left"){
-                if(atn == 1){
-
-                    //smallText
-                    $("#smallText").animate({'opacity': 0}, 400, function(){
-                        $("#smallText").html(slideTexts[numberOfSliderTexts].smallText).animate({'opacity': 1}, 400);
-                    });
-
-                    //mainTitle
-                    $("#mainTitle").animate({'opacity': 0}, 400, function(){
-                        $("#mainTitle").html(slideTexts[numberOfSliderTexts].mainTitle).animate({'opacity': 1}, 400);
-                    });
-
-                    //descText
-                    $("#descText").animate({'opacity': 0}, 400, function(){
-                        $("#descText").html(slideTexts[numberOfSliderTexts].descText).animate({'opacity': 1}, 400);
-                    });
-
-                    //buttonText
-                    $("#buttonText").animate({'opacity': 0}, 400, function(){
-                        $("#buttonText").html(slideTexts[numberOfSliderTexts].buttonText+'<i class="icofont-simple-right ml-2  "></i>').animate({'opacity': 1}, 400);
-                    });
-
-                    //set new text attribute
-                    ewa.attr("active-text", numberOfSliderTexts);
-                    }else{
-                    var numberNeeded = parseInt(atn) - 1;
-
-                    //smallText
-                    $("#smallText").animate({'opacity': 0}, 400, function(){
-                        $(this).html(slideTexts[numberNeeded].smallText).animate({'opacity': 1}, 400);
-                    });
-
-                    //mainTitle
-                    $("#mainTitle").animate({'opacity': 0}, 400, function(){
-                        $("#mainTitle").html(slideTexts[numberNeeded].mainTitle).animate({'opacity': 1}, 400);
-                    });
-
-                    //descText
-                    $("#descText").animate({'opacity': 0}, 400, function(){
-                        $("#descText").html(slideTexts[numberNeeded].descText).animate({'opacity': 1}, 400);
-                    });
-
-                    //buttonText
-                    $("#buttonText").animate({'opacity': 0}, 400, function(){
-                        $("#buttonText").html(slideTexts[numberNeeded].buttonText+'<i class="icofont-simple-right ml-2  "></i>').animate({'opacity': 1}, 400);
-                    });
-
-                    //set new text attribute
-                    ewa.attr("active-text", numberNeeded);
-                    }
-            }else{
-                console.log("Slider side not defined");
-            }
-        };
-
-        // SLIDER START
-        $(document).ready(function() {
-            $("#arrow-right").click(function(){
-
-                //get element with attributes
-                var elementWithAttrs = $(this).parent();
-
-                //side clicked variable
-                var x = "right";
-
-                //get slide and text numbers
-                var activeSlideNumber = $(this).parent().attr("active-slide");
-                var activeTextNumber = $(this).parent().attr("active-text");
-
-
-                if(activeSlideNumber == <?php echo $filecount ?>){
-                    $(".banner").css('background', 'url("../images/slider/1.jpg")');
-                    $(this).parent().attr("active-slide", 1);
-                    textSwitch(activeTextNumber, x, elementWithAttrs);
-                } else {
-                    var activeSlide = parseInt(activeSlideNumber) + 1;
-                    $(".banner").css('background', 'url("../images/slider/'+activeSlide+'.jpg")');
-                    $(this).parent().attr("active-slide", activeSlide);
-                    textSwitch(activeTextNumber, x, elementWithAttrs);
-                }
-            });
-            $("#arrow-left").click(function(){
-
-                //get element with attributes
-                var elementWithAttrs = $(this).parent();
-
-                //side clicked variable
-                var x = "left";
-
-                //get slide and text numbers
-                var activeSlideNumber = $(this).parent().attr("active-slide");
-                var activeTextNumber = $(this).parent().attr("active-text");
-
-                if(activeSlideNumber == 1){
-                    $(".banner").css('background', 'url("../images/slider/'+<?php echo $filecount ?>+'.jpg")');
-                    $(this).parent().attr("active-slide", <?php echo $filecount ?>);
-                    textSwitch(activeTextNumber, x, elementWithAttrs);
-                } else {
-                    var activeSlide = parseInt(activeSlideNumber) - 1;
-                    $(".banner").css('background', 'url("../images/slider/'+activeSlide+'.jpg")');
-                    $(this).parent().attr("active-slide", activeSlide);
-                    textSwitch(activeTextNumber, x, elementWithAttrs);
-                }
-            });
-        });
-        // SLIDER END
-
+    <!-- Initialize Swiper -->
+    <script>
+      var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
     </script>
+
 @endsection

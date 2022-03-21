@@ -507,9 +507,9 @@ a:focus {
 .banner {
     position: relative;
     overflow: hidden;
-    background: #fff;
-    background: url("../images/slider/1.jpg") no-repeat;
-    background-size: cover;
+    /*background: #fff;*/
+    /*background: url("../images/slider/1.jpg") no-repeat;*/
+    /*background-size: cover !important;*/
     min-height: 550px;
     -webkit-transition: background 0.5s ease-in-out;
     transition: background 0.5s ease-in-out;
@@ -2180,4 +2180,18 @@ input.btn:disabled:hover {
 .inlineFlex {
     display: inline-flex;
     max-width: 90%;
+}
+
+.sliderTextSingle {
+    top: 50%;
+    position: absolute;
+    text-align: left;
+    max-width: 1920px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+}
+
+.sliderTextSingle > p {
+    max-width: 50%;
 }
