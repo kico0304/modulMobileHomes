@@ -9,7 +9,7 @@
 @endsection
 
 @section('sidebar')
-    <p>This is appended to the master navbar.</p>
+{{--    <p>This is appended to the master navbar.</p>--}}
 @endsection
 
 @section('content')
@@ -24,10 +24,10 @@
             <div class="row">
             <div class="col-md-12">
                 <div class="block text-center">
-                    <span class="text-white">KATALOG</span>
+                    <span class="text-white">{{__('home.prod_text1')}}</span>
                     @foreach($products as $product)
                     <span class="text-white">{{$product->names[0]->name}}</span>
-                    <h1 class="mb-5 text-lg">Detalji proizvoda</h1>
+                    <h1 class="mb-5 text-lg">{{__('home.prod_text2')}}</h1>
                     @endforeach
                 </div>
             </div>
@@ -72,9 +72,9 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-6 text-center">
                             <div class="">
-                                <h2 class="mainBlue">Dijelovi proizvoda</h2>
+                                <h2 class="mainBlue">{{__('home.prod_text3')}}</h2>
                                 <div class="divider mx-auto my-4"></div>
-                                <p>Pogledajte svaki element proizvoda posebno.</p>
+                                <p>{{__('home.prod_text4')}}</p>
                             </div>
                         </div>
                     </div>

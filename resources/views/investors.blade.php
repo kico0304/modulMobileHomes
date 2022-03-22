@@ -9,13 +9,13 @@
 @endsection
 
 @section('sidebar')
-    <p>This is appended to the master navbar.</p>
+{{--    <p>This is appended to the master navbar.</p>--}}
 @endsection
 
 @section('content')
 
     <!-- HEADER START -->
-    @include('header') 
+    @include('header')
     <!-- HEADER END -->
 
     <section class="page-title bg-1">
@@ -24,8 +24,8 @@
             <div class="row">
             <div class="col-md-12">
                 <div class="block text-center">
-                    <span class="text-white">MOGUĆNOSTI</span>
-                    <h1 class="mb-5 text-lg">Za investitore</h1>
+                    <span class="text-white">{{__('home.investor_text1')}}</span>
+                    <h1 class="mb-5 text-lg">{{__('home.investor_text2')}}</h1>
                 </div>
             </div>
             </div>
@@ -37,7 +37,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8 text-center">
                     <div class="section-title">
-                        <h2>Želite li da napravite MMH kamp?</h2>
+                        <h2>{{__('home.investor_text3')}}</h2>
                         <div class="divider mx-auto my-4"></div>
                         <img src="images/investors.png" alt="" style="width: 100%;">
                     </div>
@@ -52,8 +52,8 @@
                             <div class="feature-icon mb-4 newIcons">
                                 <i class="icofont-users-alt-2"></i>
                             </div>
-                            <h4 class="mt-4 mb-2 title-color eeeback">Konsalting</h4>
-                            <p class="mb-4">Tehno-ekonomska analiza lokacije (Višegodišnje iskustvo članova našeg tima, pruža Vam sigurnost prilikom izrade Vaših objekata.)</p>
+                            <h4 class="mt-4 mb-2 title-color eeeback">{{__('home.investor_text4')}}</h4>
+                            <p class="mb-4">{{__('home.investor_text5')}}</p>
                         </div>
                     </div>
                 </div>
@@ -65,12 +65,12 @@
                             <div class="feature-icon mb-4 newIcons">
                                 <i class="icofont-law"></i>
                             </div>
-                            <h4 class="mt-4 mb-2  title-color eeeback">Bez građevinske dozvole</h4>
-                            <p class="mb-4">MMH spadaju u mobilne objekte. Za većinu lokacija nije potrbna građevinska dozvola ni lokacijski uslovi.</p>
+                            <h4 class="mt-4 mb-2  title-color eeeback">{{__('home.investor_text6')}}</h4>
+                            <p class="mb-4">{{__('home.investor_text7')}}</p>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-3 col-md-6">
                     <div class="department-block mb-5">
                         <!-- <img src="images/service/service-3.jpg" alt="" class="img-fluid w-100"> -->
@@ -78,8 +78,8 @@
                             <div class="feature-icon mb-4 newIcons">
                                 <i class="icofont-money"></i>
                             </div>
-                            <h4 class="mt-4 mb-2 title-color eeeback">ROI</h4>
-                            <p class="mb-4">Izuzetno brz povrat investicije. S obzirom na kvalitet gradnje, troškovi održavanja su minimalni.</p>
+                            <h4 class="mt-4 mb-2 title-color eeeback">{{__('home.investor_text8')}}</h4>
+                            <p class="mb-4">{{__('home.investor_text9')}}</p>
                         </div>
                     </div>
                 </div>
@@ -91,37 +91,37 @@
                             <div class="feature-icon mb-4 newIcons">
                                 <i class="icofont-hail-rainy-sunny"></i>
                             </div>
-                            <h4 class="mt-4 mb-2 title-color eeeback">Disperzija rizika</h4>
-                            <p class="mb-4">MMH objeki, po svojim tehničkim karakteristikama odgovaraju svim klimatskim uslovima. <!-- Čelična konstrukcija osigurava da se objekti ne mogu oštetiti prilikom prenošenja objekta na drugu lokaciju. --></p>
+                            <h4 class="mt-4 mb-2 title-color eeeback">{{__('home.investor_text10')}}</h4>
+                            <p class="mb-4">{{__('home.investor_text11')}} <!-- Čelična konstrukcija osigurava da se objekti ne mogu oštetiti prilikom prenošenja objekta na drugu lokaciju. --></p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row" style="margin:0">
-                <p class="textJustify">Želite sigurno ulaganje i isplativu investiciju? Želite da svojim gostima pružite komfor kakav očekuju? Da li ste upoznati sa pojmom „glampinga“? Želite li brzo da saznate okvirnu procenu Vaše investicije? MMH tim ima odgovore na većinu Vaših pitanja! Način na koji živimo i putujemo se promenio. Ljudi više ne žele jednodimenzionalni odmor. Ne žele biti samo puki statisti u luksuzim hotelima, već žele biti deo prirode, zbog čega kampovanje postaje sve popularnije. Kako bi se omogućio aktivni odmor u prirodi i pri tome se odstupilo od loših navika tradicionalnog kampovanja, sa pogodnostima kakve postoje u hotelima sa pet zvezdica, glamping postaje nova dimenzija odmora. Ovo jedinstveno iskustvo Vam omogućava da odaberete udoban smeštaj, da birate okolinu, a da pritom uživate u luksuzu, udobnosti, kao i ostalim pogodnostima koje pruže savremena tehnologija. MMH tim Vam nudi mogućnost stručne analize lokacije i izradu idejnih rešenja za Vaše nove potrebe, kao i alat koji će Vam biti od pomoći prilikom procene odnosa vrednosti uloženih sredstava i potencijalnih prihoda, odnosno da Vam napravi procenu isplativosti investicije. Unošenjem odgovarajućih podataka u data polja, kroz par koraka, dobijate orjentacionu kalkulaciju prihoda i rashoda za projekat Vašeg novog kampa. Novo vreme. Nove navike. Nove odluke. Donesite svoju! Vaš MMH tim!</p>
+                <p class="textJustify">{{__('home.investor_text12')}}</p>
             </div>
             <div class="row">
-                <h3 class="margined30 centered flexGrow1 myMainColorForTexts">Orjentaciona kalkulacija za proračun prihoda i rashoda vašeg glamuroznog kampa</h3>
+                <h3 class="margined30 centered flexGrow1 myMainColorForTexts">{{__('home.investor_text13')}}</h3>
                 <form id="calc-form" class="calc-form" method="post" action="calc.php">
                     <div class="row centered">
                         <div class="col-lg-6 col-md-6">
-                            <div id="calculationButton" class="btn btn-main btn-round-full btn-active" style="margin-bottom:30px">Kalkulacija</div>
+                            <div id="calculationButton" class="btn btn-main btn-round-full btn-active" style="margin-bottom:30px">{{__('home.investor_text14')}}</div>
                         </div>
                         <div class="col-lg-6 col-md-6">
-                            <div id="sendCalculationButton" class="btn btn-main btn-round-full btn-inactive" style="margin-bottom:30px">Kontakt</div>
+                            <div id="sendCalculationButton" class="btn btn-main btn-round-full btn-inactive" style="margin-bottom:30px">{{__('home.investor_text15')}}</div>
                         </div>
                     </div>
                     <div class="row" id="calculationRow">
                         <div class="col-lg-12 col-md-12 margined10">
                             <div class="form-group">
-                                <label>Cena zemljišta (€)</label>
-                                <input name="landPrice" id="landPrice" type="number" class="form-control" placeholder="0 - posedujete zemljište">
+                                <label>{{__('home.investor_text16')}}</label>
+                                <input name="landPrice" id="landPrice" type="number" class="form-control" placeholder="{{__('home.investor_text59')}}">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 margined10">
                             <div class="form-group">
-                                <label>Modul A (Garsonjera)</label>
-                                <input name="modelAnumber" id="modelAnumber" type="number" class="form-control" placeholder="npr. 2">
+                                <label>{{__('home.investor_text17')}}</label>
+                                <input name="modelAnumber" id="modelAnumber" type="number" class="form-control" placeholder="{{__('home.investor_text60')}}">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 margined10">
@@ -131,8 +131,8 @@
                         </div>
                         <div class="col-lg-6 col-md-6 margined10">
                             <div class="form-group">
-                                <label>Modul B (Jednosoban stan)</label>
-                                <input name="modelBnumber" id="modelBnumber" type="number" class="form-control" placeholder="npr. 2">
+                                <label>{{__('home.investor_text18')}}</label>
+                                <input name="modelBnumber" id="modelBnumber" type="number" class="form-control" placeholder="{{__('home.investor_text60')}}">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 margined10">
@@ -142,8 +142,8 @@
                         </div>
                         <div class="col-lg-6 col-md-6 margined10">
                             <div class="form-group">
-                                <label>Soba s kupatilom (D2)</label>
-                                <input name="modelDnumber" id="modelDnumber" type="number" class="form-control" placeholder="npr. 2">
+                                <label>{{__('home.investor_text19')}}</label>
+                                <input name="modelDnumber" id="modelDnumber" type="number" class="form-control" placeholder="{{__('home.investor_text60')}}">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 margined10">
@@ -152,140 +152,140 @@
                             </div>
                         </div>
                         <div class="col-lg-12 col-md-12 margined10">
-                            <h3 class="myMainColorForTexts">Ukupan broj soba za izdavanje: <span id="ukupnoSoba">0</span></h3>
+                            <h3 class="myMainColorForTexts">{{__('home.investor_text20')}} <span id="ukupnoSoba">0</span></h3>
                         </div>
                         <div class="col-lg-12 col-md-12 margined10">
-                            <h3 class="myMainColorForTexts">Ukupna investicija bez PDV-a: <span id="ukupnaInvesticija">0.00 €</span></h3>
+                            <h3 class="myMainColorForTexts">{{__('home.investor_text21')}} <span id="ukupnaInvesticija">0.00 €</span></h3>
                         </div>
                         <div class="col-lg-12 col-md-12 margined10" style="margin-top: 50px!important">
-                            <h4 class="myMainColorForTexts">Kreditni kalkulator</h4>
+                            <h4 class="myMainColorForTexts">{{__('home.investor_text22')}}</h4>
                             <div class="divider mx-auto my-4" style="margin: 0 0 0 0px!important"></div>
                         </div>
                         <div class="col-lg-4 col-md-6 margined10">
                             <div class="form-group">
-                                <label>Broj godina kredita</label>
-                                <input name="numberOfYears" id="numberOfYears" type="number" class="form-control" placeholder="Unesite broj godina kredita">
+                                <label>{{__('home.investor_text23')}}</label>
+                                <input name="numberOfYears" id="numberOfYears" type="number" class="form-control" placeholder="{{__('home.investor_text61')}}">
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6 margined10">
                             <div class="form-group">
-                                <label>Godišnja kamatna stopa (%)</label>
-                                <input name="yearlyInterest" id="yearlyInterest" type="number" class="form-control" placeholder="Unesite godišnju kamatnu stopu po kreditu">
+                                <label>{{__('home.investor_text24')}}</label>
+                                <input name="yearlyInterest" id="yearlyInterest" type="number" class="form-control" placeholder="{{__('home.investor_text62')}}">
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6 margined10">
                             <div class="form-group">
-                                <label>Ukupni mesečni rashod (€)</label>
+                                <label>{{__('home.investor_text25')}}</label>
                                 <input name="totalMinus" id="totalMinus" type="number" class="form-control" placeholder="" disabled="true">
                             </div>
                         </div>
                         <div class="col-lg-12 col-md-12 margined10">
-                            <h4 class="myMainColorForTexts">Prihodi</h4>
+                            <h4 class="myMainColorForTexts">{{__('home.investor_text26')}}</h4>
                             <div class="divider mx-auto my-4" style="margin: 0 0 0 0px!important"></div>
                         </div>
                         <div class="col-lg-4 col-md-6 margined10">
                             <div class="form-group">
-                                <label>Cena najma sobe (€)</label>
-                                <input name="dailyRentPrice" id="dailyRentPrice" type="number" class="form-control" placeholder="Unesite cenu najma po danu">
+                                <label>{{__('home.investor_text27')}}</label>
+                                <input name="dailyRentPrice" id="dailyRentPrice" type="number" class="form-control" placeholder="{{__('home.investor_text63')}}">
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6 margined10">
                             <div class="form-group">
-                                <label>Prosečna popunjenost (%)</label>
-                                <input name="averageRent" id="averageRent" type="number" class="form-control" placeholder="Unesite prosečnu popunjenost">
+                                <label>{{__('home.investor_text28')}}</label>
+                                <input name="averageRent" id="averageRent" type="number" class="form-control" placeholder="{{__('home.investor_text64')}}">
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6 margined10">
                             <div class="form-group">
-                                <label>Ukupni mesečni prihod (€)</label>
+                                <label>{{__('home.investor_text29')}}</label>
                                 <input name="totalPlus" id="totalPlus" type="number" class="form-control" placeholder="" disabled="true">
                             </div>
                         </div>
                         <div class="col-lg-12 col-md-12" style="text-align:center;">
-                            <div id="sendCalculationButton_" class="btn btn-main btn-round-full btn-inactive" style="margin-bottom:30px">Kontakt</div>
+                            <div id="sendCalculationButton_" class="btn btn-main btn-round-full btn-inactive" style="margin-bottom:30px">{{__('home.investor_text30')}}</div>
                         </div>
                     </div>
                     <div class="row" id="contactRow">
                         <div class="col-lg-12 col-md-6">
-                            <h3 class="margined2030">Detalji Vaše kalkulacije:</h3>
+                            <h3 class="margined2030">{{__('home.investor_text31')}}</h3>
                         </div>
                         <div class="col-lg-4 col-md-6">
-                            <p>Cena zemljišta: <span id="landPrice_">- €</span></p>
+                            <p>{{__('home.investor_text32')}} <span id="landPrice_">- €</span></p>
                         </div>
                         <div class="col-lg-4 col-md-6">
-                            <p>Modul A (Garsonjera): <span id="modelAnumber_">-</span></p>
+                            <p>{{__('home.investor_text33')}} <span id="modelAnumber_">-</span></p>
                         </div>
                         <div class="col-lg-4 col-md-6">
-                            <p>Modul B (Jednosoban stan): <span id="modelBnumber_">-</span></p>
+                            <p>{{__('home.investor_text34')}} <span id="modelBnumber_">-</span></p>
                         </div>
                         <div class="col-lg-4 col-md-6">
-                            <p>Soba s kupatilom (D2): <span id="modelDnumber_">-</span></p>
+                            <p>{{__('home.investor_text35')}} <span id="modelDnumber_">-</span></p>
                         </div>
                         <div class="col-lg-4 col-md-6">
-                            <p>Ukupan broj soba za izdavanje: <span id="finalBrojSoba_">-</span></p>
+                            <p>{{__('home.investor_text36')}} <span id="finalBrojSoba_">-</span></p>
                         </div>
                         <div class="col-lg-4 col-md-6">
-                            <p>Ukupna investicija bez PDV-a: <span id="totalInvestion_">- €</span></p>
+                            <p>{{__('home.investor_text37')}} <span id="totalInvestion_">- €</span></p>
                         </div>
                         <div class="col-lg-4 col-md-6">
-                            <p>Broj godina kredita: <span id="numberOfYears_"> - </span></p>
+                            <p>{{__('home.investor_text38')}} <span id="numberOfYears_"> - </span></p>
                         </div>
                         <div class="col-lg-4 col-md-6">
-                            <p>Godišnja kamatna stopa: <span id="loanInterest_"> - %</span></p>
+                            <p>{{__('home.investor_text39')}} <span id="loanInterest_"> - %</span></p>
                         </div>
                         <div class="col-lg-4 col-md-6">
-                            <p>Ukupni mesečni rashod: <span id="loanPayment_"> - €</span></p>
+                            <p>{{__('home.investor_text40')}} <span id="loanPayment_"> - €</span></p>
                         </div>
                         <div class="col-lg-4 col-md-6">
-                            <p>Cena najma sobe: <span id="dailyRentPrice_"> - €</span></p>
+                            <p>{{__('home.investor_text41')}} <span id="dailyRentPrice_"> - €</span></p>
                         </div>
                         <div class="col-lg-4 col-md-6">
-                            <p>Prosečna popunjenost: <span id="averageRent_"> - %</span></p>
+                            <p>{{__('home.investor_text42')}} <span id="averageRent_"> - %</span></p>
                         </div>
                         <div class="col-lg-4 col-md-6">
-                            <p>Ukupni mesečni prihod: <span id="totalIncome_"> - €</span></p>
+                            <p>{{__('home.investor_text43')}} <span id="totalIncome_"> - €</span></p>
                         </div>
                         <div class="col-lg-12 col-md-6">
-                            <h3 class="margined2030">Kontaktirajte nas</h3>
+                            <h3 class="margined2030">{{__('home.investor_text44')}}</h3>
                         </div>
                         <div class="col-lg-4 col-md-6">
                             <div class="form-group">
-                                <label>Ime i prezime</label>
-                                <input name="name_" id="name_" type="text" class="form-control" placeholder="Ime i prezime">
-                                <span class="requiredField">*obavezno polje</span>
+                                <label>{{__('home.investor_text45')}}</label>
+                                <input name="name_" id="name_" type="text" class="form-control" placeholder="{{__('home.investor_text45')}}">
+                                <span class="requiredField">{{__('home.investor_text47')}}</span>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6">
                             <div class="form-group">
-                                <label>E-mail</label>
-                                <input name="email_" id="email_" type="email" class="form-control" placeholder="E-mail adresa">
-                                <span class="requiredField">*obavezno polje</span>
+                                <label>{{__('home.investor_text48')}}</label>
+                                <input name="email_" id="email_" type="email" class="form-control" placeholder="{{__('home.investor_text49')}}">
+                                <span class="requiredField">{{__('home.investor_text47')}}</span>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6">
                             <div class="form-group">
-                                <label>Telefon</label>
-                                <input name="phone_" id="phone_" type="text" class="form-control" placeholder="Broj telefona">
-                                <span class="requiredFieldNo">*nije obavezno polje</span>
-                            </div>
-                        </div>
-                        <div class="col-lg-12 col-md-6">
-                            <div class="form-group">
-                                <label>Tema poruke</label>
-                                <input name="subject_" id="subject_" type="text" class="form-control" placeholder="Tema poruke">
-                                <span class="requiredField">*obavezno polje</span>
+                                <label>{{__('home.investor_text50')}}</label>
+                                <input name="phone_" id="phone_" type="text" class="form-control" placeholder="{{__('home.investor_text51')}}">
+                                <span class="requiredFieldNo">{{__('home.investor_text52')}}</span>
                             </div>
                         </div>
                         <div class="col-lg-12 col-md-6">
                             <div class="form-group">
-                                <label>Poruka</label>
-                                <textarea name="message_" id="message_" class="form-control" rows="8" placeholder="Poruka"></textarea>
-                                <span class="requiredField">*obavezno polje</span>
+                                <label>{{__('home.investor_text53')}}</label>
+                                <input name="subject_" id="subject_" type="text" class="form-control" placeholder="{{__('home.investor_text53')}}">
+                                <span class="requiredField">{{__('home.investor_text47')}}</span>
                             </div>
                         </div>
                         <div class="col-lg-12 col-md-6">
                             <div class="form-group">
-                                <input id="submitContact_" class="btn btn-main btn-round-full" name="submit_" type="submit" value="Pošalji" disabled="true"></input>
+                                <label>{{__('home.investor_text55')}}</label>
+                                <textarea name="message_" id="message_" class="form-control" rows="8" placeholder="{{__('home.investor_text55')}}"></textarea>
+                                <span class="requiredField">{{__('home.investor_text47')}}</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-6">
+                            <div class="form-group">
+                                <input id="submitContact_" class="btn btn-main btn-round-full" name="submit_" type="submit" value="{{__('home.investor_text56')}}" disabled="true"></input>
                             </div>
                         </div>
                     </div>
@@ -299,11 +299,11 @@
             <div class="row justify-content-center">
                 <div class="col-lg-12 text-center">
                     <div class="section-title">
-                        <h2>Vaše prve goste možete da primite za:</h2>
+                        <h2>{{__('home.investor_text57')}}</h2>
                     </div>
                 </div>
                 <div class="col-lg-8 text-center">
-                    <div class="flipper" data-reverse="true" data-datetime="2023-01-01 00:00:00" data-template="ddd|HH|ii|ss" data-labels="Dana|Sati|Minuta|Sekundi" id="myFlipper"></div>
+                    <div class="flipper" data-reverse="true" data-datetime="2023-01-01 00:00:00" data-template="ddd|HH|ii|ss" data-labels="{{__('home.investor_text58')}}" id="myFlipper"></div>
                 </div>
             </div>
     </section>
@@ -320,7 +320,7 @@
     </style>
 
     <!-- FOOTER START -->
-    @include('footer') 
+    @include('footer')
     <!-- FOOTER END -->
 
 
@@ -398,12 +398,12 @@
                 } else{
                     modelDnumber = 0;
                 }
-                totalInvestion = 
-                    parseInt(landPrice) + 
-                    parseInt(modelAnumber)*parseInt(modelAnumberPrice) + 
-                    parseInt(modelBnumber)*parseInt(modelBnumberPrice) + 
+                totalInvestion =
+                    parseInt(landPrice) +
+                    parseInt(modelAnumber)*parseInt(modelAnumberPrice) +
+                    parseInt(modelBnumber)*parseInt(modelBnumberPrice) +
                     parseInt(modelDnumber)*parseInt(modelDnumberPrice);
-                
+
                 $("#ukupnaInvesticija").text(totalInvestion.toFixed(2)+" €");
                 $("#totalInvestion_").text(totalInvestion.toFixed(2)+" €");
             });

@@ -208,9 +208,14 @@ class HomeController extends Controller
             $q->where('language', '=', $lang);
         }])->get();
 
+        $products = Product::with(['names' => function($q) use($lang) {
+            $q->where('language', '=', $lang);
+        }])->get();
+
         return view('modules', [
-            'modules' => $modules,
-            'options' => $options
+            'modules'  => $modules,
+            'options'  => $options,
+            'products' => $products
         ]);
     }
 
