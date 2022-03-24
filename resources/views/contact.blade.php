@@ -9,13 +9,13 @@
 @endsection
 
 @section('sidebar')
-    <p>This is appended to the master navbar.</p>
+{{--    <p>This is appended to the master navbar.</p>--}}
 @endsection
 
 @section('content')
 
     <!-- HEADER START -->
-    @include('header') 
+    @include('header')
     <!-- HEADER END -->
 
     <section class="page-title bg-1">
@@ -24,8 +24,8 @@
             <div class="row">
             <div class="col-md-12">
                 <div class="block text-center">
-                    <span class="text-white">Kontakt</span>
-                    <h1 class="mb-5 text-lg">Kontaktirajte nas</h1>
+                    <span class="text-white">{{__('home.contact_text1')}}</span>
+                    <h1 class="mb-5 text-lg">{{__('home.contact_text2')}}</h1>
                 </div>
             </div>
             </div>
@@ -67,15 +67,15 @@
                     <div class="section-title text-center">
                         <!-- <h2 class="text-md mb-2"></h2> -->
                         <div class="divider mx-auto my-4"></div>
-                        <h3>Izaberite zemlju distributera:</h3>
+                        <h3>{{__('home.contact_text3')}}</h3>
                         <select name="countryChoose" id="countryChoose">
-                            <option value="none">Molimo izaberite zemlju...</option>
-                            <option value="Bosna i Hercegovina">Bosna i Hercegovina</option>
-                            <option value="Hrvatska">Hrvatska</option>
-                            <option value="Slovenija">Slovenija</option>
-                            <option value="Srbija">Srbija</option>
-                            <option value="Grčka">Grčka</option>
-                            <option value="Makedonija">Makedonija</option>
+                            <option value="none">{{__('home.contact_text4')}}</option>
+                            <option value="Bosna i Hercegovina">{{__('home.contact_text5')}}</option>
+                            <option value="Hrvatska">{{__('home.contact_text6')}}</option>
+                            <option value="Slovenija">{{__('home.contact_text7')}}</option>
+                            <option value="Srbija">{{__('home.contact_text8')}}</option>
+                            <option value="Grčka">{{__('home.contact_text9')}}</option>
+                            <option value="Makedonija">{{__('home.contact_text10')}}</option>
                         </select>
                         <div id="addressCounties"></div>
                     </div>
@@ -88,7 +88,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="alert alert-success contact__msg" style="display: none" role="alert">
-                                    Vaša poruka je uspješno poslana.
+                                    {{__('home.contact_text11')}}
                                 </div>
                             </div>
                         </div>
@@ -96,33 +96,33 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <input name="name" id="name" type="text" class="form-control" placeholder="Ime i prezime" disabled="true">
+                                    <input name="name" id="name" type="text" class="form-control" placeholder="{{__('home.contact_text12')}}" disabled="true">
                                 </div>
                             </div>
 
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <input name="email" id="email" type="email" class="form-control" placeholder="E-mail adresa" disabled="true">
+                                    <input name="email" id="email" type="email" class="form-control" placeholder="{{__('home.contact_text13')}}" disabled="true">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <input name="subject" id="subject" type="text" class="form-control" placeholder="Tema poruke" disabled="true">
+                                    <input name="subject" id="subject" type="text" class="form-control" placeholder="{{__('home.contact_text14')}}" disabled="true">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <input name="phone" id="phone" type="text" class="form-control" placeholder="Broj telefona" disabled="true">
+                                    <input name="phone" id="phone" type="text" class="form-control" placeholder="{{__('home.contact_text15')}}" disabled="true">
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group-2 mb-4">
-                            <textarea name="message" id="message" class="form-control" rows="8" placeholder="Poruka" disabled="true"></textarea>
+                            <textarea name="message" id="message" class="form-control" rows="8" placeholder="{{__('home.contact_text16')}}" disabled="true"></textarea>
                         </div>
 
                         <div class="text-center">
-                            <input id="submitContact" class="btn btn-main btn-round-full" name="submit" type="submit" value="Pošalji" disabled="true"></input>
+                            <input id="submitContact" class="btn btn-main btn-round-full" name="submit" type="submit" value="{{__('home.contact_text17')}}" disabled="true"></input>
                         </div>
                     </form>
                 </div>
@@ -155,7 +155,7 @@
     </div>
 
     <!-- FOOTER START -->
-    @include('footer') 
+    @include('footer')
     <!-- FOOTER END -->
 
 
@@ -168,9 +168,9 @@
             //getting selected option
             var selectBoxCountry = $("#countryChoose option:selected").attr("Value");
             //addresses
-            var bosniaAddress = "<div class='logoAddress'><img src='images/gradprojektgroup.jpg'></div><div class='textLogoAddress'><b>Grad Projekt Studio</b><br>Isaije Mitrovića 3<br>78 000 Banja Luka, RS<br>Bosnia and Hercegovina<br>TEL/VIBER: +38765959595<br>www.modulmobilehomes.com<br>info@modulmobilehomes.com</div>";
-            var sloveniaAddress = "<div class='logoAddress'><img src='images/gradprojektgroup.jpg'></div><div class='textLogoAddress'><b>“GRAD PROJEKT BIRO” DOO</b><br>Ulica Gradnikove brigade 53<br>5000 Nova Gorica<br>Slovenia<br>www.modulmobilehomes.com<br>info@modulmobilehomes.com</div>";
-            var srbijaAddress = "<div class='logoAddress'><img src='images/primavera-logo.png'></div><div class='textLogoAddress'><b>Primavera elektro doo</b><br>Ugrinovački Put 29<br>11080, Beograd (Zemun)<br>Serbia<br>+381 61 182 29 02<br>www.primavera.house<br>info@primavera.house</div>";
+            var bosniaAddress = "<div class='logoAddress'><img src='images/gradprojektgroup.jpg'></div><div class='textLogoAddress'>{!!__('home.contact_text18')!!}</div>";
+            var sloveniaAddress = "<div class='logoAddress'><img src='images/gradprojektgroup.jpg'></div><div class='textLogoAddress'>{!!__('home.contact_text19')!!}</div>";
+            var srbijaAddress = "<div class='logoAddress'><img src='images/primavera-logo.png'></div><div class='textLogoAddress'>{!!__('home.contact_text20')!!}</div>";
             //switch content function
             switch(selectBoxCountry){
                 case "none":
