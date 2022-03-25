@@ -47,9 +47,9 @@ if(isset($_POST) && !empty($_POST)){
 		return str_replace($bad,"",$string);
 	}
 
-	$email_message .= "Ime: ".clean_string($getName)."\r\n";
-	$email_message .= "Prezime: ".clean_string($getSurname)."\r\n";
+	$email_message .= "Ime i prezime: ".clean_string($getName)."\r\n";
 	$email_message .= "Email: ".clean_string($getEmail)."\r\n";
+	$email_message .= "Naslov: ".clean_string($getSubject)."\r\n";
 	$email_message .= "Telefon: ".clean_string($getPhone)."\r\n";
 	$email_message .= "Poruka: ".clean_string($getMessage)."\r\n";
 
