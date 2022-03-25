@@ -189,7 +189,7 @@
                     $(".mapouter, .gmap_canvas, #gmap_canvas").css("height", "500px");
                     $("#gmap_canvas").prop("src", "https://maps.google.com/maps?q=Ugrinova%C4%8Dki%20Put%2029%20%2011080,%20Beograd%20(Zemun)%20Serbia&t=&z=13&ie=UTF8&iwloc=&output=embed");
                     $("#addressCounties").html(srbijaAddress).animate({'opacity': 1}, 400);
-                    $("#mailto").html("kico.jajcanin86@gmail.com");
+                    document.getElementById("mailto").value = "kico.jajcanin86@gmail.com";
                     break;
                 case "Makedonija":
                     $("#name, #email, #subject, #phone, #message, #submitContact").prop("disabled", false);
