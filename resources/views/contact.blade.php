@@ -65,12 +65,12 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-12" style="display: none;">
+                            <div class="col-lg-12">
                                 <div class="form-group">
-                                    <input name="mailto" id="mailto" type="email" class="form-control">
+                                    <input name="mailto" id="mailto" type="email" class="form-control"  style="height:0px!important; border: none!important; padding:0!important">
                                 </div>
                                 <div class="form-group">
-                                    <input name="disCountry" id="disCountry" type="email" class="form-control">
+                                    <input name="disCountry" id="disCountry" type="email" class="form-control"  style="height:0px!important; border: none!important; padding:0!important">
                                 </div>
                             </div>
                             <div class="col-lg-6">
