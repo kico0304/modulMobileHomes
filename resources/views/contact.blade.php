@@ -142,7 +142,7 @@
 @section('js')
     <script type="text/javascript">
 
-        let mailToAddress = mailToAddress;
+        let mailToAddress = "kico.jajcanin86@hotmail.com";
 
         function disableInputs() {
             //getting selected option
