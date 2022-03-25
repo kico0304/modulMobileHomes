@@ -2,7 +2,7 @@
 
 if(isset($_POST) && !empty($_POST)){
 
-	$email_to = "kico.jajcanin86@gmail.com";
+	$email_to = $_POST['sender'];
 	$email_subject = "Poruka sa sajta";
 
 	// data collector from form inputs
