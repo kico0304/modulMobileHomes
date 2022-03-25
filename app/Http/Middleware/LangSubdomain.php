@@ -22,7 +22,6 @@ class LangSubdomain
         $subdomain = $url_array[0];
         $ip_address = \Request::ip();
         $get_country = \Location::get($ip_address);
-        var_dump($get_country);
         if($get_country){
             $country_code = strtolower($get_country->countryCode);
         }
