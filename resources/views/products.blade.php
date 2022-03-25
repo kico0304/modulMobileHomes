@@ -9,7 +9,7 @@
 @endsection
 
 @section('sidebar')
-    <p>This is appended to the master navbar.</p>
+{{--    <p>This is appended to the master navbar.</p>--}}
 @endsection
 
 @section('content')
@@ -24,8 +24,8 @@
             <div class="row">
             <div class="col-md-12">
                 <div class="block text-center">
-                    <span class="text-white">KATALOG</span>
-                    <h1 class="mb-5 text-lg">Proizvodi</h1>
+                    <span class="text-white">{{__('home.product_text1')}}</span>
+                    <h1 class="mb-5 text-lg">{{__('home.product_text2')}}</h1>
                 </div>
             </div>
             </div>
@@ -37,9 +37,9 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6 text-center">
                     <div class="section-title">
-                        <h2>Naši proizvodi</h2>
+                        <h2>{{__('home.product_text3')}}</h2>
                         <div class="divider mx-auto my-4"></div>
-                        <p>Izaberite jednu od naših mobilnih kućica po Vašoj mjeri. Izaberite jednu od naših mobilnih kućica po Vašoj mjeri. Izaberite jednu od naših mobilnih kućica po Vašoj mjeri.</p>
+                        <p>{{__('home.product_text4')}}</p>
                     </div>
                 </div>
             </div>
@@ -47,13 +47,13 @@
             <div class="col-12 text-center  mb-5">
                 <div class="btn-group btn-group-toggle " data-toggle="buttons">
                     <label class="btn active ">
-                        <input type="radio" name="shuffle-filter" value="all" checked="checked" />Svi proizvodi
+                        <input type="radio" name="shuffle-filter" value="all" checked="checked" />{{__('home.product_text5')}}
                     </label>
                     <label class="btn ">
-                        <input type="radio" name="shuffle-filter" value="cat1" />Stambeni objekti
+                        <input type="radio" name="shuffle-filter" value="cat1" />{{__('home.product_text6')}}
                     </label>
                     <label class="btn">
-                        <input type="radio" name="shuffle-filter" value="cat2" />Poslovni objekti
+                        <input type="radio" name="shuffle-filter" value="cat2" />{{__('home.product_text7')}}
                     </label>
                 </div>
             </div>
@@ -75,7 +75,7 @@
                         </div>
                         <div class="content mt-3 product_view" data-id="{{$product->id}}">
                             <h4 class="mb-0"><a href="{{ route('product', $product->id) }}">{{$product->names[0]->name}}</a></h4>
-                            <p>Kvadratura: {{$product->surface}} m<span class="superscript">2<span></p>
+                            <p>{{__('home.product_text8')}} {{$product->surface}} m<span class="superscript">2<span></p>
                             <!-- <p>{{$product->id}}</p> -->
                         </div>
                     </div>
@@ -92,7 +92,7 @@
                         </div>
                         </div>
                         <div class="content mt-3">
-                            <h4 style="text-align:center" class="mb-0"><a href="{{ route('modules') }}">NAPRAVI SVOJU KOMBINACIJU</a></h4>
+                            <h4 style="text-align:center" class="mb-0"><a href="{{ route('modules') }}">{{__('home.product_text9')}}</a></h4>
                         </div>
                     </div>
                 </div>

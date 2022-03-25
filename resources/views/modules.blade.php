@@ -9,7 +9,7 @@
 @endsection
 
 @section('sidebar')
-    <p>This is appended to the master navbar.</p>
+{{--    <p>This is appended to the master navbar.</p>--}}
 @endsection
 
 @section('content')
@@ -24,8 +24,8 @@
             <div class="row">
             <div class="col-md-12">
                 <div class="block text-center">
-                    <span class="text-white">KATALOG</span>
-                    <h1 class="mb-5 text-lg">Konfigurator</h1>
+                    <span class="text-white">{{__('home.module_text1')}}</span>
+                    <h1 class="mb-5 text-lg">{{__('home.module_text2')}}</h1>
                 </div>
             </div>
             </div>
@@ -35,26 +35,31 @@
     <section class="section centered" style="padding: 30px 0 0;">
         <div class="row">
             <div class="col-lg-12 col-md-12 margined10">
-                <h3 class="centered mainBlue">Standardne kombinacije:</h3>
+                <h3 class="centered mainBlue">{{__('home.module_text3')}}</h3>
             </div>
-            <div class="col-lg-4 col-md-6 margined10">
-                <div class="btn btn-main btn-round-full" id="MMH21_S.01">MMH21_S.01</div>
-            </div>
-            <div class="col-lg-4 col-md-6 margined10">
-                <div class="btn btn-main btn-round-full" id="MMH21_M.02">MMH21_M.02</div>
-            </div>
-            <div class="col-lg-4 col-md-6 margined10">
-                <div class="btn btn-main btn-round-full" id="MMH21_XL.01">MMH21_XL.01</div>
-            </div>
-            <div class="col-lg-4 col-md-6 margined10">
-                <div class="btn btn-main btn-round-full" id="MMH21_L.01">MMH21_L.01</div>
-            </div>
-            <div class="col-lg-4 col-md-6 margined10">
-                <div class="btn btn-main btn-round-full" id="MMH21_M.01">MMH21_M.01</div>
-            </div>
-            <div class="col-lg-4 col-md-6 margined10">
-                <div class="btn btn-main btn-round-full" id="MMH21_L.02">MMH21_L.02</div>
-            </div>
+            @foreach($products as $product)
+                <div class="col-lg-4 col-md-6 margined10">
+                    <div class="btn btn-main btn-round-full" id="{{$product->names[0]->name}}">{{$product->names[0]->name}}</div>
+                </div>
+            @endforeach
+{{--            <div class="col-lg-4 col-md-6 margined10">--}}
+{{--                <div class="btn btn-main btn-round-full" id="MMH21_S.01">MMH21_S.01</div>--}}
+{{--            </div>--}}
+{{--            <div class="col-lg-4 col-md-6 margined10">--}}
+{{--                <div class="btn btn-main btn-round-full" id="MMH21_M.02">MMH21_M.02</div>--}}
+{{--            </div>--}}
+{{--            <div class="col-lg-4 col-md-6 margined10">--}}
+{{--                <div class="btn btn-main btn-round-full" id="MMH21_XL.01">MMH21_XL.01</div>--}}
+{{--            </div>--}}
+{{--            <div class="col-lg-4 col-md-6 margined10">--}}
+{{--                <div class="btn btn-main btn-round-full" id="MMH21_L.01">MMH21_L.01</div>--}}
+{{--            </div>--}}
+{{--            <div class="col-lg-4 col-md-6 margined10">--}}
+{{--                <div class="btn btn-main btn-round-full" id="MMH21_M.01">MMH21_M.01</div>--}}
+{{--            </div>--}}
+{{--            <div class="col-lg-4 col-md-6 margined10">--}}
+{{--                <div class="btn btn-main btn-round-full" id="MMH21_L.02">MMH21_L.02</div>--}}
+{{--            </div>--}}
         </div>
     <section>
 
@@ -62,7 +67,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 margined10">
-                    <h3 class="centered mainBlue  margined30">Svoju konfiguraciju možete odabrati izborom donjih modula i dodataka.</h3>
+                    <h3 class="centered mainBlue  margined30">{{__('home.module_text4')}}</h3>
                 </div>
                 <div class="col-sm-8" style="text-align: left;">
                     <div class="row">
@@ -85,14 +90,14 @@
                         </div>
                         @endforeach
                         <div class="col-sm-12">
-                            <h3 class="centered mainBlue">Dodatne opcije:</h3>
+                            <h3 class="centered mainBlue">{{__('home.module_text5')}}</h3>
                         </div>
                         @include('options')
                     </div>
                 </div>
                 <div id="selectedResults" class="col-sm-4 fixedElement">
                     <div id="selectedElements">
-                        <p>Izabrali ste:</p>
+                        <p>{{__('home.module_text6')}}</p>
                         <p>1x model A</p>
                         <p>1x model A</p>
                         <p>1x model A</p>
@@ -102,7 +107,7 @@
                         <p>1x model A</p>
                     </div>
                     <div id="selectedElementsPrice">
-                        <p>Ukupna cena: 5000€</p>
+                        <p>{{__('home.module_text7')}} 5000€</p>
                     </div>
                 </div>
             </div>
@@ -137,14 +142,14 @@
             $udaljenost = ($el.position().top).toFixed(0);
             console.log($udaljenost);
         });
-        $(window).scroll(function(e){ 
+        $(window).scroll(function(e){
             var isPositionFixed = ($el.css('position') == 'fixed');
-            if ($(this).scrollTop() > $udaljenost && !isPositionFixed){ 
-                $el.css({'position': 'fixed', 'top': '15px', 'right': '30px', 'width': 'calc(35% - 40px)'}); 
+            if ($(this).scrollTop() > $udaljenost && !isPositionFixed){
+                $el.css({'position': 'fixed', 'top': '15px', 'right': '30px', 'width': 'calc(35% - 40px)'});
             }
             if ($(this).scrollTop() < $udaljenost && isPositionFixed){
-                $el.css({'position': 'static', 'top': '0px'}); 
-            } 
+                $el.css({'position': 'static', 'top': '0px'});
+            }
         });
     </script>
 
