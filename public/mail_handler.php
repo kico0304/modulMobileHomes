@@ -4,7 +4,7 @@ if(isset($_POST) && !empty($_POST)){
 
 	$email_to =  $_POST['mailto'];
 	$email_subject = "Poruka sa sajta";
-	$getCountry = $_POST['countryChoose'];
+	$getCountry = $_POST['disCountry'];
 	// data collector from form inputs
 	$getName = $_POST['name'];
 	//$getSurname = $_POST['surname'];
@@ -47,12 +47,12 @@ if(isset($_POST) && !empty($_POST)){
 		return str_replace($bad,"",$string);
 	}
 
+	$email_message .= "Zemlja distributera: ".clean_string($getCountry)."\r\n";
 	$email_message .= "Ime i prezime: ".clean_string($getName)."\r\n";
 	$email_message .= "Email: ".clean_string($getEmail)."\r\n";
 	$email_message .= "Naslov: ".clean_string($getSubject)."\r\n";
 	$email_message .= "Telefon: ".clean_string($getPhone)."\r\n";
 	$email_message .= "Poruka: ".clean_string($getMessage)."\r\n";
-	$email_message .= "Sender: ".clean_string($email_to)."\r\n";
 
 	print_r($email_message);
 

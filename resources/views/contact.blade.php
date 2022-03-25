@@ -65,9 +65,12 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-12">
+                            <div class="col-lg-12" style="display: none;">
                                 <div class="form-group">
                                     <input name="mailto" id="mailto" type="email" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <input name="disCountry" id="disCountry" type="email" class="form-control">
                                 </div>
                             </div>
                             <div class="col-lg-6">
@@ -154,49 +157,56 @@
                     $(".mapouter, .gmap_canvas, #gmap_canvas").css("height", "0px");
                     $("#gmap_canvas").prop("src", "")
                     $("#addressCounties").html("").animate({'opacity': 1}, 400);
-                    $("#mailto").html("");
+                    $("#mailto").val("");
+                    $("#disCountry").val("");
                     break;
                 case "Bosna i Hercegovina":
                     $("#name, #email, #subject, #phone, #message, #submitContact").prop("disabled", false);
                     $(".mapouter, .gmap_canvas, #gmap_canvas").css("height", "500px");
                     $("#gmap_canvas").prop("src", "https://maps.google.com/maps?q=Isaije%20MItrovi%C4%87a%203,%2078000%20Banja%20Luka&t=&z=13&ie=UTF8&iwloc=&output=embed");
                     $("#addressCounties").html(bosniaAddress).animate({'opacity': 1}, 400);
-                    $("#mailto").html("kico.jajcanin86@gmail.com");
+                    $("#mailto").val("kico.jajcanin86@gmail.com");
+                    $("#disCountry").val("Bosna i Hercegovina");
                     break;
                 case "Hrvatska":
                     $("#name, #email, #subject, #phone, #message, #submitContact").prop("disabled", false);
                     $(".mapouter, .gmap_canvas, #gmap_canvas").css("height", "500px");
                     $("#gmap_canvas").prop("src", "https://maps.google.com/maps?q=5000%20Nova%20Gorica,%20%20Ulica%20Gradnikove%20brigade%2053&t=&z=13&ie=UTF8&iwloc=&output=embed");
                     $("#addressCounties").html(sloveniaAddress).animate({'opacity': 1}, 400);
-                    $("#mailto").html("kico.jajcanin86@gmail.com");
+                    $("#mailto").val("kico.jajcanin86@gmail.com");
+                    $("#disCountry").val("Hrvatska");
                     break;
                 case "Slovenija":
                     $("#name, #email, #subject, #phone, #message, #submitContact").prop("disabled", false);
                     $(".mapouter, .gmap_canvas, #gmap_canvas").css("height", "500px");
                     $("#gmap_canvas").prop("src", "https://maps.google.com/maps?q=5000%20Nova%20Gorica,%20%20Ulica%20Gradnikove%20brigade%2053&t=&z=13&ie=UTF8&iwloc=&output=embed");
                     $("#addressCounties").html(sloveniaAddress).animate({'opacity': 1}, 400);
-                    $("#mailto").html("kico.jajcanin86@gmail.com");
+                    $("#mailto").val("kico.jajcanin86@gmail.com");
+                    $("#disCountry").val("Slovenija");
                     break;
                 case "Srbija":
                     $("#name, #email, #subject, #phone, #message, #submitContact").prop("disabled", false);
                     $(".mapouter, .gmap_canvas, #gmap_canvas").css("height", "500px");
                     $("#gmap_canvas").prop("src", "https://maps.google.com/maps?q=Ugrinova%C4%8Dki%20Put%2029%20%2011080,%20Beograd%20(Zemun)%20Serbia&t=&z=13&ie=UTF8&iwloc=&output=embed");
                     $("#addressCounties").html(srbijaAddress).animate({'opacity': 1}, 400);
-                    $("#mailto").html("kico.jajcanin86@gmail.com");
+                    $("#mailto").val("kico.jajcanin86@gmail.com");
+                    $("#disCountry").val("Srbija");
                     break;
                 case "Grčka":
                     $("#name, #email, #subject, #phone, #message, #submitContact").prop("disabled", false);
                     $(".mapouter, .gmap_canvas, #gmap_canvas").css("height", "500px");
                     $("#gmap_canvas").prop("src", "https://maps.google.com/maps?q=Ugrinova%C4%8Dki%20Put%2029%20%2011080,%20Beograd%20(Zemun)%20Serbia&t=&z=13&ie=UTF8&iwloc=&output=embed");
                     $("#addressCounties").html(srbijaAddress).animate({'opacity': 1}, 400);
-                    document.getElementById("mailto").value = "kico.jajcanin86@gmail.com";
+                    $("#mailto").val("kico.jajcanin86@gmail.com");
+                    $("#disCountry").val("Grčka");
                     break;
                 case "Makedonija":
                     $("#name, #email, #subject, #phone, #message, #submitContact").prop("disabled", false);
                     $(".mapouter, .gmap_canvas, #gmap_canvas").css("height", "500px");
                     $("#gmap_canvas").prop("src", "https://maps.google.com/maps?q=Ugrinova%C4%8Dki%20Put%2029%20%2011080,%20Beograd%20(Zemun)%20Serbia&t=&z=13&ie=UTF8&iwloc=&output=embed");
                     $("#addressCounties").html(srbijaAddress).animate({'opacity': 1}, 400);
-                    $("#mailto").html("kico.jajcanin86@gmail.com");
+                    $("#mailto").val("kico.jajcanin86@gmail.com");
+                    $("#disCountry").val("Makedonija");
                     break;
             }
 
