@@ -67,7 +67,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <input name="sender" id="sender" type="text" class="form-control" placeholder="Sender..." disabled="true" style="display: none;">
+                                    <input name="sender" id="sender" type="text" class="form-control" placeholder="Sender..." disabled="true" style="">
                                 </div>
                             </div>
                             <div class="col-lg-6">
