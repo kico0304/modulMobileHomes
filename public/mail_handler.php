@@ -4,7 +4,7 @@ if(isset($_POST) && !empty($_POST)){
 
 	$email_to =  $_POST['mailto'];
 	$email_subject = "Poruka sa sajta";
-
+	$country = $_POST['countryChoose'];
 	// data collector from form inputs
 	$getName = $_POST['name'];
 	//$getSurname = $_POST['surname'];
@@ -52,9 +52,9 @@ if(isset($_POST) && !empty($_POST)){
 	$email_message .= "Naslov: ".clean_string($getSubject)."\r\n";
 	$email_message .= "Telefon: ".clean_string($getPhone)."\r\n";
 	$email_message .= "Poruka: ".clean_string($getMessage)."\r\n";
-	$email_message .= "Sender: ".clean_string($email_to)."\r\n";
+	$email_message .= "Sender: ".clean_string($country)."\r\n";
 
-	print_r($email_message);
+	//print_r($email_message);
 
 	$headers = 'From: '.$getEmail."\r\n".
 	'Reply-To: '.$getEmail."\r\n" .
