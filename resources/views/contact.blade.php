@@ -32,34 +32,6 @@
         </div>
     </section>
 
-    <!-- <section class="section contact-info pb-0">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-sm-6 col-md-6">
-                    <div class="contact-block mb-4 mb-lg-0">
-                        <i class="icofont-live-support"></i>
-                        <h5>Pozovite nas</h5>
-                        +387 65 959 595
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 col-md-6">
-                    <div class="contact-block mb-4 mb-lg-0">
-                        <i class="icofont-support-faq"></i>
-                        <h5>Pišite nam</h5>
-                        info@modulmobilehomes.com
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 col-md-6">
-                    <div class="contact-block mb-4 mb-lg-0">
-                        <i class="icofont-location-pin"></i>
-                        <h5>Posjetite nas</h5>
-                        Isaije Mitrovića 3, Banja Luka, BiH
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
     <section class="contact-form-wrap section">
         <div class="container">
             <div class="row justify-content-center">
@@ -83,7 +55,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                    <form id="contact-form" class="contact__form " method="post" action="mail.php">
+                    <form id="contact-form" class="contact__form " method="post" action="mail_handler.php">
                     <!-- form message -->
                         <div class="row">
                             <div class="col-12">
@@ -92,8 +64,12 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <input name="sender" id="sender" type="text" class="form-control" placeholder="Sender..." disabled="true" style="display: none;">
+                                </div>
+                            </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <input name="name" id="name" type="text" class="form-control" placeholder="Ime i prezime" disabled="true">
@@ -133,7 +109,6 @@
     <div class="mapouter">
         <div class="gmap_canvas">
             <iframe width="1920" height="0" id="gmap_canvas" src="" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-            <a href="https://123movies-to.org"></a><br>
             <style>
                 .mapouter{
                     position:relative;
@@ -179,42 +154,49 @@
                     $(".mapouter, .gmap_canvas, #gmap_canvas").css("height", "0px");
                     $("#gmap_canvas").prop("src", "")
                     $("#addressCounties").html("").animate({'opacity': 1}, 400);
+                    $("#sender").val("").animate({'opacity': 1}, 400);
                     break;
                 case "Bosna i Hercegovina":
                     $("#name, #email, #subject, #phone, #message, #submitContact").prop("disabled", false);
                     $(".mapouter, .gmap_canvas, #gmap_canvas").css("height", "500px");
                     $("#gmap_canvas").prop("src", "https://maps.google.com/maps?q=Isaije%20MItrovi%C4%87a%203,%2078000%20Banja%20Luka&t=&z=13&ie=UTF8&iwloc=&output=embed");
                     $("#addressCounties").html(bosniaAddress).animate({'opacity': 1}, 400);
+                    $("#sender").val("kico.jajcanin86@gmail.com").animate({'opacity': 1}, 400);
                     break;
                 case "Hrvatska":
                     $("#name, #email, #subject, #phone, #message, #submitContact").prop("disabled", false);
                     $(".mapouter, .gmap_canvas, #gmap_canvas").css("height", "500px");
                     $("#gmap_canvas").prop("src", "https://maps.google.com/maps?q=5000%20Nova%20Gorica,%20%20Ulica%20Gradnikove%20brigade%2053&t=&z=13&ie=UTF8&iwloc=&output=embed");
                     $("#addressCounties").html(sloveniaAddress).animate({'opacity': 1}, 400);
+                    $("#sender").val("kico.jajcanin86@gmail.com").animate({'opacity': 1}, 400);
                     break;
                 case "Slovenija":
                     $("#name, #email, #subject, #phone, #message, #submitContact").prop("disabled", false);
                     $(".mapouter, .gmap_canvas, #gmap_canvas").css("height", "500px");
                     $("#gmap_canvas").prop("src", "https://maps.google.com/maps?q=5000%20Nova%20Gorica,%20%20Ulica%20Gradnikove%20brigade%2053&t=&z=13&ie=UTF8&iwloc=&output=embed");
                     $("#addressCounties").html(sloveniaAddress).animate({'opacity': 1}, 400);
+                    $("#sender").val("kico.jajcanin86@gmail.com").animate({'opacity': 1}, 400);
                     break;
                 case "Srbija":
                     $("#name, #email, #subject, #phone, #message, #submitContact").prop("disabled", false);
                     $(".mapouter, .gmap_canvas, #gmap_canvas").css("height", "500px");
                     $("#gmap_canvas").prop("src", "https://maps.google.com/maps?q=Ugrinova%C4%8Dki%20Put%2029%20%2011080,%20Beograd%20(Zemun)%20Serbia&t=&z=13&ie=UTF8&iwloc=&output=embed");
                     $("#addressCounties").html(srbijaAddress).animate({'opacity': 1}, 400);
+                    $("#sender").val("kico.jajcanin86@gmail.com").animate({'opacity': 1}, 400);
                     break;
                 case "Grčka":
                     $("#name, #email, #subject, #phone, #message, #submitContact").prop("disabled", false);
                     $(".mapouter, .gmap_canvas, #gmap_canvas").css("height", "500px");
                     $("#gmap_canvas").prop("src", "https://maps.google.com/maps?q=Ugrinova%C4%8Dki%20Put%2029%20%2011080,%20Beograd%20(Zemun)%20Serbia&t=&z=13&ie=UTF8&iwloc=&output=embed");
                     $("#addressCounties").html(srbijaAddress).animate({'opacity': 1}, 400);
+                    $("#sender").val("kico.jajcanin86@gmail.com").animate({'opacity': 1}, 400);
                     break;
                 case "Makedonija":
                     $("#name, #email, #subject, #phone, #message, #submitContact").prop("disabled", false);
                     $(".mapouter, .gmap_canvas, #gmap_canvas").css("height", "500px");
                     $("#gmap_canvas").prop("src", "https://maps.google.com/maps?q=Ugrinova%C4%8Dki%20Put%2029%20%2011080,%20Beograd%20(Zemun)%20Serbia&t=&z=13&ie=UTF8&iwloc=&output=embed");
                     $("#addressCounties").html(srbijaAddress).animate({'opacity': 1}, 400);
+                    $("#sender").val("kico.jajcanin86@gmail.com").animate({'opacity': 1}, 400);
                     break;
             }
 
