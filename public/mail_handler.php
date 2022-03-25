@@ -53,6 +53,8 @@ if(isset($_POST) && !empty($_POST)){
 	$email_message .= "Telefon: ".clean_string($getPhone)."\r\n";
 	$email_message .= "Poruka: ".clean_string($getMessage)."\r\n";
 
+	print_r($email_message);
+
 	$headers = 'From: '.$getEmail."\r\n".
 	'Reply-To: '.$getEmail."\r\n" .
 	'X-Mailer: PHP/' . phpversion();
