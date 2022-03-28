@@ -103,13 +103,6 @@
             <div class="row">
                 <h3 class="margined30 centered flexGrow1 myMainColorForTexts">{{__('home.investor_text13')}}</h3>
                 <form id="contact-form" class="contact__form" method="post" action="{{ asset('calc.php') }}">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="alert alert-success contact__msg" style="display: none" role="alert">
-                                {{__('home.contact_text11')}}
-                            </div>
-                        </div>
-                    </div>
                     <div class="row centered">
                         <div class="col-lg-6 col-md-6">
                             <div id="calculationButton" class="btn btn-main btn-round-full btn-active" style="margin-bottom:30px">{{__('home.investor_text14')}}</div>
@@ -258,6 +251,13 @@
                         </div>
                         <div class="col-lg-12 col-md-6">
                             <h3 class="margined2030">{{__('home.investor_text44')}}</h3>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="alert alert-success contact__msg" style="display: none" role="alert">
+                                        {{__('home.contact_text11')}}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-lg-4 col-md-6">
                             <div class="form-group">
