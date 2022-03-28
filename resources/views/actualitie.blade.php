@@ -37,15 +37,15 @@
     <section class="section blog-wrap">
         <div class="container">
             <div class="row">
+            
+            @foreach($actualitie->images as $image)
+            <div class="col-lg-4 mb-4">
+                <img class="lightboxed" rel="group1" src="{{asset('images/actualities/actualities_'.$actualitie->id.'/'.$image->name)}}" data-link="{{asset('images/actualities/actualities_'.$actualitie->id.'/'.$image->name)}}" alt="" data-caption="" />
+            </div>
+            @endforeach
                 <div class="col-lg-12 mb-5">
                     <div class="single-blog-item">
-                        <!-- <div class="gallery js-flickity" data-flickity-options='{ "wrapAround": true }'>
-                            @foreach($actualitie->images as $image) 
-                            <img src="" alt="" class="img-fluid">
-                            <div class="gallery-cell"><img src="{{asset('images/actualities/actualities_'.$actualitie->id.'/'.$image->name)}}" ></div>
-                            @endforeach
-                        </div> -->
-                        <div class="swiper mySwiper" style="max-height:400px">
+                        <!-- <div class="swiper mySwiper" style="max-height:400px">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
                                     @foreach($actualitie->images as $image)
@@ -55,7 +55,7 @@
                             </div>
                             <div class="swiper-button-next"></div>
                             <div class="swiper-button-prev"></div>
-                        </div>
+                        </div> -->
                         <div class="blog-item-content mt-5">
                             <div class="blog-item-meta mb-3">
                                 <span class="text-black text-capitalize mr-3"><i class="icofont-calendar mr-2"></i>{{date('d-m-Y', strtotime($actualitie->created_at))}}</span>

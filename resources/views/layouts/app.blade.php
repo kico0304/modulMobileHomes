@@ -39,6 +39,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.0.0/flickity.css">
         <!-- Swiper -->
         <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+        <!-- jQuery Gallery -->
+        <link rel="stylesheet" href="{{ asset('css/lightboxed.css') }}"/>
         <!-- CSS files from template END -->
 
         @yield('componentcss')
@@ -76,6 +78,8 @@
         <script src="{{ asset('js/jquery.flipper-responsive.js') }}"></script>
         <!-- Swiper JS -->
         <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+        <!-- jQuery Gallery -->
+        <script src="{{ asset('js/lightboxed.js') }}"></script>
         <!-- JS files from template END -->
         @yield('js')
     </body>

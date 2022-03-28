@@ -153,9 +153,11 @@
                         </div>
                         <div class="col-lg-12 col-md-12 margined10">
                             <h3 class="myMainColorForTexts">{{__('home.investor_text20')}} <span id="ukupnoSoba">0</span></h3>
+                            <input name="totalRoomsHidden" id="totalRoomsHidden" type="number" class="form-control">
                         </div>
                         <div class="col-lg-12 col-md-12 margined10">
                             <h3 class="myMainColorForTexts">{{__('home.investor_text21')}} <span id="ukupnaInvesticija">0.00 €</span></h3>
+                            <input name="totalInvestionHidden" id="totalInvestionHidden" type="number" class="form-control">
                         </div>
                         <div class="col-lg-12 col-md-12 margined10" style="margin-top: 50px!important">
                             <h4 class="myMainColorForTexts">{{__('home.investor_text22')}}</h4>
@@ -177,6 +179,7 @@
                             <div class="form-group">
                                 <label>{{__('home.investor_text25')}}</label>
                                 <input name="totalMinus" id="totalMinus" type="number" class="form-control" placeholder="" disabled="true">
+                                <input name="totalMinus_0" id="totalMinus_0" type="text" class="form-control">
                             </div>
                         </div>
                         <div class="col-lg-12 col-md-12 margined10">
@@ -186,7 +189,7 @@
                         <div class="col-lg-4 col-md-6 margined10">
                             <div class="form-group">
                                 <label>{{__('home.investor_text27')}}</label>
-                                <input name="dailyRentPrice" id="dailyRentPrice" type="number" class="form-control" placeholder="{{__('home.investor_text63')}}">
+                                <input name="dailyRentPrice" id="dailyRentPrice" type="text" class="form-control" placeholder="{{__('home.investor_text63')}}">
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6 margined10">
@@ -199,6 +202,7 @@
                             <div class="form-group">
                                 <label>{{__('home.investor_text29')}}</label>
                                 <input name="totalPlus" id="totalPlus" type="number" class="form-control" placeholder="" disabled="true">
+                                <input name="totalPlus_0" id="totalPlus_0" type="number" class="form-control">
                             </div>
                         </div>
                         <div class="col-lg-12 col-md-12" style="text-align:center;">
@@ -373,6 +377,7 @@
                 finalBrojSoba = parseInt(modelAnumber) + parseInt(modelBnumber)*2 + parseInt(modelDnumber);
                 $("#ukupnoSoba").text(finalBrojSoba);
                 $("#finalBrojSoba_").text(finalBrojSoba);
+                $("#totalRoomsHidden").val(finalBrojSoba);
             });
 
             //function for prices and total investion
@@ -406,6 +411,7 @@
 
                 $("#ukupnaInvesticija").text(totalInvestion.toFixed(2)+" €");
                 $("#totalInvestion_").text(totalInvestion.toFixed(2)+" €");
+                $("#totalInvestionHidden").val(totalInvestion.toFixed(2));
             });
 
             //function for loan calculation
@@ -431,7 +437,7 @@
                     loanPayment = (totalInvestion * monthlyInterest * Math.pow(1 + monthlyInterest, monthsNumber)) / (Math.pow(1 + monthlyInterest, monthsNumber) - 1);
                     //writing result to input
                     if($("#numberOfYears").val() && $("#yearlyInterest").val()){
-                        $("#totalMinus").val(loanPayment.toFixed(2));
+                        $("#totalMinus, #totalMinus_0").val(loanPayment.toFixed(2));
                         $("#loanPayment_").text(parseInt(loanPayment).toFixed(2)+ " €");
                     }
                 }
@@ -452,7 +458,7 @@
                     //getting total income
                     totalIncome = finalBrojSoba * dailyRentPrice * ((averageRent * 30) / 100);
 
-                    $("#totalPlus").val(totalIncome.toFixed(2));
+                    $("#totalPlus, #totalPlus_0").val(totalIncome.toFixed(2));
                     $("#totalIncome_").text(totalIncome.toFixed(2)+ " €");
                 }
             });

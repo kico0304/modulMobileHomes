@@ -2195,3 +2195,7 @@ input.btn:disabled:hover {
 .sliderTextSingle > p {
     max-width: 50%;
 }
+
+img.lightboxed {
+    width: 100%;
+}
