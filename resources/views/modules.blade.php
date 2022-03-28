@@ -33,15 +33,17 @@
     </section>
 
     <section class="section centered" style="padding: 30px 0 0;">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 margined10">
-                <h3 class="centered mainBlue">{{__('home.module_text3')}}</h3>
-            </div>
-            @foreach($products as $product)
-                <div class="col-lg-4 col-md-6 margined10">
-                    <div class="btn btn-main btn-round-full" id="{{$product->names[0]->name}}">{{$product->names[0]->name}}</div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 margined10">
+                    <h3 class="centered mainBlue">{{__('home.module_text3')}}</h3>
                 </div>
-            @endforeach
+                @foreach($products as $product)
+                    <div class="col-lg-4 col-md-6 margined10">
+                        <div class="btn btn-main btn-round-full" id="{{$product->names[0]->name}}">{{$product->names[0]->name}}</div>
+                    </div>
+                @endforeach
+            </div>
         </div>
     <section>
 
