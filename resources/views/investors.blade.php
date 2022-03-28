@@ -158,11 +158,11 @@
                         </div>
                         <div class="col-lg-12 col-md-12 margined10">
                             <h3 class="myMainColorForTexts">{{__('home.investor_text20')}} <span id="ukupnoSoba">0</span></h3>
-                            <input name="totalRoomsHidden" id="totalRoomsHidden" type="number" class="form-control">
+                            <input name="totalRoomsHidden" id="totalRoomsHidden" type="number" class="form-control" hidden>
                         </div>
                         <div class="col-lg-12 col-md-12 margined10">
                             <h3 class="myMainColorForTexts">{{__('home.investor_text21')}} <span id="ukupnaInvesticija">0.00 €</span></h3>
-                            <input name="totalInvestionHidden" id="totalInvestionHidden" type="number" class="form-control">
+                            <input name="totalInvestionHidden" id="totalInvestionHidden" type="number" class="form-control" hidden>
                         </div>
                         <div class="col-lg-12 col-md-12 margined10" style="margin-top: 50px!important">
                             <h4 class="myMainColorForTexts">{{__('home.investor_text22')}}</h4>
@@ -184,7 +184,7 @@
                             <div class="form-group">
                                 <label>{{__('home.investor_text25')}}</label>
                                 <input name="totalMinus" id="totalMinus" type="number" class="form-control" placeholder="" disabled="true">
-                                <input name="totalMinus_0" id="totalMinus_0" type="text" class="form-control">
+                                <input name="totalMinus_0" id="totalMinus_0" type="text" class="form-control" hidden>
                             </div>
                         </div>
                         <div class="col-lg-12 col-md-12 margined10">
@@ -194,7 +194,7 @@
                         <div class="col-lg-4 col-md-6 margined10">
                             <div class="form-group">
                                 <label>{{__('home.investor_text27')}}</label>
-                                <input name="dailyRentPrice" id="dailyRentPrice" type="text" class="form-control" placeholder="{{__('home.investor_text63')}}">
+                                <input name="dailyRentPrice" id="dailyRentPrice" type="number" class="form-control" placeholder="{{__('home.investor_text63')}}">
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6 margined10">
@@ -207,7 +207,7 @@
                             <div class="form-group">
                                 <label>{{__('home.investor_text29')}}</label>
                                 <input name="totalPlus" id="totalPlus" type="number" class="form-control" placeholder="" disabled="true">
-                                <input name="totalPlus_0" id="totalPlus_0" type="number" class="form-control">
+                                <input name="totalPlus_0" id="totalPlus_0" type="number" class="form-control" hidden>
                             </div>
                         </div>
                         <div class="col-lg-12 col-md-12" style="text-align:center;">
