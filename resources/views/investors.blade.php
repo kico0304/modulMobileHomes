@@ -103,6 +103,13 @@
             <div class="row">
                 <h3 class="margined30 centered flexGrow1 myMainColorForTexts">{{__('home.investor_text13')}}</h3>
                 <form id="calc-form" class="calc-form" method="post" action="calc.php">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="alert alert-success contact__msg" style="display: none" role="alert">
+                                {{__('home.contact_text11')}}
+                            </div>
+                        </div>
+                    </div>
                     <div class="row centered">
                         <div class="col-lg-6 col-md-6">
                             <div id="calculationButton" class="btn btn-main btn-round-full btn-active" style="margin-bottom:30px">{{__('home.investor_text14')}}</div>

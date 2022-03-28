@@ -83,7 +83,7 @@ if(isset($_POST) && !empty($_POST)){
 	$email_message .= "Prosečna popunjenost: ".clean_string($getaverageRent)."%"."\r\n";
 	$email_message .= "Ukupni mesečni prihod: ".clean_string($gettotalPlus)."€"."\r\n";
 
-	print_r($email_message);
+	//print_r($email_message);
 
 
 	//$email_message .= "Zemlja distributera: ".clean_string($getCountry)."\r\n";
