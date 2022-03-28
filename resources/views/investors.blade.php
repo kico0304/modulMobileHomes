@@ -275,7 +275,7 @@
                             <div class="form-group">
                                 <label>{{__('home.investor_text50')}}</label>
                                 <input name="phone_" id="phone_" type="text" class="form-control" placeholder="{{__('home.investor_text51')}}">
-                                <span class="requiredFieldNo">{{__('home.investor_text52')}}</span>
+                                <!-- <span class="requiredFieldNo">{{__('home.investor_text52')}}</span> -->
                             </div>
                         </div>
                         <div class="col-lg-12 col-md-6">
@@ -476,7 +476,7 @@
             var dd = targetDate.getDate();
             var mm = targetDate.getMonth() + 1; // 0 is January, so we must add 1
             var yyyy = targetDate.getFullYear();
-            var hours = targetDate.getHours() + 1;
+            var hours = targetDate.getHours();
             var minutes = targetDate.getMinutes();
             var seconds = targetDate.getSeconds();
             var dateString = yyyy + "-" + mm + "-" + dd + " " + hours + ":" + minutes + ":" + seconds;
