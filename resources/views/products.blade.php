@@ -49,11 +49,11 @@
                     <label class="btn active ">
                         <input type="radio" name="shuffle-filter" value="all" checked="checked" />{{__('home.product_text5')}}
                     </label>
-                    <label class="btn ">
-                        <input type="radio" name="shuffle-filter" value="cat1" />{{__('home.product_text6')}}
+                    <label class="btn">
+                        <input type="radio" name="shuffle-filter" value="1" />{{__('home.product_text6')}}
                     </label>
                     <label class="btn">
-                        <input type="radio" name="shuffle-filter" value="cat2" />{{__('home.product_text7')}}
+                        <input type="radio" name="shuffle-filter" value="2" />{{__('home.product_text7')}}
                     </label>
                 </div>
             </div>
@@ -66,7 +66,7 @@
                 <!-- <p>Product text: {{$product->texts[0]->text}}</p> -->
                 <!-- <img class="img" alt="" src="{{asset('images/products/product_'.$product->id.'/'.$product->images[0]->name)}}"> -->
 
-                <div class="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item" data-groups="[&quot;cat1&quot;,&quot;cat2&quot;]">
+                <div class="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item" data-groups="[&quot;{{$product->type}}&quot;,&quot;{{$product->type}}&quot;]">
                     <div class="position-relative doctor-inner-box">
                         <div class="doctor-profile">
                         <div class="doctor-img">
@@ -75,14 +75,14 @@
                         </div>
                         <div class="content mt-3 product_view" data-id="{{$product->id}}">
                             <h4 class="mb-0"><a href="{{ route('product', $product->id) }}">{{$product->names[0]->name}}</a></h4>
-                            <p>{{__('home.product_text8')}} {{$product->surface}} m<span class="superscript">2<span></p>
+                            <p>{{__('home.product_text8')}} {{$product->surface}} <span class="superscript">2</span></p>
                             <!-- <p>{{$product->id}}</p> -->
                         </div>
                     </div>
                 </div>
             @endforeach
 
-                <div class="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item" data-groups="[&quot;cat1&quot;,&quot;cat2&quot;]">
+                <div class="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item" data-groups="[&quot;{{$product->type}}&quot;,&quot;{{$product->type}}&quot;]">
                     <div class="position-relative doctor-inner-box">
                         <div class="doctor-profile">
                         <div class="doctor-img">

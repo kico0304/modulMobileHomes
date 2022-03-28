@@ -87,17 +87,14 @@ class HomeController extends Controller
             $actualities = Actualitie::with(['images'])->whereHas('actualities_lang', function ($q) use ($lang_id) {
                 $q->where('language_id', $lang_id);
             })->where('name', 'like', '%'.$filter.'%')
+                ->orderBy('created_at', 'desc')
                 ->paginate(3);
         } else {
             $actualities = Actualitie::with(['images'])->whereHas('actualities_lang', function ($q) use ($lang_id) {
                 $q->where('language_id', $lang_id);
-            })->paginate(3);
+            })->orderBy('created_at', 'desc')
+                ->paginate(3);
         }
-
-//        $actualities = Actualitie::with(['images'])->whereHas('actualities_lang', function ($q) use ($lang_id) {
-//            $q->where('language_id', $lang_id);
-//        })->get();
-
 
         if(Actualitie::all()->count() > 3){
             $rand_actu = Actualitie::all()->random(3);
