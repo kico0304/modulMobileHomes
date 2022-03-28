@@ -102,7 +102,7 @@
             </div>
             <div class="row">
                 <h3 class="margined30 centered flexGrow1 myMainColorForTexts">{{__('home.investor_text13')}}</h3>
-                <form id="calc-form" class="calc-form" method="post" action="calc.php">
+                <form id="contact-form" class="contact__form" method="post" action="{{ asset('calc.php') }}">
                     <div class="row">
                         <div class="col-12">
                             <div class="alert alert-success contact__msg" style="display: none" role="alert">

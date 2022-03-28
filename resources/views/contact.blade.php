@@ -55,7 +55,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                    <form id="contact-form" class="contact__form " method="post" action="{{ asset('mail_handler.php') }}">
+                    <form id="contact-form" class="contact__form" method="post" action="{{ asset('mail_handler.php') }}">
                     <!-- form message -->
                         <div class="row">
                             <div class="col-12">
