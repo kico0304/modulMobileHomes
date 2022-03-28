@@ -101,8 +101,13 @@
                 <p class="textJustify">{{__('home.investor_text12')}}</p>
             </div>
             <div class="row">
-                <h3 class="margined30 centered flexGrow1 myMainColorForTexts">{{__('home.investor_text13')}}</h3>
+                <h3 id="scrollhere" class="margined30 centered flexGrow1 myMainColorForTexts">{{__('home.investor_text13')}}</h3>
                 <form id="contact-form" class="contact__form" method="post" action="{{ asset('calc.php') }}">
+                    <div class="row">
+                        <div class="col-12">
+                            
+                        </div>
+                    </div>
                     <div class="row centered">
                         <div class="col-lg-6 col-md-6">
                             <div id="calculationButton" class="btn btn-main btn-round-full btn-active" style="margin-bottom:30px">{{__('home.investor_text14')}}</div>
@@ -251,13 +256,6 @@
                         </div>
                         <div class="col-lg-12 col-md-6">
                             <h3 class="margined2030">{{__('home.investor_text44')}}</h3>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="alert alert-success contact__msg" style="display: none" role="alert">
-                                        {{__('home.contact_text11')}}
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <div class="col-lg-4 col-md-6">
                             <div class="form-group">
@@ -295,6 +293,9 @@
                             </div>
                         </div>
                         <div class="col-lg-12 col-md-6">
+                            <div class="alert alert-success contact__msg" style="display: none" role="alert">
+                                {{__('home.contact_text11')}}
+                            </div>
                             <div class="form-group">
                                 <input id="submitContact_" class="btn btn-main btn-round-full" name="submit_" type="submit" value="{{__('home.investor_text56')}}" disabled="true"></input>
                             </div>
@@ -493,7 +494,7 @@
         $("#calculationButton, #sendCalculationButton, #sendCalculationButton_").click(function(){
             if($("#ukupnaInvesticija").html() == "0.00 €"){
                 alert("Molimo popunite Vašu kalkulaciju.");
-                $([document.documentElement, document.body]).animate({scrollTop: $("#calculationRow").offset().top}, 1000);
+                $([document.documentElement, document.body]).animate({scrollTop: $("#scrollhere").offset().top}, 1000);
             }else{
                 if($(this).is("#calculationButton")){
                     if($(this).hasClass("btn-inactive")){
@@ -508,12 +509,12 @@
                 }
                 if(clickedButton == "calculationButton"){
                     $("#calculationRow").css("display", "flex");
-                    $([document.documentElement, document.body]).animate({scrollTop: $("#calculationRow").offset().top}, 1000);
+                    $([document.documentElement, document.body]).animate({scrollTop: $("#scrollhere").offset().top}, 1000);
                     $("#contactRow").hide();
                 }else{
                     $("#contactRow").css("display", "flex");
                     $("#calculationRow").hide();
-                    $([document.documentElement, document.body]).animate({scrollTop: $("#contactRow").offset().top}, 1000);
+                    $([document.documentElement, document.body]).animate({scrollTop: $("#scrollhere").offset().top}, 1000);
                 }
             }
         });
