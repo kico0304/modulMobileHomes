@@ -48,11 +48,13 @@
     <section>
 
     <section class="section" style="padding: 30px 15px;">
-        <div class="container">
+        <div class="container" id="positionNeeded">
             <div class="row">
                 <div class="col-lg-12 col-md-12 margined10">
                     <h3 class="centered mainBlue  margined30">{{__('home.module_text4')}}</h3>
                 </div>
+            </div>
+            <div class="row udaljeniElement" style="position:relative">
                 <div class="col-sm-8" style="text-align: left;">
                     <div class="row">
                         @foreach($modules as $module)
@@ -79,12 +81,14 @@
                         @include('options')
                     </div>
                 </div>
-                <div id="selectedResults" class="col-sm-4 fixedElement">
-                    <div id="selectedElements">
-                        <p>{{__('home.module_text6')}}</p>
-                    </div>
-                    <div id="selectedElementsPrice">
-                        <p>{{__('home.module_text7')}} <span id="ukupnaCenaOdabranog"></span></p>
+                <div id="selectedResults" class="col-sm-4" style="position:absolute; top:0;right:0;">
+                    <div class="selectedResultsInner fixedElement">
+                        <div id="selectedElements">
+                            <p>{{__('home.module_text6')}}</p>
+                        </div>
+                        <div id="selectedElementsPrice">
+                            <p>{{__('home.module_text7')}} <span id="ukupnaCenaOdabranog"></span></p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -114,18 +118,24 @@
     <script type="text/javascript">
         let $el;
         let $udaljenost;
+        let $nopviel;
+        let $novaUdalj;
         $(document).ready(function(){
             $el = $('.fixedElement');
-            $udaljenost = ($el.position().top).toFixed(0);
+            $el2 = $('.udaljeniElement');
+            $udaljenost = ($el2.position().top).toFixed(0);
             console.log($udaljenost);
+            $noviel = $('#positionNeeded');
+            $novaUdalj = $noviel.position().left + $noviel.width();
+            console.log($novaUdalj);
         });
         $(window).scroll(function(e){
             var isPositionFixed = ($el.css('position') == 'fixed');
             if ($(this).scrollTop() > $udaljenost && !isPositionFixed){
-                $el.css({'position': 'fixed', 'top': '15px', 'right': '30px', 'width': 'calc(35% - 40px)'});
+                $el.css({'position': 'fixed', 'width': '33.333333%', 'right': $novaUdalj + '20px'});
             }
             if ($(this).scrollTop() < $udaljenost && isPositionFixed){
-                $el.css({'position': 'static', 'top': '0px'});
+                $el.css({'position': 'static', 'width': '100%'});
             }
         });
 
