@@ -205,7 +205,7 @@ class HomeController extends Controller
             $q->where('language', '=', $lang);
         }])->get();
 
-        $products = Product::with(['names' => function($q) use($lang) {
+        $products = Product::with(['product_parts', 'names' => function($q) use($lang) {
             $q->where('language', '=', $lang);
         }])->get();
 

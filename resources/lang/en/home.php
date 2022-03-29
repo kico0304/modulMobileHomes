@@ -113,6 +113,10 @@ return [
     'module_text5' => 'Dodatne opcije:',
     'module_text6' => 'Izabrali ste:',
     'module_text7' => 'Ukupna cena:',
+    'module_text8' => 'Količina:',
+    'module_text9' => 'Površina:',
+    'module_text10' => 'Cena:',
+    'module_text11' => 'Unesite količinu',
 
     /*
     |--------------------------------------------------------------------------

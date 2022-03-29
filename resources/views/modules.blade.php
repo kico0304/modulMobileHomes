@@ -40,7 +40,7 @@
                 </div>
                 @foreach($products as $product)
                     <div class="col-lg-4 col-md-6 margined10">
-                        <div class="btn btn-main btn-round-full" id="{{$product->names[0]->name}}">{{$product->names[0]->name}}</div>
+                        <div class="btn btn-main btn-round-full select_product" id="{{$product->names[0]->name}}" data-atrb="@foreach($product->product_parts as $part){{$part->id}},@endforeach">{{$product->names[0]->name}}</div>
                     </div>
                 @endforeach
             </div>
@@ -59,15 +59,15 @@
                     <div class="row">
                         @foreach($modules as $module)
                         <div class="col-sm-6">
-                            <input class="veryImportantInput" style="width: 20px;height: 20px;position: absolute;top: 2px;left: 15px;" class="inlineFlex" type="checkbox" price="{{$module->price}}" itemName="{{$module->part_names[0]->name}}">
+                            <input class="veryImportantInput inlineFlex" style="width: 20px;height: 20px;position: absolute;top: 2px;left: 15px;" type="checkbox" price="{{$module->price}}" itemName="{{$module->part_names[0]->name}}" data-id="{{$module->id}}">
                             <p style="margin-left: 30px;" class="inlineFlex"><b>{{$module->part_names[0]->name}}</b></p>
                             <div class="hiddableQuantity" style="margin-left: 30px; margin-bottom: 15px; display: none;">
-                                <p style="margin-bottom: 0;">Količina:</p>
-                                <input type="number" placeholder="Unesite količinu">
+                                <p style="margin-bottom: 0;">{{__('home.module_text8')}}</p>
+                                <input type="number" placeholder="{{__('home.module_text11')}}">
                             </div>
                             <p style="margin-left: 30px;">{{$module->part_texts[0]->text}}</p>
-                            <p style="margin-left: 30px;">Površina: {{$module->surface}}</p>
-                            <p style="margin-left: 30px;"><b>Cena: {{$module->price}}</b></p>
+                            <p style="margin-left: 30px;">{{__('home.module_text9')}} {{$module->surface}}</p>
+                            <p style="margin-left: 30px;"><b>{{__('home.module_text10')}} {{$module->price}}</b></p>
                         </div>
                         <div class="col-sm-6 centered">
                             @foreach($module->part_images as $part_img)
@@ -150,6 +150,15 @@
                 $(this).next().next().find('input').val(0);
             }
         });
+
+        $('.select_product').click(function (){
+            $('.veryImportantInput').prop('checked', false);
+            let id_str = $(this).data('atrb');
+            let id_arr = id_str.split(",").slice(0,-1);
+            $.each(id_arr, function(index, item) {
+                $('.veryImportantInput[data-id="'+ item +'"]').prop('checked', true);
+            });
+        })
     </script>
 
 @endsection
