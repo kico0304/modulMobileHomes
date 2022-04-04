@@ -84,11 +84,15 @@
                 <div id="selectedResults" class="col-sm-4" style="position:absolute; top:0;right:0;">
                     <div class="selectedResultsInner fixedElement">
                         <div id="selectedElements">
-                            <p>{{__('home.module_text6')}}</p>
-                            <p>-</p>
+                            <p><!--{{__('home.module_text6')}}-->Izabrani moduli:</p>
+                            <p id="nothingSelected">Nije izabran ni jedan modul.</p>
+                        </div>
+                        <div id="selectedOptions">
+                            <p>Izabrane dodatne opcije:</p>
+                            <p id="noOptionSelected">Nije izabrana ni jedna dodatna opcija.</p>
                         </div>
                         <div id="selectedElementsPrice">
-                            <p>{{__('home.module_text7')}} <span id="ukupnaCenaOdabranog"></span></p>
+                            <p>{{__('home.module_text7')}} <span id="ukupnaCenaOdabranog">0.00 €</span></p>
                         </div>
                     </div>
                 </div>
@@ -154,7 +158,7 @@
                 finalPriceAll = finalPriceAll + singledPrice;
             })
             //console.log(finalPriceAll);
-            $("#ukupnaCenaOdabranog").text(finalPriceAll);
+            $("#ukupnaCenaOdabranog").text(finalPriceAll+".00 €");
         }
 
         $(".veryImportantInput").click(function(){
@@ -171,6 +175,9 @@
                 $(this).attr("modulequantity", "1");
                 //get module info
                 moduleQuantity = $(this).attr("modulequantity");
+                // if($(this).attr("valueOption")){
+                //     console.log($(this).attr("valueOption"));
+                // };
                 //appending module
                 $("#selectedElements").append("<p id="+moduleNameNoSpace+"><span id="+moduleNameNoSpace+"_>"+moduleQuantity+"</span>x "+moduleName+"</p>");
 
@@ -190,6 +197,40 @@
                 //console.log(moduleNameNoSpacePrice);
                 document.getElementById(moduleNameNoSpacePrice).remove();
                 sabiranjeCijena();
+            }
+
+            if("#nothingSelected"){
+                $("#nothingSelected").css("display", "none");
+            }
+            if($("#selectedElements").children("p").length == 2){
+                $("#nothingSelected").css("display", "block");
+            }
+        });
+
+        $(".veryImportantInput2").click(function(){
+            optionName = $(this).attr("name");
+            optionNameNoSpace = optionName.replace(/\s/g, '');
+            if($(this).is(":checked")){
+                if($(this).attr("type") == "radio"){
+                    //kupimo value
+                    let valueOption = $(this).attr("value");
+                    if(valueOption == 0){
+                        document.getElementById(optionNameNoSpace).remove();
+                    }else{
+                        $("#selectedOptions").append("<p id="+optionNameNoSpace+">"+optionName+" ["+valueOption+"]</p>");
+                    }
+                }else{
+                    $("#selectedOptions").append("<p id="+optionNameNoSpace+">"+optionName+"</p>");
+                }
+            }else{
+                document.getElementById(optionNameNoSpace).remove();
+            }
+
+            if("#noOptionSelected"){
+                $("#noOptionSelected").css("display", "none");
+            }
+            if($("#selectedOptions").children("p").length == 2){
+                $("#noOptionSelected").css("display", "block");
             }
         });
 
