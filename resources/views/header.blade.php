@@ -1,4 +1,7 @@
     <header>
+        @foreach($app_lang as $lng)
+            {{$lng->lang}}
+        @endforeach
         <div class="header-top-bar">
             <div class="container">
                 <div class="row align-items-center">
