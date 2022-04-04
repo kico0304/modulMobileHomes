@@ -2,7 +2,7 @@
     <div class="col-sm-12">
         <p><b>{{$option->names[0]->name}}</b></p>
         <p>{{$option->texts[0]->text}}</p>
-        <p style="margin-left: 30px;"><b>Cena: {{$option->price}}</b></p>
+        <!-- <p style="margin-left: 30px;"><b>Cena: {{$option->price}}</b></p> -->
     </div>
     <div class="col-sm-12">
     @foreach($option->attributes as $attribute)

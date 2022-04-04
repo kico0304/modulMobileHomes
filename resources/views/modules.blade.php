@@ -63,7 +63,7 @@
                             <p style="margin-left: 30px;" class="inlineFlex"><b>{{$module->part_names[0]->name}}</b></p>
                             <div class="hiddableQuantity" style="margin-left: 30px; margin-bottom: 15px; display: none;">
                                 <p style="margin-bottom: 0;">{{__('home.module_text8')}}</p>
-                                <input type="number" placeholder="{{__('home.module_text11')}}">
+                                <input class="quantityInputEach" moduleName="{{$module->part_names[0]->name}}" type="number" placeholder="{{__('home.module_text11')}}">
                             </div>
                             <p style="margin-left: 30px;">{{$module->part_texts[0]->text}}</p>
                             <p style="margin-left: 30px;">{{__('home.module_text9')}} {{$module->surface}}</p>
@@ -141,14 +141,47 @@
 
         /* input interaction */
 
+        let moduleName;
+        let moduleNameNoSpace;
+        let moduleQuantity;
+
         $(".veryImportantInput").click(function(){
+            //get module info
+            moduleName = $(this).attr("itemname");
+            moduleNameNoSpace = moduleName.replace(/\s/g, '');
+            //showing quantity
             if($(this).is(":checked")){
+                //show quantity input
                 $(this).next().next().show();
+                //set quantity to 1
                 $(this).next().next().find('input').val(1);
+                //set quantity attribute to 1
+                $(this).attr("modulequantity", "1");
+                //get module info
+                //moduleName = $(this).attr("itemname");
+                //moduleNameNoSpace = moduleName.replace(/\s/g, '');
+                moduleQuantity = $(this).attr("modulequantity");
+                //appending module
+                $("#selectedElements").append("<p id="+moduleNameNoSpace+"><span id="+moduleNameNoSpace+"_>"+moduleQuantity+"</span>x "+moduleName+"</p>");
             }else{
+                //hide quantity input
                 $(this).next().next().hide();
-                $(this).next().next().find('input').val(0);
+                //
+                $(this).next().next().find('input').val("");
+                //delete appended element
+                document.getElementById(moduleNameNoSpace).remove();
             }
+        });
+
+        $(".quantityInputEach").change(function(){
+            moduleNameFromQuantityInput = $(this).attr("modulename");
+            moduleNameFromQuantityInputNoSpace = moduleName.replace(/\s/g, '');
+            let novaVrijednost = $(this).val();
+            //console.log(moduleNameFromQuantityInputNoSpace);
+            //$("#"+moduleNameFromQuantityInputNoSpace+"_").text($(this).val());
+            document.getElementById(moduleNameFromQuantityInputNoSpace+"_").innerHTML = novaVrijednost;
+
+            //console.log($("#"+moduleNameFromQuantityInputNoSpace).text($(this).val()));
         });
 
         $('.select_product').click(function (){
