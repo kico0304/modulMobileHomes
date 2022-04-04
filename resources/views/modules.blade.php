@@ -63,7 +63,7 @@
                             <p style="margin-left: 30px;" class="inlineFlex"><b>{{$module->part_names[0]->name}}</b></p>
                             <div class="hiddableQuantity" style="margin-left: 30px; margin-bottom: 15px; display: none;">
                                 <p style="margin-bottom: 0;">{{__('home.module_text8')}}</p>
-                                <input class="quantityInputEach" moduleName="{{$module->part_names[0]->name}}" type="number" placeholder="{{__('home.module_text11')}}">
+                                <input class="quantityInputEach" moduleName="{{$module->part_names[0]->name}}" price="{{$module->price}}" type="number" placeholder="{{__('home.module_text11')}}">
                             </div>
                             <p style="margin-left: 30px;">{{$module->part_texts[0]->text}}</p>
                             <p style="margin-left: 30px;">{{__('home.module_text9')}} {{$module->surface}}</p>
@@ -85,6 +85,7 @@
                     <div class="selectedResultsInner fixedElement">
                         <div id="selectedElements">
                             <p>{{__('home.module_text6')}}</p>
+                            <p>-</p>
                         </div>
                         <div id="selectedElementsPrice">
                             <p>{{__('home.module_text7')}} <span id="ukupnaCenaOdabranog"></span></p>
@@ -145,6 +146,17 @@
         let moduleNameNoSpace;
         let moduleQuantity;
 
+        function sabiranjeCijena() {
+            let finalPriceAll = 0;
+            let singledPrice = 0;
+            $(".singlepriceForCalc").each(function(){
+                singledPrice = parseInt($(this).html());
+                finalPriceAll = finalPriceAll + singledPrice;
+            })
+            //console.log(finalPriceAll);
+            $("#ukupnaCenaOdabranog").text(finalPriceAll);
+        }
+
         $(".veryImportantInput").click(function(){
             //get module info
             moduleName = $(this).attr("itemname");
@@ -158,11 +170,14 @@
                 //set quantity attribute to 1
                 $(this).attr("modulequantity", "1");
                 //get module info
-                //moduleName = $(this).attr("itemname");
-                //moduleNameNoSpace = moduleName.replace(/\s/g, '');
                 moduleQuantity = $(this).attr("modulequantity");
                 //appending module
                 $("#selectedElements").append("<p id="+moduleNameNoSpace+"><span id="+moduleNameNoSpace+"_>"+moduleQuantity+"</span>x "+moduleName+"</p>");
+
+                //adding price of module
+                modulePrice = $(this).attr("price");
+                $("#selectedElementsPrice").prepend("<p class='singlepriceForCalc' style='display:none' id="+moduleNameNoSpace+"_price>"+modulePrice+"</p>");
+                sabiranjeCijena();
             }else{
                 //hide quantity input
                 $(this).next().next().hide();
@@ -170,18 +185,27 @@
                 $(this).next().next().find('input').val("");
                 //delete appended element
                 document.getElementById(moduleNameNoSpace).remove();
+                //delete price element
+                moduleNameNoSpacePrice = moduleNameNoSpace.concat("_price");
+                //console.log(moduleNameNoSpacePrice);
+                document.getElementById(moduleNameNoSpacePrice).remove();
+                sabiranjeCijena();
             }
         });
 
         $(".quantityInputEach").change(function(){
+            //izmjena html-a
             moduleNameFromQuantityInput = $(this).attr("modulename");
             moduleNameFromQuantityInputNoSpace = moduleName.replace(/\s/g, '');
             let novaVrijednost = $(this).val();
-            //console.log(moduleNameFromQuantityInputNoSpace);
-            //$("#"+moduleNameFromQuantityInputNoSpace+"_").text($(this).val());
             document.getElementById(moduleNameFromQuantityInputNoSpace+"_").innerHTML = novaVrijednost;
-
-            //console.log($("#"+moduleNameFromQuantityInputNoSpace).text($(this).val()));
+            //izmjena cijene
+            let jedinicnaCijena = $(this).attr("price");
+            let finalnaCijena = novaVrijednost * jedinicnaCijena;
+            document.getElementById(moduleNameFromQuantityInputNoSpace+"_price").innerHTML = finalnaCijena.toFixed(2);
+            //pricesArray.push(finalnaCijena.toFixed(2));
+            //console.log(pricesArray);
+            sabiranjeCijena();
         });
 
         $('.select_product').click(function (){

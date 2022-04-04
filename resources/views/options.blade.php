@@ -6,7 +6,12 @@
     </div>
     <div class="col-sm-12">
     @foreach($option->attributes as $attribute)
-
+        @if($option->type == 'radio')
+        <div class="col-sm-12">
+            <input type="{{$option->type}}" name="" value="">
+            <label>No</label>
+        </div>
+        @endif
         @php
             $att = explode('/', $attribute->attributes);
         @endphp
