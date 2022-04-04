@@ -261,6 +261,7 @@
             });
             //select elements
             $('.veryImportantInput').prop('checked', false);
+            $('.hiddableQuantity').hide();
             let id_str = $(this).data('atrb');
             let id_arr = id_str.split(",").slice(0,-1);
             $.each(id_arr, function(index, item) {
