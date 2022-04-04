@@ -250,11 +250,21 @@
         });
 
         $('.select_product').click(function (){
+            //clear html
+            let cntnt = $("#selectedElements");
+            while (cntnt.children("p").length > 2) {
+                cntnt.children().last().remove();
+            }
+            //reset price
+            $(".singlepriceForCalc").each(function(){
+                $(".singlepriceForCalc").remove();
+            });
+            //select elements
             $('.veryImportantInput').prop('checked', false);
             let id_str = $(this).data('atrb');
             let id_arr = id_str.split(",").slice(0,-1);
             $.each(id_arr, function(index, item) {
-                $('.veryImportantInput[data-id="'+ item +'"]').prop('checked', true);
+                $('.veryImportantInput[data-id="'+ item +'"]').click();
             });
         })
     </script>
