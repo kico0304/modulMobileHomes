@@ -32,7 +32,7 @@
         </div>
     </section>
 
-    <section class="section centered" style="padding: 30px 0 0;">
+    <section id="hideSection1" class="section centered" style="padding: 30px 0 0;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 margined10">
@@ -47,7 +47,7 @@
         </div>
     </section>
 
-    <section class="section" style="padding: 30px 15px;">
+    <section id="hideSection2" class="section" style="padding: 30px 15px;">
         <div class="container" id="positionNeeded">
             <div class="row">
                 <div class="col-lg-12 col-md-12 margined10">
@@ -94,7 +94,81 @@
                         <div id="selectedElementsPrice">
                             <p>{{__('home.module_text7')}} <span id="ukupnaCenaOdabranog">0.00 €</span></p>
                         </div>
+                        <div>
+                            <button id="contactMyCombButton" class="btn btn-main-2 btn-round-full" style="display:none">Kontakt</button>
+                        </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="hidableInfoAndForm" class="section" style="padding: 30px 15px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 margined10 centered">
+                    <p id="backToMyComb" class="margined20"><< Nazad na izbor kombinacije</p>
+                    <h3 class="centered">Kontaktirajte nas sa Vašom kombinacijom u prilogu poruke</h3>
+                </div>
+                <div class="col-lg-6 col-md-6 margined10 centered">
+                    <div id="copiedContent"></div>
+                </div>
+                <div class="col-lg-6 col-md-6 margined10 centered">
+                    <div id="copiedContent2"></div>
+                </div>
+                <div class="col-lg-12 col-md-12 margined10 centered">
+                    <h3 id="copiedContent3"></h3>
+                </div>
+                <div class="col-lg-12 col-md-12 margined10">
+                    <form id="contact-form" class="contact__form" method="post" action="{{ asset('mail_handler.php') }}">
+                    <!-- form message -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="alert alert-success contact__msg" style="display: none" role="alert">
+                                    {{__('home.contact_text11')}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <input name="mailto" id="mailto" type="email" class="form-control"  style="">
+                                </div>
+                                <div class="form-group">
+                                    <input name="disCountry" id="disCountry" type="text" class="form-control"  style="">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input name="name" id="name" type="text" class="form-control" placeholder="{{__('home.contact_text12')}}">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input name="email" id="email" type="email" class="form-control" placeholder="{{__('home.contact_text13')}}">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input name="subject" id="subject" type="text" class="form-control" placeholder="{{__('home.contact_text14')}}">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input name="phone" id="phone" type="text" class="form-control" placeholder="{{__('home.contact_text15')}}">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group-2 mb-4">
+                            <textarea name="message" id="message" class="form-control" rows="8" placeholder="{{__('home.contact_text16')}}"></textarea>
+                        </div>
+
+                        <div class="text-center">
+                            <input id="submitContact" class="btn btn-main btn-round-full" name="submit" type="submit" value="{{__('home.contact_text17')}}"></input>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -121,6 +195,9 @@
 
 @section('js')
     <script type="text/javascript">
+
+        buttonContactMyComb();
+
         //podešavanje side fixed info panela
         let $el;
         let $udaljenost;
@@ -213,11 +290,17 @@
             if($("#selectedElements").children("p").length == 2){
                 $("#nothingSelected").css("display", "block");
             }
+
+            buttonContactMyComb();
+
         });
 
         $(".veryImportantInput2").click(function(){
             optionName = $(this).attr("name");
             optionNameNoSpace = optionName.replace(/\s/g, '');
+            if("#"+optionNameNoSpace){
+                $("#"+optionNameNoSpace).remove();
+            }
             if($(this).is(":checked")){
                 if($(this).attr("type") == "radio"){
                     //kupimo value
@@ -240,6 +323,8 @@
             if($("#selectedOptions").children("p").length == 2){
                 $("#noOptionSelected").css("display", "block");
             }
+
+            buttonContactMyComb();
         });
 
         $(".quantityInputEach").change(function(){
@@ -256,6 +341,14 @@
             //console.log(pricesArray);
             sabiranjeCijena();
         });
+
+        function buttonContactMyComb() {
+            if($("#selectedElements").children("p").length == 2){
+                $("#contactMyCombButton").css("display", "none");
+            } else {
+                $("#contactMyCombButton").css("display", "initial");
+            }
+        };
 
         $('.select_product').click(function (){
             //clear html
@@ -275,7 +368,36 @@
             $.each(id_arr, function(index, item) {
                 $('.veryImportantInput[data-id="'+ item +'"]').click();
             });
-        })
+        });
+
+        $("#contactMyCombButton").click(function(){
+            //kopiraj html
+            $('#copiedContent').html("");
+            $('#copiedContent2').html("");
+            $('#copiedContent3').html("");
+            var htmlNeeded = $("#selectedElements").html();
+            var htmlNeeded2 = $("#selectedOptions").html();
+            var htmlNeeded3 = $("#selectedElementsPrice").html();
+            $('#copiedContent').append(htmlNeeded);
+            $('#copiedContent2').append(htmlNeeded2);
+            $('#copiedContent3').append(htmlNeeded3);
+
+            //skloni kontent sa izborom
+            $("#hideSection1").hide();
+            $("#hideSection2").hide();
+
+            //prikaži kontakt formu
+            $("#hidableInfoAndForm").show();
+        });
+
+        $("#backToMyComb").click(function(){
+            //skloni kontent sa izborom
+            $("#hideSection1").show();
+            $("#hideSection2").show();
+
+            //prikaži kontakt formu
+            $("#hidableInfoAndForm").hide();
+        });
     </script>
 
 @endsection
