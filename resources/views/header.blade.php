@@ -27,9 +27,9 @@
                                     $hostvar2 = $hostVar[0].split(".")
                                     console.log($hostvar2[0].length);
                                     if($hostvar2[0].length == 2){
-                                        window.location.replace("http://"+lang+"."+$hostvar2[1]);
+                                        window.location.replace("http://"+lang+"."+$hostvar2[1]+"."+$hostvar2[2]);
                                     } else {
-                                        window.location.replace("http://"+lang+"."+$hostVar2[0]);
+                                        window.location.replace("http://"+lang+"."+$hostVar2[0])+"."+$hostvar2[1];
                                     }
                                 }
 
