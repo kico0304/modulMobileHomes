@@ -24,7 +24,7 @@
                                     $hostVar = $hostVar.split("//");
                                     $hostVar = $hostVar[1].split("/");
                                     console.log($hostVar[0]);
-                                    location.href = "{{$lng->lang}}."+$hostVar[0];
+                                    location.href = "http://{{$lng->lang}}."+$hostVar[0];
                                 }
 
                             </script>
