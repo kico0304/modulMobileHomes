@@ -84,11 +84,11 @@
                 <div id="selectedResults" class="col-sm-4" style="position:absolute; top:0;right:0;">
                     <div class="selectedResultsInner fixedElement">
                         <div id="selectedElements">
-                            <p><!--{{__('home.module_text6')}}-->Izabrani moduli:</p>
+                            <p style="font-weight:bold;"><!--{{__('home.module_text6')}}-->Izabrani moduli:</p>
                             <p id="nothingSelected">Nije izabran ni jedan modul.</p>
                         </div>
                         <div id="selectedOptions">
-                            <p>Izabrane dodatne opcije:</p>
+                            <p style="font-weight:bold;">Izabrane dodatne opcije:</p>
                             <p id="noOptionSelected">Nije izabrana ni jedna dodatna opcija.</p>
                         </div>
                         <div id="selectedElementsPrice">
@@ -121,6 +121,7 @@
 
 @section('js')
     <script type="text/javascript">
+        //podešavanje side fixed info panela
         let $el;
         let $udaljenost;
         let $nopviel;
@@ -129,15 +130,21 @@
             $el = $('.fixedElement');
             $el2 = $('.udaljeniElement');
             $udaljenost = ($el2.position().top).toFixed(0);
-            console.log($udaljenost);
+            //console.log($udaljenost);
             $noviel = $('#positionNeeded');
-            $novaUdalj = $noviel.position().left + $noviel.width();
-            console.log($novaUdalj);
+            $novawidth = $noviel.width() / 3 + 10;
+            $novaUdalj = ($(window).width()-$noviel.width())/2 - 15;
+            //console.log($(window).width());
+            //console.log($noviel.outerWidth(true));
+            //console.log($noviel.outerWidth(true)/2);
+            //console.log($noviel.width()/2);
+            //console.log($novaUdalj);
+            //var sirinakolone = $(".col-sm-8").width() / 2;
         });
         $(window).scroll(function(e){
             var isPositionFixed = ($el.css('position') == 'fixed');
             if ($(this).scrollTop() > $udaljenost && !isPositionFixed){
-                $el.css({'position': 'fixed', 'width': '33.333333%', 'right': $novaUdalj + '20px'});
+                $el.css({'position': 'fixed', 'width': $novawidth, 'right': $novaUdalj });
             }
             if ($(this).scrollTop() < $udaljenost && isPositionFixed){
                 $el.css({'position': 'static', 'width': '100%'});
