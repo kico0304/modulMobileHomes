@@ -23,8 +23,9 @@
                                     $hostVar = window.location.origin;
                                     $hostVar = $hostVar.split("//");
                                     $hostVar = $hostVar[1].split("/");
+                                    const newLink = $hostVar[0];
                                     console.log($hostVar[0]);
-                                    window.location.replace("http://"+lang+"."+$hostVar[0])
+                                    window.location.replace("http://"+lang+"."+newLink)
                                 }
 
                             </script>
