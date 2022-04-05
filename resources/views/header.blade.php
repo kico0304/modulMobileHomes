@@ -24,7 +24,7 @@
                                     $hostVar = $hostVar.split("//");
                                     $hostVar = $hostVar[1].split("/");
                                     console.log($hostVar[0]);
-                                    window.location.replace(lang+"."+$hostVar[0])
+                                    window.location.replace("http://"+lang+"."+$hostVar[0])
                                 }
 
                             </script>
