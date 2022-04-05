@@ -2207,3 +2207,13 @@ img.lightboxed {
         right: 0;
     }
 }
+
+#selectedResults {
+    text-align: center;
+}
+
+.langFlag {
+    width: 25px;
+    margin: 0 5px;
+    filter: drop-shadow(1px 1px 1px #ccc);
+}

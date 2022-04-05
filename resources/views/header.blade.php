@@ -1,22 +1,22 @@
     <header>
-        @foreach($app_lang as $lng)
-            {{$lng->lang}}
-        @endforeach
         <div class="header-top-bar">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-6">
+                    <div class="col-lg-8">
                         <ul class="top-bar-info list-inline-item pl-0 mb-0">
                             <li class="list-inline-item"><a href="mailto:support@gmail.com"><i class="icofont-support-faq mr-2"></i>{{__('home.email')}}</a></li>
                             <li class="list-inline-item"><i class="icofont-location-pin mr-2"></i>{{__('home.adresa')}}</li>
                         </ul>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <div class="text-lg-right top-right-bar mt-2 mt-lg-0">
-                            <a href="tel:+38765959595" >
-                                <span>{{__('home.tel')}} </span>
-                                <span class="h4">{{__('home.tel_br')}}</span>
+                            @foreach($app_lang as $lng)
+                            <a href="{{$lng->lang.Request::root()}}" >
+                                <span>
+                                    <img class="langFlag" src="{{url('/images/flags/'.$lng->lang.'.png')}}">
+                                </span>
                             </a>
+                            @endforeach
                         </div>
                     </div>
                 </div>

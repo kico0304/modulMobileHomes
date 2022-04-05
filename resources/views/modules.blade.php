@@ -45,7 +45,7 @@
                 @endforeach
             </div>
         </div>
-    <section>
+    </section>
 
     <section class="section" style="padding: 30px 15px;">
         <div class="container" id="positionNeeded">
