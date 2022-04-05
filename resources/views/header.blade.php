@@ -11,12 +11,23 @@
                     <div class="col-lg-4">
                         <div class="text-lg-right top-right-bar mt-2 mt-lg-0">
                             @foreach($app_lang as $lng)
-                            <a href="{{$lng->lang.'.'.request()->getHost()}}">
+                            <a onclick=getLanguageLink()>
                                 <span>
                                     <img class="langFlag" src="{{url('/images/flags/'.$lng->lang.'.png')}}">
                                 </span>
                             </a>
                             @endforeach
+                            <script>
+
+                                function getLanguageLink() {
+                                    $hostVar = window.location.origin;
+                                    $hostVar = $hostVar.split("//");
+                                    $hostVar = $hostVar[1].split("/");
+                                    console.log($hostVar[0]);
+                                    location.href = "{{$lng->lang}}."+$hostVar[0];
+                                }
+
+                            </script>
                         </div>
                     </div>
                 </div>
