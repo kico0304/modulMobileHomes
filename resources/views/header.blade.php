@@ -11,7 +11,7 @@
                     <div class="col-lg-4">
                         <div class="text-lg-right top-right-bar mt-2 mt-lg-0">
                             @foreach($app_lang as $lng)
-                            <a href="{{$lng->lang.Request::root()}}" >
+                            <a href="{{$lng->lang.'.'.$_SERVER['SERVER_NAME']}}" >
                                 <span>
                                     <img class="langFlag" src="{{url('/images/flags/'.$lng->lang.'.png')}}">
                                 </span>
