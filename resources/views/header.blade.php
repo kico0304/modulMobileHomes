@@ -11,7 +11,7 @@
                     <div class="col-lg-4">
                         <div class="text-lg-right top-right-bar mt-2 mt-lg-0">
                             @foreach($app_lang as $lng)
-                            <a onclick=getLanguageLink()>
+                            <a onclick=getLanguageLink({{$lng->lang}})>
                                 <span>
                                     <img class="langFlag" src="{{url('/images/flags/'.$lng->lang.'.png')}}">
                                 </span>
@@ -19,12 +19,12 @@
                             @endforeach
                             <script>
 
-                                function getLanguageLink() {
+                                function getLanguageLink(lang) {
                                     $hostVar = window.location.origin;
                                     $hostVar = $hostVar.split("//");
                                     $hostVar = $hostVar[1].split("/");
                                     console.log($hostVar[0]);
-                                    window.location.replace("{{$lng->lang}}."+$hostVar[0])
+                                    window.location.replace("lang"+"."+$hostVar[0])
                                 }
 
                             </script>
