@@ -2199,3 +2199,11 @@ input.btn:disabled:hover {
 img.lightboxed {
     width: 100%;
 }
+
+@media screen and (min-width: 576px) {
+    #selectedResults {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+}

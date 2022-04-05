@@ -81,7 +81,7 @@
                         @include('options')
                     </div>
                 </div>
-                <div id="selectedResults" class="col-sm-4" style="position:absolute; top:0;right:0;">
+                <div id="selectedResults" class="col-sm-4">
                     <div class="selectedResultsInner fixedElement">
                         <div id="selectedElements">
                             <p style="font-weight:bold;"><!--{{__('home.module_text6')}}-->Izabrani moduli:</p>
@@ -134,7 +134,8 @@
             $noviel = $('#positionNeeded');
             $novawidth = $noviel.width() / 3 + 10;
             $novaUdalj = ($(window).width()-$noviel.width())/2 - 15;
-            //console.log($(window).width());
+            $windowWidth = $(window).width();
+            console.log($(window).width());
             //console.log($noviel.outerWidth(true));
             //console.log($noviel.outerWidth(true)/2);
             //console.log($noviel.width()/2);
@@ -143,10 +144,10 @@
         });
         $(window).scroll(function(e){
             var isPositionFixed = ($el.css('position') == 'fixed');
-            if ($(this).scrollTop() > $udaljenost && !isPositionFixed){
+            if ($(this).scrollTop() > $udaljenost && !isPositionFixed && $windowWidth > 575){
                 $el.css({'position': 'fixed', 'width': $novawidth, 'right': $novaUdalj });
             }
-            if ($(this).scrollTop() < $udaljenost && isPositionFixed){
+            if ($(this).scrollTop() < $udaljenost && isPositionFixed && $windowWidth > 575){
                 $el.css({'position': 'static', 'width': '100%'});
             }
         });
