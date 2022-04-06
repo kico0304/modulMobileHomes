@@ -26,12 +26,12 @@ if(isset($_POST) && !empty($_POST)){
 		return str_replace($bad,"",$string);
 	}
 
-	$email_message .= "Korisnik je izabrao: ".clean_string($myHtml)."< /br>"."\r\n";
-	$email_message .= "Ime i prezime: ".clean_string($getName)."< /br>"."\r\n";
-	$email_message .= "Email: ".clean_string($getEmail)."< /br>"."\r\n";
-	$email_message .= "Naslov: ".clean_string($getSubject)."< /br>"."\r\n";
-	$email_message .= "Telefon: ".clean_string($getPhone)."< /br>"."\r\n";
-	$email_message .= "Poruka: ".clean_string($getMessage)."< /br>"."\r\n";
+	$email_message .= "Korisnik je izabrao: ".clean_string($myHtml)."<br>"."\r\n";
+	$email_message .= "Ime i prezime: ".clean_string($getName)."<br>"."\r\n";
+	$email_message .= "Email: ".clean_string($getEmail)."<br>"."\r\n";
+	$email_message .= "Naslov: ".clean_string($getSubject)."<br>"."\r\n";
+	$email_message .= "Telefon: ".clean_string($getPhone)."<br>"."\r\n";
+	$email_message .= "Poruka: ".clean_string($getMessage)."<br>"."\r\n";
 
 	//print_r($email_message);
 
