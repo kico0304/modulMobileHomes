@@ -34,6 +34,7 @@ Route::get('/modules',          'HomeController@modules')->name('modules');
 Route::get('/options',          'HomeController@options')->name('options');
 
 Route::post('/product_view',    'HomeController@product_view');
+Route::post('/user_email',      'HomeController@user_email');
 
 
 //ADMIN ROUTES

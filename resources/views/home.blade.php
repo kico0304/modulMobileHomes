@@ -247,21 +247,6 @@
     <!-- FOOTER END -->
 
     <!-- TEMPLATE PART END -->
-
-    <!-- STOLETOV DIO ZA TESTIRANJE START -->
-    <!-- <p>{{__('home.welcome')}}</p>
-    @if(!$products->isEmpty())
-        @foreach ($products as $product)
-            <p>{{$product->name}}</p>
-            <p>{{$product->$lang}}</p>
-            @foreach ($product->product_parts as $b)
-                <p>ovo je b {{$b['name']}}</p>
-            @endforeach
-        @endforeach
-    @else
-        <h1>No products!</h1>
-    @endif -->
-    <!-- STOLETOV DIO ZA TESTIRANJE END -->
 @endsection
 
 @section('js')

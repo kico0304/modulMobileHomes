@@ -1,4 +1,9 @@
     <header>
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         <div class="header-top-bar">
             <div class="container">
                 <div class="row align-items-center">

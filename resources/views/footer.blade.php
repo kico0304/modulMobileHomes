@@ -66,9 +66,10 @@
                     </div>
                     <div class="col-lg-5">
                         <div class="subscribe-form text-lg-right mt-5 mt-lg-0">
-                            <form action="#" class="subscribe">
-                                <input type="text" class="form-control" placeholder="{{__('home.footer_text13')}}">
-                                <a href="#" class="btn btn-main-2 btn-round-full">{{__('home.footer_text12')}}</a>
+                            <form method="post" action="{{url('/user_email')}}" class="subscribe">
+                                @csrf
+                                <input type="text" name="user_email" class="form-control" placeholder="{{__('home.footer_text13')}}">
+                                <button class="btn btn-main-2 btn-round-full">{{__('home.footer_text12')}}</button>
                             </form>
                         </div>
                     </div>

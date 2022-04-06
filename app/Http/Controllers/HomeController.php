@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Actualitie;
+use App\Email;
 use App\Language;
 use App\OptionsForProduct;
 use App\PartsForProduct;
@@ -182,6 +183,19 @@ class HomeController extends Controller
         $id = $request['id'];
         Product::find($id)->increment('views');
         return response()->json(['id' => $id]);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function user_email(Request $request){
+        $new_email = new Email();
+        $new_email->email = $request['user_email'];
+        $new_email->country = Lang::locale();
+        $new_email->save();
+
+        return back()->with('success', 'Success');
     }
 
     /**
