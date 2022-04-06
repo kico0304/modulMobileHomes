@@ -124,13 +124,10 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <input name="mailto" id="mailto" type="email" class="form-control"  style="">
+                                    <input name="mailto" id="mailto" type="email" class="form-control"  style="height:0px!important; border: none!important; padding:0!important" value="kico.jajcanin86@gmail.com">
                                 </div>
                                 <div class="form-group">
-                                    <input name="disCountry" id="disCountry" type="text" class="form-control"  style="">
-                                </div>
-                                <div class="form-group">
-                                    <input name="hiddenSelectedInfo" id="hiddenSelectedInfo" type="text" class="form-control"  style="">
+                                    <input name="hiddenSelectedInfo" id="hiddenSelectedInfo" type="text" class="form-control"  style="height:0px!important; border: none!important; padding:0!important">
                                 </div>
                             </div>
                             <div class="col-lg-6">
@@ -402,7 +399,7 @@
             var mojHtmlZaSlanje1 = document.getElementById('selectedOptions');
             var mojHtmlZaSlanje2 = document.getElementById('selectedElementsPrice');
             var finalVarijablaHtml = mojHtmlZaSlanje0.outerHTML.concat(mojHtmlZaSlanje1.outerHTML,mojHtmlZaSlanje2.outerHTML)
-            alert(finalVarijablaHtml);
+            //alert(finalVarijablaHtml);
             $("#hiddenSelectedInfo").val(finalVarijablaHtml);
         }
     </script>

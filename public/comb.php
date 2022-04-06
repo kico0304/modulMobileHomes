@@ -19,19 +19,19 @@ if(isset($_POST) && !empty($_POST)){
 	$email_exp = '/^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/';
 	$phone_exp = '/^[1-9][0-9]*$/';
 
-	$email_message = "Podaci korisnika ispod:\r\n";
+	//$email_message = "Podaci korisnika ispod:\r\n";
 
 	function clean_string($string) {
 		$bad = array("content-type","bcc:","to:","cc:");
 		return str_replace($bad,"",$string);
 	}
 
-	$email_message .= "Korisnik je izabrao: ".clean_string($myHtml)."\r\n";
-	$email_message .= "Ime i prezime: ".clean_string($getName)."\r\n";
-	$email_message .= "Email: ".clean_string($getEmail)."\r\n";
-	$email_message .= "Naslov: ".clean_string($getSubject)."\r\n";
-	$email_message .= "Telefon: ".clean_string($getPhone)."\r\n";
-	$email_message .= "Poruka: ".clean_string($getMessage)."\r\n";
+	$email_message .= "Korisnik je izabrao: ".clean_string($myHtml)."< /br>"."\r\n";
+	$email_message .= "Ime i prezime: ".clean_string($getName)."< /br>"."\r\n";
+	$email_message .= "Email: ".clean_string($getEmail)."< /br>"."\r\n";
+	$email_message .= "Naslov: ".clean_string($getSubject)."< /br>"."\r\n";
+	$email_message .= "Telefon: ".clean_string($getPhone)."< /br>"."\r\n";
+	$email_message .= "Poruka: ".clean_string($getMessage)."< /br>"."\r\n";
 
 	print_r($email_message);
 
