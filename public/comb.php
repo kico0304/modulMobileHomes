@@ -33,7 +33,7 @@ if(isset($_POST) && !empty($_POST)){
 	$email_message .= "Telefon: ".clean_string($getPhone)."< /br>"."\r\n";
 	$email_message .= "Poruka: ".clean_string($getMessage)."< /br>"."\r\n";
 
-	print_r($email_message);
+	//print_r($email_message);
 
 	$headers = 'From: '.$getEmail."\r\n".
 	$headers .= "MIME-Version: 1.0" . "\r\n"; 
