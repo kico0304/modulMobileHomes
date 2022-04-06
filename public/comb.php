@@ -25,7 +25,7 @@ if(isset($_POST) && !empty($_POST)){
 		$bad = array("content-type","bcc:","to:","cc:");
 		return str_replace($bad,"",$string);
 	}
-
+	$email_message .= "Ova poruka je poslana sa kofiguratora.<br>";
 	$email_message .= "Korisnik je izabrao: ".clean_string($myHtml)."<br>"."\r\n";
 	$email_message .= "Ime i prezime: ".clean_string($getName)."<br>"."\r\n";
 	$email_message .= "Email: ".clean_string($getEmail)."<br>"."\r\n";
