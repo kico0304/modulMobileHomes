@@ -84,7 +84,7 @@
                 <div id="selectedResults" class="col-sm-4">
                     <div class="selectedResultsInner fixedElement">
                         <div id="selectedElements">
-                            <p style="font-weight:bold;"><!--{{__('home.module_text6')}}-->Izabrani moduli:</p>
+                            <p style="font-weight:bold;">Izabrani moduli:</p>
                             <p id="nothingSelected">Nije izabran ni jedan modul.</p>
                         </div>
                         <div id="selectedOptions">
@@ -120,7 +120,7 @@
                     <h3 id="copiedContent3"></h3>
                 </div>
                 <div class="col-lg-12 col-md-12 margined10">
-                    <form id="contact-form" class="contact__form" method="post" action="{{ asset('mail_handler.php') }}">
+                    <form id="contact-form" class="contact__form" method="post" action="{{ asset('comb.php') }}">
                     <!-- form message -->
                         <div class="row">
                             <div class="col-12">
@@ -136,6 +136,9 @@
                                 </div>
                                 <div class="form-group">
                                     <input name="disCountry" id="disCountry" type="text" class="form-control"  style="">
+                                </div>
+                                <div class="form-group">
+                                    <input name="hiddenSelectedInfo" id="hiddenSelectedInfo" type="text" class="form-control"  style="">
                                 </div>
                             </div>
                             <div class="col-lg-6">
@@ -270,6 +273,7 @@
                 modulePrice = $(this).attr("price");
                 $("#selectedElementsPrice").prepend("<p class='singlepriceForCalc' style='display:none' id="+moduleNameNoSpace+"_price>"+modulePrice+"</p>");
                 sabiranjeCijena();
+                copySelectedInfo();
             }else{
                 //hide quantity input
                 $(this).next().next().hide();
@@ -282,6 +286,7 @@
                 //console.log(moduleNameNoSpacePrice);
                 document.getElementById(moduleNameNoSpacePrice).remove();
                 sabiranjeCijena();
+                copySelectedInfo();
             }
 
             if("#nothingSelected"){
@@ -340,6 +345,7 @@
             //pricesArray.push(finalnaCijena.toFixed(2));
             //console.log(pricesArray);
             sabiranjeCijena();
+            copySelectedInfo();
         });
 
         function buttonContactMyComb() {
@@ -398,6 +404,15 @@
             //prikaži kontakt formu
             $("#hidableInfoAndForm").hide();
         });
+
+        function copySelectedInfo() {
+            var mojHtmlZaSlanje0 = document.getElementById('selectedElements');
+            var mojHtmlZaSlanje1 = document.getElementById('selectedOptions');
+            var mojHtmlZaSlanje2 = document.getElementById('selectedElementsPrice');
+            var finalVarijablaHtml = mojHtmlZaSlanje0.outerHTML.concat(mojHtmlZaSlanje1.outerHTML,mojHtmlZaSlanje2.outerHTML)
+            alert(finalVarijablaHtml);
+            $("#hiddenSelectedInfo").val(finalVarijablaHtml);
+        }
     </script>
 
 @endsection
