@@ -36,6 +36,8 @@ if(isset($_POST) && !empty($_POST)){
 	print_r($email_message);
 
 	$headers = 'From: '.$getEmail."\r\n".
+	$headers .= "MIME-Version: 1.0" . "\r\n"; 
+	$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n"; 
 	'Reply-To: '.$getEmail."\r\n" .
 	'X-Mailer: PHP/' . phpversion();
 	mail($email_to, $email_subject, $email_message, $headers);
