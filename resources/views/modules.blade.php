@@ -83,17 +83,9 @@
                 </div>
                 <div id="selectedResults" class="col-sm-4">
                     <div class="selectedResultsInner fixedElement">
-                        <div id="selectedElements">
-                            <p style="font-weight:bold;">Izabrani moduli:</p>
-                            <p id="nothingSelected">Nije izabran ni jedan modul.</p>
-                        </div>
-                        <div id="selectedOptions">
-                            <p style="font-weight:bold;">Izabrane dodatne opcije:</p>
-                            <p id="noOptionSelected">Nije izabrana ni jedna dodatna opcija.</p>
-                        </div>
-                        <div id="selectedElementsPrice">
-                            <p>{{__('home.module_text7')}} <span id="ukupnaCenaOdabranog">0.00 €</span></p>
-                        </div>
+                        <div id="selectedElements"><p style="font-weight:bold;">Izabrani moduli:</p><p id="nothingSelected">Nije izabran ni jedan modul.</p></div>
+                        <div id="selectedOptions"><p style="font-weight:bold;">Izabrane dodatne opcije:</p><p id="noOptionSelected">Nije izabrana ni jedna dodatna opcija.</p></div>
+                        <div id="selectedElementsPrice"><p>{{__('home.module_text7')}} <span id="ukupnaCenaOdabranog">0.00 €</span></p></div>
                         <div>
                             <button id="contactMyCombButton" class="btn btn-main-2 btn-round-full" style="display:none">Kontakt</button>
                         </div>
