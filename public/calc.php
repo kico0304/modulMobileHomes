@@ -3,7 +3,7 @@
 if(isset($_POST) && !empty($_POST)){
 
 	//$email_to =  $_POST['mailto'];
-	$email_to =  "kico.jajcanin86@gmail.com";
+	$email_to =  "marijanasebez.mmh@gmail.com";
 	$email_subject = "Poruka sa sajta";
 
 	$getlandPrice = $_POST['landPrice'];
