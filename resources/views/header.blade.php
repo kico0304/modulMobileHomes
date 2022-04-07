@@ -32,9 +32,19 @@
                                     $hostvar2 = $hostVar[0].split(".")
                                     console.log($hostvar2[0].length);
                                     if($hostvar2[0].length == 2){
-                                        window.location.replace("http://"+lang+"."+$hostvar2[1]+"."+$hostvar2[3]);
+                                        //window.location.replace("http://"+lang+"."+$hostvar2[1]+"."+$hostvar2[3]);
+                                        console.log($hostvar2[0]);
+                                        console.log($hostvar2[1]);
+                                        console.log($hostvar2[2]);
+                                        console.log($hostvar2[3]);
+                                        console.log($hostvar2[4]);
                                     } else {
-                                        window.location.replace("http://"+lang+"."+$hostvar2[0])+"."+$hostvar2[2];
+                                        //window.location.replace("http://"+lang+"."+$hostvar2[0])+"."+$hostvar2[2];
+                                        console.log($hostvar2[0]);
+                                        console.log($hostvar2[1]);
+                                        console.log($hostvar2[2]);
+                                        console.log($hostvar2[3]);
+                                        console.log($hostvar2[4]);
                                     }
                                 }
 
