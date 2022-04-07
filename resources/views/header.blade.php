@@ -39,7 +39,7 @@
                                         console.log($hostvar2[3]);
                                         console.log($hostvar2[4]);
                                     } else {
-                                        window.location.replace("http://"+lang+"."+$hostvar2[0])+"."+$hostvar2[1];
+                                        window.location.replace("http://"+lang+"."+$hostvar2[0]+"."+$hostvar2[1]);
                                         console.log($hostvar2[0]);
                                         console.log($hostvar2[1]);
                                         console.log($hostvar2[2]);
