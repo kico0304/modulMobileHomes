@@ -2231,3 +2231,7 @@ img.lightboxed {
 #backToMyComb:hover {
     color: var(--main-purple);
 }
+
+#hidableInfoAndForm {
+    display: none;
+}
