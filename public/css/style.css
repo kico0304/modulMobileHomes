@@ -2216,6 +2216,7 @@ img.lightboxed {
     width: 25px;
     margin: 0 5px;
     filter: drop-shadow(1px 1px 1px #ccc);
+    cursor: pointer;
 }
 
 #hidableInfoAndForm {
