@@ -143,7 +143,7 @@
                                 <p class="text-uppercase text-sm letter-spacing animate"><?php echo $newArray_[$i][0] ?></p>
                                 <h1  class="mb-3 mt-3 animate"><?php echo $newArray_[$i][1] ?></h1>
                                 <p class="mb-4 pr-5 animate"><?php echo $newArray_[$i][2] ?></p>
-                                <a id="buttonText" href="#" class="btn btn-main-2 btn-icon btn-round-full animate"><?php echo $newArray_[$i][3] ?><i class="icofont-simple-right ml-2  "></i></a>
+                                <a id="buttonText" href="{{ route('contact') }}" class="btn btn-main-2 btn-icon btn-round-full animate"><?php echo $newArray_[$i][3] ?><i class="icofont-simple-right ml-2  "></i></a>
                            </div>
                        </div>
                     <?php endfor;
@@ -167,7 +167,7 @@
                             <span>{{__('home.text1')}}</span>
                             <h4 class="mb-3">{{__('home.text2')}}</h4>
                             <p class="mb-4">{{__('home.text3')}}</p>
-                            <a href="appoinment.html" class="btn btn-main btn-round-full">{{__('home.text4')}}</a>
+                            <a href="{{ route('contact') }}" class="btn btn-main btn-round-full">{{__('home.text4')}}</a>
                         </div>
 
                         <div class="feature-item mb-5 mb-lg-0">
@@ -205,7 +205,7 @@
                     <div class="cta-content">
                         <div class="divider mb-4"></div>
                         <h2 class="mb-5 text-lg">{{__('home.text15')}} <span class="title-color">{{__('home.text16')}}</span></h2>
-                        <a href="appoinment.html" class="btn btn-main-2 btn-round-full">{{__('home.text17')}}<i class="icofont-simple-right  ml-2"></i></a>
+                        <a href="{{ route('contact') }}" class="btn btn-main-2 btn-round-full">{{__('home.text17')}}<i class="icofont-simple-right  ml-2"></i></a>
                     </div>
                 </div>
             </div>
@@ -235,7 +235,7 @@
                         <p class="mt-4 mb-5 mb-5-exception">{{__('home.text21')}}</p>
                         <p class="mt-4 mb-5 mb-5-exception">{{__('home.text22')}}</p>
                         <p class="mt-4 mb-5 mb-5-exception">{{__('home.text23')}}</p>
-                        <a href="service.html" class="btn btn-main-2 btn-round-full btn-icon">{{__('home.text24')}}<i class="icofont-simple-right ml-3"></i></a>
+                        <a href="{{ route('contact') }}" class="btn btn-main-2 btn-round-full btn-icon">{{__('home.text24')}}<i class="icofont-simple-right ml-3"></i></a>
                     </div>
                 </div>
             </div>
