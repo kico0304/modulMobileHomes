@@ -62,24 +62,25 @@
     <!-- HEADER START -->
     @include('header')
     <!-- HEADER END -->
+
     <section class="banner">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-12 col-xl-7">
                     <div class="block">
                         <div class="divider mb-3"></div>
-                        <span class="text-uppercase text-sm letter-spacing ">ZAŠTO MMH?</span>
-                        <h1 class="mb-3 mt-3">ModulMobileHomes</h1>
-                        
-                        <p class="mb-4 pr-5">MMH objekti su dimenzionisani prema stvarnim potrebama korisnika, a modularnost i jedinstvenost stambene strukture je postignuta zahvaljujući mogućnostima kombinovanja mobilnih jedinica, koje se modernim dizajnom uklapaju u svako prirodno okruženje.</p>
+                        <span class="text-uppercase text-sm letter-spacing ">{{__('home.text25')}}</span>
+                        <h1 class="mb-3 mt-3">{{__('home.text26')}}</h1>
+                        <p class="mb-4 pr-5">{{__('home.text27')}}</p>
                         <div class="btn-container ">
-                            <a href="{{ route('contact') }}" target="_blank" class="btn btn-main-2 btn-icon btn-round-full">Kontaktirajte nas <i class="icofont-simple-right ml-2  "></i></a>
+                            <a href="{{ route('contact') }}" target="_blank" class="btn btn-main-2 btn-icon btn-round-full">{{__('home.text24')}} <i class="icofont-simple-right ml-2  "></i></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
     <!-- Slider Start -->
     <!-- <section class="banner"> -->
         <!-- <div class="swiper mySwiper">

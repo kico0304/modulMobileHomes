@@ -72,6 +72,9 @@ return [
     'text22' => 'Zato šte se moderan dizajn uklapa u svako prirodno okruženje',
     'text23' => 'Zato što se u cilju smanjenja utroška energije katrakteristike objekta mogu prilagoditi svim uslovima, lokalnim zahtevima i propisima i time stvoriti efikasan energetski sistem',
     'text24' => 'Kontaktirajte nas',
+    'text25' => 'ZAŠTO MMH?',
+    'text26' => 'ModulMobileHomes',
+    'text27' => 'MMH objekti su dimenzionisani prema stvarnim potrebama korisnika, a modularnost i jedinstvenost stambene strukture je postignuta zahvaljujući mogućnostima kombinovanja mobilnih jedinica, koje se modernim dizajnom uklapaju u svako prirodno okruženje.',
 
     /*
     |--------------------------------------------------------------------------
