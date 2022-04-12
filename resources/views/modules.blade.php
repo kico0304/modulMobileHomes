@@ -383,12 +383,15 @@
 
             //prikaži kontakt formu
             $("#hidableInfoAndForm").show();
+            $([document.documentElement, document.body]).animate({scrollTop: $("#hidableInfoAndForm").offset().top}, 1000);
         });
 
         $("#backToMyComb").click(function(){
             //skloni kontent sa izborom
             $("#hideSection1").show();
             $("#hideSection2").show();
+
+            $([document.documentElement, document.body]).animate({scrollTop: $("#hideSection1").offset().top}, 1000);
 
             //prikaži kontakt formu
             $("#hidableInfoAndForm").hide();
