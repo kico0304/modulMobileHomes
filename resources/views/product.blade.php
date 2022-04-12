@@ -44,6 +44,13 @@
                         <div class="gallery-cell"><img src="{{asset('images/products/product_'.$product->id.'/'.$image->name)}}"></div>
                         @endforeach
                     </div>
+                    <div id="mobileGallery">
+                        @foreach($product->images as $image)
+                        <div class="col-lg-6 mb-6">
+                            <img class="lightboxed" rel="group1" src="{{asset('images/products/product_'.$product->id.'/'.$image->name)}}" data-link="{{asset('images/products/product_'.$product->id.'/'.$image->name)}}" alt="" data-caption="" />
+                        </div>
+                        @endforeach
+                    </div>
                 </div>
                 <div class="col-lg-2 mb-5 flexCenter">
                 @foreach($products as $product)
