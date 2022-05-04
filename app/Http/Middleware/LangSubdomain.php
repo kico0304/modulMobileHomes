@@ -31,6 +31,8 @@ class LangSubdomain
         if($country_code != ''){
             if(in_array($country_code, $languages)){
                 App::setLocale($country_code);
+            }else if($country_code == 'ba'){
+                App::setLocale('rs');
             }
         }
 
