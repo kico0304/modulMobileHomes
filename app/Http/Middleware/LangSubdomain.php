@@ -26,14 +26,12 @@ class LangSubdomain
             $country_code = strtolower($get_country->countryCode);
         }
 
-        dd($get_country);
-
         $languages = Language::pluck('lang')->toArray();
 
         if($country_code != ''){
-            if(in_array($country_code, $languages)){
+            if(in_array(strtolower($country_code), $languages)){
                 App::setLocale($country_code);
-            }else if($country_code == 'ba'){
+            }else if(strtolower($country_code) == 'ba'){
                 App::setLocale('rs');
             }
         }
