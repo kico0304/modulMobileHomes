@@ -273,7 +273,7 @@ return [
     'contact_text14' => 'The subject of the message',
     'contact_text15' => 'Telephone number',
     'contact_text16' => 'Message',
-    'contact_text17' => 'Send',
+    'contact_text17' => 'Seconds',
     'contact_text18' => '<b>Grad Projekt Studio</b><br>Isaije Mitrovića 3<br>78 000 Banja Luka, RS<br>Bosnia and Hercegovina<br>TEL/VIBER: +38765959595<br>www.modulmobilehomes.com<br>info@modulmobilehomes.com',
     'contact_text19' => '<b>“GRAD PROJEKT BIRO” DOO</b><br>Ulica Gradnikove brigade 53<br>5000 Nova Gorica<br>Slovenia<br>www.modulmobilehomes.com<br>info@modulmobilehomes.com',
     'contact_text20' => '<b>Primavera elektro doo</b><br>Ugrinovački Put 29<br>11080, Beograd (Zemun)<br>Serbia<br>+381 61 182 29 02<br>www.primavera.house<br>info@primavera.house',

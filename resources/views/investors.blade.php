@@ -294,7 +294,7 @@
                         </div>
                         <div class="col-lg-12 col-md-6">
                             <div class="alert alert-success contact__msg" style="display: none" role="alert">
-                                {{__('home.contact_text11')}}
+                                {{__('home.contact_text1')}}
                             </div>
                             <div class="form-group">
                                 <input id="submitContact_" class="btn btn-main btn-round-full" name="submit_" type="submit" value="{{__('home.investor_text56')}}" disabled="true"></input>

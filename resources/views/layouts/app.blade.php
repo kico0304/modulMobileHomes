@@ -6,6 +6,15 @@
 
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        
+        <link rel="shortcut icon" href="{{ asset('favicon.png') }}">
+        
+        <meta property = "og:type" content = "ModulMobileHomes" /> <!-- For website -->
+        <meta property = "og:title" content = "ModulMobileHomes" />
+        <meta property = "og:url" content = "https://modulmobilehomes.com/" />
+        <meta property = "og:description" content = "ModulMobileHomes" />
+        <meta property = "og:image" content = "https://modulmobilehomes.com/favicon.png" />
+        <meta property = "og:site_name" content = "ModulMobileHomes" />
 
         <title>@yield('title')</title>
 
