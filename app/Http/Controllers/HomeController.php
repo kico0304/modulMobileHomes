@@ -98,9 +98,13 @@ class HomeController extends Controller
         }
 
         if(Actualitie::all()->count() > 3){
-            $rand_actu = Actualitie::all()->random(3);
+            $rand_actu = Actualitie::whereHas('actualities_lang', function ($q) use ($lang_id) {
+                $q->where('language_id', $lang_id);
+            })->get()->random(3);
         }else{
-            $rand_actu = Actualitie::all();
+            $rand_actu = Actualitie::whereHas('actualities_lang', function ($q) use ($lang_id) {
+                $q->where('language_id', $lang_id);
+            })->get();
         }
 
         return view('actualities', [
